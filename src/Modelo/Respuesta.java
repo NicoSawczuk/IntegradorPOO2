@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,7 +28,7 @@ public class Respuesta {
     @Id
     @SequenceGenerator(name="sec_codRespuesta", initialValue=1, allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sec_codRespuesta")
-    private int idRespueta;
+    private int idRespuesta;
     private String respuesta;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
@@ -38,6 +39,12 @@ public class Respuesta {
     private Pregunta pregunta;
     @OneToMany(mappedBy = "respuesta")
     private List<Voto> votos;
+    @ManyToOne
+    private Estudiante estudiante;
+    @ManyToOne
+    private Profesor profesor;
+    @ManyToOne
+    private Administrador administrador;
     
     //Metodos de los DSD
 

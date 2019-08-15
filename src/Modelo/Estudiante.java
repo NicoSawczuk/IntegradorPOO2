@@ -23,6 +23,10 @@ public class Estudiante extends Universitario{
     //Relaciones
     @OneToMany(mappedBy = "estudiante")
     private List<Voto> votos;
+    @OneToMany(mappedBy = "estudiante")
+    private List<Respuesta> respuestas;
+    @OneToMany(mappedBy = "estudiante")
+    private List<Pregunta> preguntas;
     
     
     //Metodos de los DSD

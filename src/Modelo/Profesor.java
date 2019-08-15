@@ -8,6 +8,7 @@ package Modelo;
 import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,12 +20,16 @@ import javax.persistence.OneToMany;
 public class Profesor extends Universitario{
     private String legajo;
     private double reputacion;
-    private List materias;
     
     //Relaciones
     @OneToMany(mappedBy = "profesor")
     private List<Voto> votos;
-    
+    @OneToMany(mappedBy = "profesor")
+    private List<Respuesta> respuestas;
+    @OneToMany(mappedBy = "profesor")
+    private List<Pregunta> preguntas;
+    @ManyToMany
+    private List<Materia> materias;
     
     //Metodos de los DSD
 

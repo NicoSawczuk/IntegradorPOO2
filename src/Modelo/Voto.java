@@ -34,6 +34,8 @@ public class Voto {
     private Profesor profesor;
     @ManyToOne
     private Estudiante estudiante;
+    @ManyToOne
+    private Administrador administrador;
 
     public Voto() {
     }

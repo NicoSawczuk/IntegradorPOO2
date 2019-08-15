@@ -38,7 +38,12 @@ public class Pregunta {
     private Foro foro;
     @OneToMany(mappedBy = "pregunta")
     private List<Respuesta> respuestas;
-    
+    @ManyToOne
+    private Estudiante estudiante;
+    @ManyToOne
+    private Profesor profesor;
+    @ManyToOne
+    private Administrador administrador;
     
     //Metodos de los DSD
 

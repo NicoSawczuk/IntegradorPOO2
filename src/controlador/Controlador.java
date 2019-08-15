@@ -5,10 +5,19 @@
  */
 package controlador;
 
+import dao.Persistencia;
+
 /**
  *
  * @author nico2
  */
 public class Controlador {
+    Persistencia persistencia;
+
+    public Controlador(Persistencia p) {
+        this.persistencia=p;
+    }
+    
+    
     
 }

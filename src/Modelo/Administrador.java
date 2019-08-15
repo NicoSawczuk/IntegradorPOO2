@@ -5,8 +5,10 @@
  */
 package Modelo;
 
+import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -15,6 +17,14 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("administrador")
 public class Administrador extends Universitario{
+    
+    //Relaciones
+    @OneToMany(mappedBy = "administrador")
+    private List<Respuesta> respuestas;
+    @OneToMany(mappedBy = "administrador")
+    private List<Pregunta> preguntas;
+    @OneToMany(mappedBy = "administrador")
+    private List<Voto> votos;
 
     public Administrador() {
     }
