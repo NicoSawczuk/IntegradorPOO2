@@ -5,24 +5,21 @@
  */
 package Modelo;
 
-import java.util.Date;
+import java.util.List;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author nico2
  */
-public abstract class Universitario {
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private int dni;
-    private Date fechaNac;
-    private String direccion;
-    private char sexo;
+public class Tema {
+    private int idTema;
+    private String titulo;
     
+    //Relaciones
+    @OneToMany(mappedBy = "tema")
+    private List<Foro> foros;
     
     
     //Metodos de los DSD
-    
-    
 }

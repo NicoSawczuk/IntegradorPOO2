@@ -5,24 +5,12 @@
  */
 package Modelo;
 
-import java.util.Date;
-
 /**
  *
  * @author nico2
  */
-public abstract class Universitario {
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private int dni;
-    private Date fechaNac;
-    private String direccion;
-    private char sexo;
-    
-    
+public class Administrador extends Universitario{
     
     //Metodos de los DSD
-    
     
 }
