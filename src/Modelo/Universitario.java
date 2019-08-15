@@ -6,16 +6,28 @@
 package Modelo;
 
 import java.util.Date;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  *
  * @author nico2
  */
+@Entity
+@Table (name="universitario")
+@Inheritance (strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Universitario {
+    @Id
+    private int dni;
     private String nombre;
     private String apellido;
     private String correo;
-    private int dni;
+    
     private Date fechaNac;
     private String direccion;
     private char sexo;
@@ -23,6 +35,10 @@ public abstract class Universitario {
     
     
     //Metodos de los DSD
+
+    public Universitario() {
+    }
+    
     
     
 }

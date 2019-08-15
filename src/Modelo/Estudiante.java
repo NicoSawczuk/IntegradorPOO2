@@ -6,12 +6,16 @@
 package Modelo;
 
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 /**
  *
  * @author nico2
  */
+@Entity
+@DiscriminatorValue("estudiante")
 public class Estudiante extends Universitario{
     private String legajo;
     private double reputacion;
@@ -22,5 +26,9 @@ public class Estudiante extends Universitario{
     
     
     //Metodos de los DSD
+
+    public Estudiante() {
+    }
+    
     
 }

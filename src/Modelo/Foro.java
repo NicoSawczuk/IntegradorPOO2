@@ -6,14 +6,25 @@
 package Modelo;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author nico2
  */
+@Entity
+@Table (name="foro")
 public class Foro {
+    @Id
+    @SequenceGenerator(name="sec_codForo", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sec_codForo")
     private int idForo;
     private String titulo;
     
@@ -25,5 +36,8 @@ public class Foro {
     
     
     //Metodos de los DSD
+
+    public Foro() {
+    }
     
 }

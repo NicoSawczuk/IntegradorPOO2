@@ -5,12 +5,21 @@
  */
 package Modelo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 /**
  *
  * @author nico2
  */
+@Entity
+@DiscriminatorValue("administrador")
 public class Administrador extends Universitario{
+
+    public Administrador() {
+    }
     
     //Metodos de los DSD
+    
     
 }
