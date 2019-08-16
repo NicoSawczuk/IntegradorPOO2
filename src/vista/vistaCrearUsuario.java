@@ -61,7 +61,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         comboMaterias = new javax.swing.JComboBox<>();
         botonAgregarMateria = new javax.swing.JButton();
         botonBorrarMateria = new javax.swing.JButton();
-        botonBorrarUsuario = new javax.swing.JButton();
+        botonCambiarEstado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,7 +129,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         botonBorrarMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botonBorrarMateria.setText("-");
 
-        botonBorrarUsuario.setText("Eliminar");
+        botonCambiarEstado.setText("Cambiar estado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,7 +193,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(botonAgregarMateria)))
                     .addComponent(botonBorrarMateria, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonBorrarUsuario, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(botonCambiarEstado, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -231,7 +231,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBorrarUsuario))
+                    .addComponent(botonCambiarEstado))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -296,7 +296,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregarMateria;
     private javax.swing.JButton botonAgregarUsuario;
     private javax.swing.JButton botonBorrarMateria;
-    private javax.swing.JButton botonBorrarUsuario;
+    private javax.swing.JButton botonCambiarEstado;
     private javax.swing.JButton botonNuevo;
     private javax.swing.JComboBox<String> comboCarrera;
     private javax.swing.JComboBox<String> comboCorreo;

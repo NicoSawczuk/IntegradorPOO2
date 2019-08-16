@@ -95,7 +95,7 @@
                       </Group>
                   </Group>
                   <Component id="botonBorrarMateria" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonBorrarUsuario" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonCambiarEstado" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
@@ -142,7 +142,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtLegajo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboCarrera" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botonBorrarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonCambiarEstado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -427,9 +427,9 @@
         <Property name="text" type="java.lang.String" value="-"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botonBorrarUsuario">
+    <Component class="javax.swing.JButton" name="botonCambiarEstado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
+        <Property name="text" type="java.lang.String" value="Cambiar estado"/>
       </Properties>
     </Component>
   </SubComponents>
