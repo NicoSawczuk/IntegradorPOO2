@@ -56,7 +56,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         botonResponder = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(190, 189, 189));
 
         panel1.setBackground(new java.awt.Color(253, 253, 253));
