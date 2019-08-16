@@ -9,6 +9,7 @@ import controlador.Controlador;
 import dao.Persistencia;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import vista.vistaVerPregunta;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Main {
         
         Persistencia p = new Persistencia(emf);
         Controlador c = new Controlador(p);
-        //ventanaPrincipal v1 = new ventanaPrincipal(c);
+        vistaVerPregunta v1 = new vistaVerPregunta(c);
         
     }
     
