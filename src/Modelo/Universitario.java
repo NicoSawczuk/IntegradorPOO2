@@ -34,6 +34,7 @@ public abstract class Universitario {
     private Date fechaNac;
     private String direccion;
     private char sexo;
+    private boolean estado;
     
     
     
@@ -41,6 +42,7 @@ public abstract class Universitario {
     //Metodos de los DSD
 
     public Universitario() {
+        this.estado=true;
     }
     
     
