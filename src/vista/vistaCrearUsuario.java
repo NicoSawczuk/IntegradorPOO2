@@ -63,7 +63,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         botonBorrarMateria = new javax.swing.JButton();
         botonCambiarEstado = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setText("Seleccione el tipo de usuario:");
 

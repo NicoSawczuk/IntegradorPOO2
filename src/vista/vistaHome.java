@@ -219,8 +219,7 @@ public class vistaHome extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(botonVerUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, Short.MAX_VALUE))
         );
 
         pack();
