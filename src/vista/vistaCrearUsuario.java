@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author nico2
  */
-public class vistaCrearUsuario extends javax.swing.JFrame {
+public final class vistaCrearUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form vistaCrearUsuario
@@ -28,6 +28,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     public vistaCrearUsuario() {
         initComponents();
     }
+    
+
     public void limpiar(){
         //vaciamos todos los txt
         this.txtApellido.setText("");
@@ -100,6 +102,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         botonAgregarMateria = new javax.swing.JButton();
         botonBorrarMateria = new javax.swing.JButton();
         botonCambiarEstado = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        txtContrasena = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -114,6 +118,12 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         jLabel2.setText("Agregar un nuevo usuario");
 
         comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Profesor" }));
+        comboTipoUsuario.setSelectedIndex(-1);
+        comboTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
@@ -128,6 +138,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         jLabel8.setText("Sexo:");
 
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        comboSexo.setSelectedIndex(-1);
 
         jLabel9.setText("Legajo:");
 
@@ -147,7 +158,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
 
         jLabel10.setText("DNI:");
 
-        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC", "PROF" }));
+        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC" }));
 
         jScrollPane1.setViewportView(listaUsuarios);
 
@@ -175,6 +186,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         botonBorrarMateria.setText("-");
 
         botonCambiarEstado.setText("Cambiar estado");
+
+        jLabel15.setText("Contraseña:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,17 +221,19 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAgregarUsuario)
-                        .addGap(28, 28, 28)
-                        .addComponent(botonNuevo))
                     .addComponent(comboTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(183, 183, 183)))
+                        .addGap(183, 183, 183))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonAgregarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonNuevo))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -269,7 +284,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9))
                     .addComponent(jScrollPane1))
                 .addGap(4, 4, 4)
@@ -314,12 +329,15 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonBorrarMateria)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonNuevo)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonAgregarUsuario)
-                        .addComponent(botonBorrarMateria)))
-                .addContainerGap())
+                    .addComponent(botonAgregarUsuario)))
         );
 
         pack();
@@ -330,7 +348,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_comboCorreoActionPerformed
 
     private void botonAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarUsuarioActionPerformed
-        // TODO add your handling code here:
+        //Guardar estudiante
+        
     }//GEN-LAST:event_botonAgregarUsuarioActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
@@ -341,6 +360,39 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         this.vistaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void comboTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoUsuarioActionPerformed
+        if(this.comboTipoUsuario.getSelectedItem()=="Estudiante"){
+           this.txtApellido.setText("");
+           this.txtCorreo.setText("");
+           this.txtDNI.setText("");
+           this.txtDireccion.setText("");
+           this.txtLegajo.setText("");
+           this.txtNombre.setText("");
+           this.jLabel12.setText("");
+           this.jLabel13.setText("");
+           this.jLabel14.setText("");
+           this.comboMaterias.setVisible(false);
+           this.botonAgregarMateria.setVisible(false);
+           this.listaMaterias.setVisible(false);
+           this.botonBorrarMateria.setVisible(false);
+        }
+        if(this.comboTipoUsuario.getSelectedItem()=="Profesor"){
+            this.txtApellido.setText("");
+           this.txtCorreo.setText("");
+           this.txtDNI.setText("");
+           this.txtDireccion.setText("");
+           this.txtLegajo.setText("");
+           this.txtNombre.setText("");
+           this.jLabel12.setText("Materias:");
+           this.jLabel13.setText("Asignar materias al profesor:");
+           this.jLabel14.setText("Seleccione:");
+           this.comboMaterias.setVisible(true);
+           this.botonAgregarMateria.setVisible(true);
+           this.listaMaterias.setVisible(true);
+           this.botonBorrarMateria.setVisible(true);
+        }
+    }//GEN-LAST:event_comboTipoUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMateria;
@@ -360,6 +412,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -373,6 +426,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     private javax.swing.JList listaMaterias;
     private javax.swing.JList listaUsuarios;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtDireccion;
