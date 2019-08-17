@@ -5,10 +5,12 @@
  */
 package vista;
 
+import Modelo.Materia;
 import Modelo.Universitario;
 import controlador.Controlador;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -43,6 +45,8 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         this.txtNombre.setText("");
         this.jDateChooser1.setCalendar(null);
         this.txtContrasena.setText("");
+        this.comboSexo.setSelectedIndex(-1);
+        this.comboTipoUsuario.setSelectedIndex(-1);
         
         
         //creamos un combo para las materias
@@ -53,6 +57,9 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         DefaultListModel modelolista = new DefaultListModel();
         this.listaUsuarios.setModel(modelolista);
         this.listaUsuarios.setListData(this.controlador.listarUsuarios().toArray());
+        
+        //deseleccionamos el combo materas
+        this.comboMaterias.setSelectedIndex(-1);
     }
 
     public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {
@@ -164,8 +171,13 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
         jLabel10.setText("DNI:");
 
-        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC", "PROF" }));
+        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC", "PRO" }));
 
+        listaUsuarios.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaUsuariosValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaUsuarios);
 
         botonNuevo.setText("Nuevo");
@@ -187,11 +199,21 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
         botonAgregarMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botonAgregarMateria.setText("+");
+        botonAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarMateriaActionPerformed(evt);
+            }
+        });
 
         botonBorrarMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botonBorrarMateria.setText("-");
 
         botonCambiarEstado.setText("Cambiar estado");
+        botonCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambiarEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Contraseña:");
 
@@ -354,18 +376,25 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_comboCorreoActionPerformed
 
     private void botonAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarUsuarioActionPerformed
-        if (this.comboTipoUsuario.getSelectedItem()=="Estudiante"){
-            //Guardar estudiante
-            //si todos los campos estan seleccionados
+        if (this.comboTipoUsuario.getSelectedItem()=="Estudiante" ||this.comboTipoUsuario.getSelectedItem()=="ESTUDIANTE"){
             if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
-                //entonces cargo 
-                //Casteamos y juntamos los campos necesarios
-                int dni = Integer.parseInt(this.txtDNI.getText());
-                String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
-                String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
-                String auxSexo = this.comboSexo.getSelectedItem().toString();
-                char sexo = auxSexo.charAt(0);
-                this.controlador.crearEstudiante(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                if (!this.listaUsuarios.isSelectionEmpty()){
+                    int dni = Integer.parseInt(this.txtDNI.getText());
+                    String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                    String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                    String auxSexo = this.comboSexo.getSelectedItem().toString();
+                    char sexo = auxSexo.charAt(0);
+                    this.controlador.editarEstudiante((Universitario) this.listaUsuarios.getSelectedValue(),this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                }
+                else{
+                    //Casteamos y juntamos los campos necesarios
+                    int dni = Integer.parseInt(this.txtDNI.getText());
+                    String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                    String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                    String auxSexo = this.comboSexo.getSelectedItem().toString();
+                    char sexo = auxSexo.charAt(0);
+                    this.controlador.crearEstudiante(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                } 
             }
             //sino emito un mensaje
             else{
@@ -377,21 +406,30 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
             //Guardar profesor
             //si todos los campos estan seleccionados
             if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
-                //entonces cargo 
-                //Casteamos y juntamos los campos necesarios
-                int dni = Integer.parseInt(this.txtDNI.getText());
-                String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
-                String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
-                String auxSexo = this.comboSexo.getSelectedItem().toString();
-                char sexo = auxSexo.charAt(0);
-                this.controlador.CrearProfesor(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                if (!this.listaUsuarios.isSelectionEmpty()){    
+                    int dni = Integer.parseInt(this.txtDNI.getText());
+                    String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                    String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                    String auxSexo = this.comboSexo.getSelectedItem().toString();
+                    char sexo = auxSexo.charAt(0);
+                    this.controlador.editarProfesor((Universitario) this.listaUsuarios.getSelectedValue(),this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                }
+                else{
+                    //Casteamos y juntamos los campos necesarios
+                    int dni = Integer.parseInt(this.txtDNI.getText());
+                    String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                    String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                    String auxSexo = this.comboSexo.getSelectedItem().toString();
+                    char sexo = auxSexo.charAt(0);
+                    this.controlador.crearProfesor(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                }
             }
         }
         limpiar();
     }//GEN-LAST:event_botonAgregarUsuarioActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-        // TODO add your handling code here:
+        limpiar();
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -401,27 +439,32 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
     private void comboTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoUsuarioActionPerformed
         if(this.comboTipoUsuario.getSelectedItem()=="Estudiante"){
-           this.txtApellido.setText("");
+           /*this.txtApellido.setText("");
            this.txtCorreo.setText("");
            this.txtDNI.setText("");
+           this.txtContrasena.setText("");
            this.txtDireccion.setText("");
            this.txtLegajo.setText("");
-           this.txtNombre.setText("");
+           this.txtNombre.setText("");*/
            this.jLabel12.setText("");
            this.jLabel13.setText("");
            this.jLabel14.setText("");
+           /*this.jDateChooser1.setCalendar(null);
+           this.listaMaterias.setSelectedIndex(-1);
+           this.listaUsuarios.setSelectedIndex(-1);*/
            this.comboMaterias.setVisible(false);
            this.botonAgregarMateria.setVisible(false);
            this.listaMaterias.setVisible(false);
            this.botonBorrarMateria.setVisible(false);
         }
         if(this.comboTipoUsuario.getSelectedItem()=="Profesor"){
-            this.txtApellido.setText("");
+           /*this.txtApellido.setText("");
            this.txtCorreo.setText("");
            this.txtDNI.setText("");
+           this.txtContrasena.setText("");
            this.txtDireccion.setText("");
            this.txtLegajo.setText("");
-           this.txtNombre.setText("");
+           this.txtNombre.setText("");*/
            this.jLabel12.setText("Materias:");
            this.jLabel13.setText("Asignar materias al profesor:");
            this.jLabel14.setText("Seleccione:");
@@ -431,6 +474,75 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
            this.botonBorrarMateria.setVisible(true);
         }
     }//GEN-LAST:event_comboTipoUsuarioActionPerformed
+
+    private void listaUsuariosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuariosValueChanged
+        if (!this.listaUsuarios.isSelectionEmpty()){
+            Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
+            this.txtApellido.setText(auxUniversitario.getApellido());
+            this.txtContrasena.setText(auxUniversitario.getPass());
+            //this.txtCorreo.setText(auxUniversitario.getCorreo());
+            this.txtDNI.setText(Integer.toString(auxUniversitario.getDni()));
+            this.txtDireccion.setText(auxUniversitario.getDireccion());
+            String legajo2 = auxUniversitario.getLegajo();
+            String legajo="";
+            for (int n = 3; n<= legajo2.length()-1 ;n++){
+                legajo=legajo+legajo2.charAt(n);
+            }
+            this.txtLegajo.setText(legajo);
+            this.jDateChooser1.setDate(auxUniversitario.getFechaNac());
+            this.txtDireccion.setText(auxUniversitario.getDireccion());
+            this.txtNombre.setText(auxUniversitario.getNombre());
+            char c=0;
+            String auxCorreo="";
+            String auxCorreo2 = auxUniversitario.getCorreo();
+            for (int n = 0; n <= auxCorreo2.length()-1; n++){
+                if (c !='@'){
+                    auxCorreo=auxCorreo+auxCorreo2.charAt(n);
+                    c = auxCorreo2.charAt(n);
+                }
+            }
+            auxCorreo = auxCorreo.substring(0, auxCorreo.length()-1);
+            this.txtCorreo.setText(auxCorreo);
+            
+            
+            if (!"PROFESOR".equals(auxUniversitario.getTipo())){
+                this.jLabel12.setText("");
+                this.jLabel13.setText("");
+                this.jLabel14.setText("");
+                this.comboMaterias.setVisible(false);
+                this.botonAgregarMateria.setVisible(false);
+                this.listaMaterias.setVisible(false);
+                this.botonBorrarMateria.setVisible(false);
+                this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
+        }
+            else{
+                this.jLabel12.setText("Materias:");
+                this.jLabel13.setText("Asignar materias al profesor:");
+                this.jLabel14.setText("Seleccione:");
+                this.comboMaterias.setVisible(true);
+                this.botonAgregarMateria.setVisible(true);
+                this.listaMaterias.setVisible(true);
+                this.botonBorrarMateria.setVisible(true);
+            }
+            }
+    }//GEN-LAST:event_listaUsuariosValueChanged
+
+    private void botonCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarEstadoActionPerformed
+        if(!this.listaUsuarios.isSelectionEmpty()){
+            Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
+            this.controlador.borrarUsuario(auxUniversitario);
+        }
+    }//GEN-LAST:event_botonCambiarEstadoActionPerformed
+
+    private void botonAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMateriaActionPerformed
+        if (this.listaUsuarios.getSelectedValue() != null && this.comboMaterias.getSelectedItem() != null){
+            Materia auxMateria = (Materia) this.comboMaterias.getSelectedItem();
+            Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
+            this.controlador.asociarMaterias(auxMateria, auxUniversitario);
+            this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
+            System.out.println("entro");
+        }
+    }//GEN-LAST:event_botonAgregarMateriaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMateria;

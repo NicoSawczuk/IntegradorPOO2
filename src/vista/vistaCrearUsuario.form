@@ -345,7 +345,7 @@
           <StringArray count="3">
             <StringItem index="0" value="LSI"/>
             <StringItem index="1" value="ASC"/>
-            <StringItem index="2" value="PROF"/>
+            <StringItem index="2" value="PRO"/>
           </StringArray>
         </Property>
       </Properties>
@@ -366,6 +366,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listaUsuariosValueChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
           </AuxValues>
@@ -436,6 +439,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarMateriaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonBorrarMateria">
       <Properties>
@@ -449,6 +455,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cambiar estado"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCambiarEstadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
