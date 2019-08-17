@@ -21,6 +21,35 @@ public class Controlador {
         this.persistencia=p;
     }
 
+    public boolean buscarUniversitario(String auxCorreo) {
+        List universitarios = new ArrayList<>();
+        universitarios = persistencia.buscarTodos(Universitario.class);
+        
+        for (int i = 0; i < universitarios.size(); i++) {
+            Universitario auxU = (Universitario) universitarios.get(i);
+            
+            if (auxCorreo.equals(auxU.getCorreo())) {
+                
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public Universitario ObtenerUniversitario(String auxCorreo) {
+        List universitarios = new ArrayList<>();
+        universitarios = persistencia.buscarTodos(Universitario.class);
+        
+        for (int i = 0; i < universitarios.size(); i++) {
+            Universitario auxU = (Universitario) universitarios.get(i);
+            if (auxU.getCorreo() == auxCorreo) {
+                return auxU;
+            }
+        }
+        return null;
+    }
+
     
     
     

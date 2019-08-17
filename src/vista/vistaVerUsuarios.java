@@ -29,7 +29,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaUsuario = new javax.swing.JList<>();
+        listaUsuario = new javax.swing.JList();
         botonABMusuarios = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -231,7 +231,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea listaMaterias;
-    private javax.swing.JList<String> listaUsuario;
+    private javax.swing.JList listaUsuario;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;

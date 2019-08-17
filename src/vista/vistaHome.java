@@ -5,6 +5,9 @@
  */
 package vista;
 
+import Modelo.Universitario;
+import controlador.Controlador;
+
 /**
  *
  * @author nico2
@@ -14,8 +17,13 @@ public class vistaHome extends javax.swing.JFrame {
     /**
      * Creates new form vistaHome
      */
+    private Controlador controlador;
+   
+    private Universitario universitario;
+    
     public vistaHome() {
         initComponents();
+        
     }
 
     /**
@@ -29,11 +37,11 @@ public class vistaHome extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaTemas = new javax.swing.JList<>();
+        listaTemas = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaForos = new javax.swing.JList<>();
+        listaForos = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listaPreguntas = new javax.swing.JList<>();
+        listaPreguntas = new javax.swing.JList();
         botonAgregarForo = new javax.swing.JButton();
         botonAgregarPregunta = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -438,9 +446,9 @@ public class vistaHome extends javax.swing.JFrame {
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelForo;
     private javax.swing.JLabel labelTema;
-    private javax.swing.JList<String> listaForos;
-    private javax.swing.JList<String> listaPreguntas;
-    private javax.swing.JList<String> listaTemas;
+    private javax.swing.JList listaForos;
+    private javax.swing.JList listaPreguntas;
+    private javax.swing.JList listaTemas;
     private javax.swing.JRadioButton opcionCoincidencia;
     private javax.swing.JRadioButton opcionForo;
     private javax.swing.JRadioButton opcionTitulo;

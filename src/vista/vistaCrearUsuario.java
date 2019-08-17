@@ -5,6 +5,10 @@
  */
 package vista;
 
+import Modelo.Universitario;
+import controlador.Controlador;
+import javax.swing.JFrame;
+
 /**
  *
  * @author nico2
@@ -14,8 +18,20 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form vistaCrearUsuario
      */
+    private Controlador controlador;
+    private Universitario universitario;
+    private JFrame vistaAnterior;
+    
     public vistaCrearUsuario() {
         initComponents();
+    }
+
+    public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {
+        initComponents();
+       this.controlador = controlador;
+       this.universitario = usuarioActual;
+       this.vistaAnterior = aThis;
+       this.setVisible(true);
     }
 
     /**
@@ -50,12 +66,12 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         txtDNI = new javax.swing.JTextField();
         comboCarrera = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaUsuarios = new javax.swing.JList<>();
+        listaUsuarios = new javax.swing.JList();
         botonNuevo = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaMaterias = new javax.swing.JList<>();
+        listaMaterias = new javax.swing.JList();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         comboMaterias = new javax.swing.JComboBox<>();
@@ -320,8 +336,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaMaterias;
-    private javax.swing.JList<String> listaUsuarios;
+    private javax.swing.JList listaMaterias;
+    private javax.swing.JList listaUsuarios;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;

@@ -42,7 +42,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         panel4 = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaRespuesta = new javax.swing.JList<>();
+        listaRespuesta = new javax.swing.JList();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         panel3 = new java.awt.Panel();
@@ -105,7 +105,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonEliminarPregunta)
                             .addComponent(botonEditarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 2, Short.MAX_VALUE))))
         );
 
         jLabel6.setText("Descripcion");
@@ -178,7 +178,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(contadorLikes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +308,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JList<String> listaRespuesta;
+    private javax.swing.JList listaRespuesta;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
     private java.awt.Panel panel3;

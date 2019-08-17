@@ -60,6 +60,10 @@ public class Universitario {
         this.estado=true;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
    
     
     

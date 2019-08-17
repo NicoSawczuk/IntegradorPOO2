@@ -155,19 +155,23 @@ public class vistaLogin extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         // Boton de inicio, toma los datos y verifica que exista el usuario y ve quien es.
         
-       /* if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
+        if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
             
             String auxCorreo =  this.txtUsuario.getText() + this.comboTIpo.getItemAt(this.comboTIpo.getSelectedIndex());
             
-            if(controlador.buscarUniversitario(auxCorreo)){ // si existe
+            if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
                 
-                usuarioActual = controlador.ObtenerUniversitario(auxCorreo);
+                usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
                 
-                if(usuarioActual){  //si es registrado va solo a abm usuarios
-                
+                if(true){  //si es registrado va solo a abm usuarios
+                    this.dispose();
+                   // VentanaEspecialidades e1 = new VentanaEspecialidades(Controlador, this);
+                   vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
                 
                 }else{
-                
+                    //this.dispose();
+                   // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
+                    
                 }
                 
             
@@ -181,7 +185,7 @@ public class vistaLogin extends javax.swing.JFrame {
         
         
         
-        */
+        
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     /**
