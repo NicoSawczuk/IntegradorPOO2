@@ -7,9 +7,12 @@ package vista;
 
 import Modelo.Universitario;
 import controlador.Controlador;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +41,9 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         this.txtDireccion.setText("");
         this.txtLegajo.setText("");
         this.txtNombre.setText("");
+        this.jDateChooser1.setCalendar(null);
+        this.txtContrasena.setText("");
+        
         
         //creamos un combo para las materias
         DefaultComboBoxModel comboMaterias2 = new DefaultComboBoxModel(this.controlador.listarMaterias().toArray());
@@ -137,7 +143,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
         jLabel8.setText("Sexo:");
 
-        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M", "O" }));
         comboSexo.setSelectedIndex(-1);
 
         jLabel9.setText("Legajo:");
@@ -158,7 +164,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
         jLabel10.setText("DNI:");
 
-        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC" }));
+        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC", "PROF" }));
 
         jScrollPane1.setViewportView(listaUsuarios);
 
@@ -348,17 +354,40 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_comboCorreoActionPerformed
 
     private void botonAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarUsuarioActionPerformed
-        //Guardar estudiante
-        
-        //si todos los campos estan seleccionados
-        if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
-           //entonces cargo 
-            System.out.println("Anda");
+        if (this.comboTipoUsuario.getSelectedItem()=="Estudiante"){
+            //Guardar estudiante
+            //si todos los campos estan seleccionados
+            if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
+                //entonces cargo 
+                //Casteamos y juntamos los campos necesarios
+                int dni = Integer.parseInt(this.txtDNI.getText());
+                String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                String auxSexo = this.comboSexo.getSelectedItem().toString();
+                char sexo = auxSexo.charAt(0);
+                this.controlador.crearEstudiante(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+            }
+            //sino emito un mensaje
+            else{
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
+            }
+            limpiar();
         }
         else{
-            System.out.println("Por favor complete todos los campos");
+            //Guardar profesor
+            //si todos los campos estan seleccionados
+            if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
+                //entonces cargo 
+                //Casteamos y juntamos los campos necesarios
+                int dni = Integer.parseInt(this.txtDNI.getText());
+                String legajo = this.comboCarrera.getSelectedItem().toString() + this.txtLegajo.getText().toUpperCase();
+                String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
+                String auxSexo = this.comboSexo.getSelectedItem().toString();
+                char sexo = auxSexo.charAt(0);
+                this.controlador.CrearProfesor(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+            }
         }
-        //sino emito un mensaje
+        limpiar();
     }//GEN-LAST:event_botonAgregarUsuarioActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed

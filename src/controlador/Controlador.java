@@ -9,6 +9,7 @@ import Modelo.Materia;
 import Modelo.Universitario;
 import dao.Persistencia;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +59,34 @@ public class Controlador {
     
     public List listarUsuarios(){
         return this.persistencia.buscarTodos(Universitario.class);
+    }
+    
+    
+    //Cargar
+    public void crearEstudiante(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+        this.persistencia.iniciarTransaccion();
+        Universitario auxEstudiante = new Universitario();
+        try {
+            auxEstudiante.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(auxEstudiante);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo agregar el Estudiante");
+        }
+    }
+    
+    public void CrearProfesor(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+        this.persistencia.iniciarTransaccion();
+        Universitario auxProfesor = new Universitario();
+        try {
+            auxProfesor.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(auxProfesor);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo agregar el Estudiante");
+        }
     }
     
     

@@ -285,9 +285,10 @@
     <Component class="javax.swing.JComboBox" name="comboSexo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Femenino"/>
-            <StringItem index="1" value="Masculino"/>
+          <StringArray count="3">
+            <StringItem index="0" value="F"/>
+            <StringItem index="1" value="M"/>
+            <StringItem index="2" value="O"/>
           </StringArray>
         </Property>
         <Property name="selectedIndex" type="int" value="-1"/>
@@ -341,9 +342,10 @@
     <Component class="javax.swing.JComboBox" name="comboCarrera">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="3">
             <StringItem index="0" value="LSI"/>
             <StringItem index="1" value="ASC"/>
+            <StringItem index="2" value="PROF"/>
           </StringArray>
         </Property>
       </Properties>

@@ -65,9 +65,25 @@ public class Universitario {
     }
 
    
+    
+    //Metodo para crear estudiante
+    public void cargarDatos(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.dni=dni;
+        this.legajo=legajo;
+        this.correo=correo;
+        this.tipo=tipoUsuario.toUpperCase();
+        this.fechaNac=fecha;
+        this.direccion=direccion;
+        this.sexo=sexo;
+        this.pass=pass;
+    }
+    
+    
     @Override
     public String toString(){
-        return this.nombre+"    "+this.estado;
+        return this.nombre+"    "+this.tipo+"    "+this.estado;
     }
     
 }
