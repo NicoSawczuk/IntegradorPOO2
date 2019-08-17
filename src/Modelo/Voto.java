@@ -31,11 +31,8 @@ public class Voto {
     @ManyToOne
     private Respuesta respuesta;
     @ManyToOne
-    private Profesor profesor;
-    @ManyToOne
-    private Estudiante estudiante;
-    @ManyToOne
-    private Administrador administrador;
+    private Universitario universitario;
+    
 
     public Voto() {
     }

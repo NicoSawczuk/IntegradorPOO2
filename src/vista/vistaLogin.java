@@ -155,7 +155,7 @@ public class vistaLogin extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         // Boton de inicio, toma los datos y verifica que exista el usuario y ve quien es.
         
-        if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
+       /* if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
             
             String auxCorreo =  this.txtUsuario.getText() + this.comboTIpo.getItemAt(this.comboTIpo.getSelectedIndex());
             
@@ -181,7 +181,7 @@ public class vistaLogin extends javax.swing.JFrame {
         
         
         
-        
+        */
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     /**
