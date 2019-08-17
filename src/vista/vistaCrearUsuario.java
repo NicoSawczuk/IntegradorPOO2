@@ -8,6 +8,7 @@ package vista;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 /**
@@ -39,6 +40,11 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         //creamos un combo para las materias
         DefaultComboBoxModel comboMaterias2 = new DefaultComboBoxModel(this.controlador.listarMaterias().toArray());
         this.comboMaterias.setModel(comboMaterias2);
+        
+        //creamos una lista y la llenamos con todos los usuarios
+        DefaultListModel modelolista = new DefaultListModel();
+        this.listaUsuarios.setModel(modelolista);
+        this.listaUsuarios.setListData(this.controlador.listarUsuarios().toArray());
     }
 
     public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {

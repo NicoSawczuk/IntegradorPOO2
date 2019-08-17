@@ -65,6 +65,9 @@ public class Universitario {
     }
 
    
-    
+    @Override
+    public String toString(){
+        return this.nombre+"    "+this.estado;
+    }
     
 }

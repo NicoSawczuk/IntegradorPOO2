@@ -56,6 +56,10 @@ public class Controlador {
         return this.persistencia.buscarTodos(Materia.class);
     }
     
+    public List listarUsuarios(){
+        return this.persistencia.buscarTodos(Universitario.class);
+    }
+    
     
     
 }
