@@ -34,4 +34,9 @@ public class Materia {
     }
     
     
+    //Metodo agregar universitario
+    public void AgregarUniversitario(Universitario auxUniversitario){
+        this.profesores.add(auxUniversitario);
+    }
+    
 }

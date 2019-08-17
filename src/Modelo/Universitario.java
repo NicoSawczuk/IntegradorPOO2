@@ -81,8 +81,118 @@ public class Universitario {
     }
     
     
+    //Setters and Getters
+    
+    public void setCorreo(String correo){
+        this.correo = correo;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public double getReputacion() {
+        return reputacion;
+    }
+
+    public void setReputacion(double reputacion) {
+        this.reputacion = reputacion;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String tipo) {    
+        this.tipo = tipo;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
+    
+    
+    //Metodo agregar materias
+    public void agregarMaterias(Materia auxMateria){
+        this.materias.add(auxMateria);
+        auxMateria.AgregarUniversitario(this);
+        System.out.println("entro 2");
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.nombre+"    "+this.tipo+"    "+this.estado;
     }
     

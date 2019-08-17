@@ -76,7 +76,7 @@ public class Controlador {
         }
     }
     
-    public void CrearProfesor(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+    public void crearProfesor(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
         Universitario auxProfesor = new Universitario();
         try {
@@ -89,6 +89,72 @@ public class Controlador {
         }
     }
     
+    
+    //Editar
+    public void editarEstudiante(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){        
+        this.persistencia.iniciarTransaccion();
+        try {
+            auxUniversitario.setNombre(nombre);
+            auxUniversitario.setApellido(apellido);
+            auxUniversitario.setDni(dni);
+            auxUniversitario.setLegajo(legajo);
+            auxUniversitario.setCorreo(correo);
+            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
+            auxUniversitario.setFechaNac(fecha);
+            auxUniversitario.setDireccion(direccion);
+            auxUniversitario.setSexo(sexo);
+            auxUniversitario.setPass(pass);
+            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo editar el Estudiante");
+        }
+        
+    }
+    
+    public void editarProfesor(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+        this.persistencia.iniciarTransaccion();
+        try {
+            auxUniversitario.setNombre(nombre);
+            auxUniversitario.setApellido(apellido);
+            auxUniversitario.setDni(dni);
+            auxUniversitario.setLegajo(legajo);
+            auxUniversitario.setCorreo(correo);
+            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
+            auxUniversitario.setFechaNac(fecha);
+            auxUniversitario.setDireccion(direccion);
+            auxUniversitario.setSexo(sexo);
+            auxUniversitario.setPass(pass);
+            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo editar el Profesor");
+        }
+    }
+    
+    //Borrar
+    public void borrarUsuario(Universitario auxUniversitario){
+        this.persistencia.iniciarTransaccion();
+        if (auxUniversitario.isEstado() == true){
+            auxUniversitario.setEstado(false);
+        }
+        if(auxUniversitario.isEstado() != true){
+            auxUniversitario.setEstado(true);
+        }
+        this.persistencia.modificar(auxUniversitario);
+        this.persistencia.descartarTransaccion();
+    }
+    
+    //Asociar
+    public void asociarMaterias(Materia auxMateria,Universitario auxUniversitario){
+        this.persistencia.iniciarTransaccion();
+        auxUniversitario.agregarMaterias(auxMateria);
+        this.persistencia.modificar(auxUniversitario);
+        this.persistencia.modificar(auxMateria);
+        this.persistencia.descartarTransaccion();
+    }
     
     
 }
