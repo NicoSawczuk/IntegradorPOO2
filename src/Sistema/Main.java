@@ -9,7 +9,7 @@ import controlador.Controlador;
 import dao.Persistencia;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import vista.vistaVerPregunta;
+import vista.vistaLogin;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Main {
         
         Persistencia p = new Persistencia(emf);
         Controlador c = new Controlador(p);
-        vistaVerPregunta v1 = new vistaVerPregunta(c);
+        vistaLogin v1 = new vistaLogin(c);
         
     }
     

@@ -35,6 +35,7 @@ public abstract class Universitario {
     private String direccion;
     private char sexo;
     private boolean estado;
+    private String pass;
     
     
     

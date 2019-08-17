@@ -5,6 +5,8 @@
  */
 package vista;
 
+import controlador.Controlador;
+
 /**
  *
  * @author nico2
@@ -14,8 +16,13 @@ public class vistaLogin extends javax.swing.JFrame {
     /**
      * Creates new form vistaLogin
      */
-    public vistaLogin() {
+    private Controlador controlador;
+    
+    public vistaLogin(Controlador c) {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.controlador = c;
     }
 
     /**
