@@ -5,7 +5,10 @@
  */
 package controlador;
 
+import Modelo.Universitario;
 import dao.Persistencia;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,8 @@ public class Controlador {
     public Controlador(Persistencia p) {
         this.persistencia=p;
     }
+
+    
     
     
     
