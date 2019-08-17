@@ -350,6 +350,15 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
     private void botonAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarUsuarioActionPerformed
         //Guardar estudiante
         
+        //si todos los campos estan seleccionados
+        if(this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.comboTipoUsuario.getSelectedItem() != null && this.txtNombre.getText().isEmpty()!=true && this.txtApellido.getText().isEmpty()!=true && this.txtDNI.getText().isEmpty()!=true && this.comboCarrera.getSelectedItem() != null && this.txtLegajo.getText().isEmpty()!=true && this.txtCorreo.getText().isEmpty()!=true && this.comboCorreo.getSelectedItem() != null && this.jDateChooser1.getDate() != null && this.txtDireccion.getText().isEmpty()!=true && this.comboSexo.getSelectedItem() != null & this.txtContrasena.getText().isEmpty()!=true){
+           //entonces cargo 
+            System.out.println("Anda");
+        }
+        else{
+            System.out.println("Por favor complete todos los campos");
+        }
+        //sino emito un mensaje
     }//GEN-LAST:event_botonAgregarUsuarioActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
