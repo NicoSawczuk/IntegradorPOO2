@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,12 +23,12 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table (name="universitario")
-@Inheritance (strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo")
-public abstract class Universitario {
+public class Universitario {
     @Id
     private int dni;
     private String nombre;
+    private String legajo;
+    private double reputacion;
     private String apellido;
     private String correo;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -35,8 +36,22 @@ public abstract class Universitario {
     private String direccion;
     private char sexo;
     private boolean estado;
+    private String pass;
+    private String tipo;
     
     
+    //Relaciones
+    @ManyToMany
+    private List<Materia> materias;
+    
+    @OneToMany(mappedBy = "universitario")
+    private List<Voto> votos;
+    
+    @OneToMany(mappedBy = "universitario")
+    private List<Pregunta> preguntas;
+    
+    @OneToMany(mappedBy = "universitario")
+    private List<Respuesta> respuestas;
     
     
     //Metodos de los DSD
@@ -44,7 +59,12 @@ public abstract class Universitario {
     public Universitario() {
         this.estado=true;
     }
-    
+
+    public String getCorreo() {
+        return correo;
+    }
+
+   
     
     
 }

@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.Controlador;
+import javax.swing.JFrame;
+
 /**
  *
  * @author nico2
@@ -14,6 +17,8 @@ public class vistaAgregarForo extends javax.swing.JFrame {
     /**
      * Creates new form vistaAgregarForo
      */
+    private Controlador controlador;
+    private JFrame vistaAnterior;
     public vistaAgregarForo() {
         initComponents();
     }
@@ -38,6 +43,11 @@ public class vistaAgregarForo extends javax.swing.JFrame {
         labelTema = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panel1.setBackground(new java.awt.Color(253, 253, 253));
 
@@ -139,6 +149,12 @@ public class vistaAgregarForo extends javax.swing.JFrame {
     private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCrearActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.vistaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCrear;
     private javax.swing.JLabel jLabel1;

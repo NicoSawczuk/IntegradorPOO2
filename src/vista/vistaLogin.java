@@ -5,6 +5,10 @@
  */
 package vista;
 
+import Modelo.Universitario;
+import controlador.Controlador;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nico2
@@ -14,8 +18,14 @@ public class vistaLogin extends javax.swing.JFrame {
     /**
      * Creates new form vistaLogin
      */
-    public vistaLogin() {
+    private Controlador controlador;
+    private Universitario usuarioActual;
+    
+    public vistaLogin(Controlador c) {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.controlador = c;
     }
 
     /**
@@ -44,6 +54,11 @@ public class vistaLogin extends javax.swing.JFrame {
         jLabel1.setText("Iniciar Sesion");
 
         botonIniciar.setText("Iniciar");
+        botonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIniciarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Usuario:");
 
@@ -137,6 +152,42 @@ public class vistaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
+        // Boton de inicio, toma los datos y verifica que exista el usuario y ve quien es.
+        
+        if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
+            
+            String auxCorreo =  this.txtUsuario.getText() + this.comboTIpo.getItemAt(this.comboTIpo.getSelectedIndex());
+            
+            if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
+                
+                usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
+                
+                if(true){  //si es registrado va solo a abm usuarios
+                    this.dispose();
+                   // VentanaEspecialidades e1 = new VentanaEspecialidades(Controlador, this);
+                   vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
+                
+                }else{
+                    //this.dispose();
+                   // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
+                    
+                }
+                
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "Usted no existe");
+            }        
+            
+            
+            
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_botonIniciarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,4 +205,6 @@ public class vistaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    
 }

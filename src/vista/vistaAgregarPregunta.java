@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.Controlador;
+import javax.swing.JFrame;
+
 /**
  *
  * @author nico2
@@ -14,6 +17,8 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     /**
      * Creates new form vistaAgregarPregunta
      */
+    private Controlador controlador;
+    private JFrame vistaAnterior;
     public vistaAgregarPregunta() {
         initComponents();
     }
@@ -44,6 +49,11 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
         labelAutor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panel1.setBackground(new java.awt.Color(253, 253, 253));
 
@@ -177,6 +187,12 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.vistaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarPregunta;
     private javax.swing.JLabel jLabel1;

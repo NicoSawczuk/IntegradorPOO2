@@ -39,11 +39,8 @@ public class Pregunta {
     @OneToMany(mappedBy = "pregunta")
     private List<Respuesta> respuestas;
     @ManyToOne
-    private Estudiante estudiante;
-    @ManyToOne
-    private Profesor profesor;
-    @ManyToOne
-    private Administrador administrador;
+    private Universitario universitario;
+    
     
     //Metodos de los DSD
 

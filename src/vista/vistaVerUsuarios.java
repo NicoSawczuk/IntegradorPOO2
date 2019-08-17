@@ -5,6 +5,9 @@
  */
 package vista;
 
+import controlador.Controlador;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Arnold Zarske
@@ -14,6 +17,8 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form vistaVerUsuarios
      */
+    private Controlador controlador;
+    private JFrame vistaAnterior;
     public vistaVerUsuarios() {
         initComponents();
     }
@@ -29,7 +34,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaUsuario = new javax.swing.JList<>();
+        listaUsuario = new javax.swing.JList();
         botonABMusuarios = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -53,6 +58,11 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Usuarios:");
 
@@ -209,6 +219,11 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.vistaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +246,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea listaMaterias;
-    private javax.swing.JList<String> listaUsuario;
+    private javax.swing.JList listaUsuario;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
