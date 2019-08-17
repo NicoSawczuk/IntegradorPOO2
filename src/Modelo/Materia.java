@@ -28,7 +28,10 @@ public class Materia {
     public Materia() {
     }
     
-    
+    @Override
+    public String toString(){
+        return this.nombre.toUpperCase();
+    }
     
     
 }

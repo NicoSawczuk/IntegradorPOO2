@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import Modelo.Materia;
 import Modelo.Universitario;
 import dao.Persistencia;
 import java.util.ArrayList;
@@ -50,7 +51,10 @@ public class Controlador {
         return null;
     }
 
-    
+    //Listar
+    public List listarMaterias(){
+        return this.persistencia.buscarTodos(Materia.class);
+    }
     
     
     

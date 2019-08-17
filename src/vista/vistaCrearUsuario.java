@@ -7,6 +7,7 @@ package vista;
 
 import Modelo.Universitario;
 import controlador.Controlador;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
 /**
@@ -26,6 +27,19 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
     public vistaCrearUsuario() {
         initComponents();
     }
+    public void limpiar(){
+        //vaciamos todos los txt
+        this.txtApellido.setText("");
+        this.txtCorreo.setText("");
+        this.txtDNI.setText("");
+        this.txtDireccion.setText("");
+        this.txtLegajo.setText("");
+        this.txtNombre.setText("");
+        
+        //creamos un combo para las materias
+        DefaultComboBoxModel comboMaterias2 = new DefaultComboBoxModel(this.controlador.listarMaterias().toArray());
+        this.comboMaterias.setModel(comboMaterias2);
+    }
 
     public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {
         initComponents();
@@ -33,6 +47,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
        this.universitario = usuarioActual;
        this.vistaAnterior = aThis;
        this.setVisible(true);
+       limpiar();
     }
 
     /**
@@ -92,6 +107,8 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Agregar un nuevo usuario");
 
+        comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Profesor" }));
+
         jLabel3.setText("Nombre:");
 
         jLabel4.setText("Apellido:");
@@ -124,7 +141,7 @@ public class vistaCrearUsuario extends javax.swing.JFrame {
 
         jLabel10.setText("DNI:");
 
-        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC" }));
+        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LSI", "ASC", "PROF" }));
 
         jScrollPane1.setViewportView(listaUsuarios);
 
