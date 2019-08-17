@@ -11,6 +11,7 @@ import controlador.Controlador;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -49,6 +50,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         this.comboTipoUsuario.setSelectedIndex(-1);
         
         
+        
         //creamos un combo para las materias
         DefaultComboBoxModel comboMaterias2 = new DefaultComboBoxModel(this.controlador.listarMaterias().toArray());
         this.comboMaterias.setModel(comboMaterias2);
@@ -57,6 +59,10 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         DefaultListModel modelolista = new DefaultListModel();
         this.listaUsuarios.setModel(modelolista);
         this.listaUsuarios.setListData(this.controlador.listarUsuarios().toArray());
+        
+        //Creamos la lista de materias y la vaciamos
+        DefaultListModel modelolista1 = new DefaultListModel();
+        this.listaMaterias.setModel(modelolista1);
         
         //deseleccionamos el combo materas
         this.comboMaterias.setSelectedIndex(-1);
@@ -207,6 +213,11 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
         botonBorrarMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botonBorrarMateria.setText("-");
+        botonBorrarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarMateriaActionPerformed(evt);
+            }
+        });
 
         botonCambiarEstado.setText("Cambiar estado");
         botonCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -513,8 +524,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                 this.botonAgregarMateria.setVisible(false);
                 this.listaMaterias.setVisible(false);
                 this.botonBorrarMateria.setVisible(false);
-                this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
-        }
+            }
             else{
                 this.jLabel12.setText("Materias:");
                 this.jLabel13.setText("Asignar materias al profesor:");
@@ -523,6 +533,8 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                 this.botonAgregarMateria.setVisible(true);
                 this.listaMaterias.setVisible(true);
                 this.botonBorrarMateria.setVisible(true);
+                this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
+                
             }
             }
     }//GEN-LAST:event_listaUsuariosValueChanged
@@ -540,9 +552,19 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
             Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
             this.controlador.asociarMaterias(auxMateria, auxUniversitario);
             this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
-            System.out.println("entro");
         }
+        this.comboMaterias.setSelectedIndex(-1);
     }//GEN-LAST:event_botonAgregarMateriaActionPerformed
+
+    private void botonBorrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarMateriaActionPerformed
+        if (this.listaUsuarios.getSelectedValue() != null){
+            Materia auxMateria = (Materia) this.listaMaterias.getSelectedValue();
+            Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
+            this.controlador.desasociarMateria(auxMateria, auxUniversitario);
+            this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
+        }
+        this.comboMaterias.setSelectedIndex(-1);
+    }//GEN-LAST:event_botonBorrarMateriaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMateria;

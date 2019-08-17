@@ -157,4 +157,14 @@ public class Controlador {
     }
     
     
+    //Desasociar
+    public void desasociarMateria(Materia auxMateria, Universitario auxUniversitario){
+        this.persistencia.iniciarTransaccion();
+        auxUniversitario.eliminarMaterias(auxMateria);
+        this.persistencia.modificar(auxUniversitario);
+        this.persistencia.modificar(auxMateria);
+        this.persistencia.descartarTransaccion(); 
+    }
+    
+    
 }

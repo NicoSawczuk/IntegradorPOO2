@@ -39,4 +39,9 @@ public class Materia {
         this.profesores.add(auxUniversitario);
     }
     
+    //Metodo eliminar universitario
+    public void eliminarUniversitario(Universitario auxUniversitario){
+        this.profesores.remove(auxUniversitario);
+    }
+    
 }

@@ -178,17 +178,19 @@ public class Universitario {
     public List<Materia> getMaterias() {
         return materias;
     }
-
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
-    }
     
     
     //Metodo agregar materias
     public void agregarMaterias(Materia auxMateria){
         this.materias.add(auxMateria);
         auxMateria.AgregarUniversitario(this);
-        System.out.println("entro 2");
+        
+    }
+    
+    //Metodo eliminar materias
+    public void eliminarMaterias(Materia auxMateria){
+        this.materias.remove(auxMateria);
+        auxMateria.eliminarUniversitario(this);
     }
 
     @Override
