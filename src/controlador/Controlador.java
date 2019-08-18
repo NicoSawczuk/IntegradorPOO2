@@ -220,17 +220,8 @@ public class Controlador {
 
     }
 
-    public List buscarForosDeTema(Tema auxTema) {
-         List foros = persistencia.buscarTodos(Foro.class);
-         List auxForos = new ArrayList<>();
-         for (int i = 0; i < foros.size(); i++) {
-            Foro f1 = (Foro) foros.get(i);
-             if (f1.getTema() == auxTema) {
-                 auxForos.add(f1);
-             }
-        }
-         
-         return auxForos;
+    public List verForo(Tema unTema) {
+         return unTema.obtenerListaForos();
     }
 
     public List buscarPreguntasDeForo(Foro auxForo) {
@@ -247,7 +238,23 @@ public class Controlador {
     }
 
     public void publicarPregunta(Universitario unUniversitario, String titulo, String descripcion, Foro unForo) {
-        
+        try{
+            this.persistencia.iniciarTransaccion();
+            
+            Pregunta unaPregunta = new Pregunta();
+            
+            unaPregunta.cargarPregunta(titulo,descripcion);//cargo la pregunta
+            unaPregunta.asociarUniversitario(unUniversitario); //asocio la pregunta
+            unaPregunta.asociarForo(unForo);//asociar foro con la pregunta
+            
+            this.persistencia.insertar(unaPregunta);
+            
+            System.out.println("se creo la pregunta");
+            
+            this.persistencia.confirmarTransaccion();
+        }catch(Exception e){
+            this.persistencia.descartarTransaccion();
+        }
     }
     
     

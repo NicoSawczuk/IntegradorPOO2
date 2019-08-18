@@ -642,8 +642,8 @@ public class vistaHome extends javax.swing.JFrame {
     public void actualizarListaForo() {
         if(!this.listaTemas.isSelectionEmpty()){
         
-            Tema auxTema = (Tema) listaTemas.getSelectedValue();
-            this.listaForos.setListData(controlador.buscarForosDeTema(auxTema).toArray());
+            Tema unTema = (Tema) listaTemas.getSelectedValue();
+            this.listaForos.setListData(controlador.verForo(unTema).toArray());
         
         }
     }

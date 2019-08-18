@@ -41,6 +41,10 @@ public class Tema {
     public String toString() {
         return titulo;
     }
+
+    public List obtenerListaForos() {
+       return this.foros;
+    }
     
     
 }

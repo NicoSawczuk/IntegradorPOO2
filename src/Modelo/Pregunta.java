@@ -50,6 +50,21 @@ public class Pregunta {
     public Foro getForo() {
         return foro;
     }
+
+    public void cargarPregunta(String titulo, String descripcion) {
+       this.titulo = titulo;
+       this.descripcion = descripcion;
+       this.fecha = new Date();
+       
+    }
+
+    public void asociarUniversitario(Universitario unUniversitario) {
+        this.universitario = unUniversitario;
+    }
+
+    public void asociarForo(Foro unForo) {
+        this.foro = unForo;
+    }
     
     
 }
