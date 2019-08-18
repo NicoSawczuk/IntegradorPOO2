@@ -7,6 +7,7 @@ package vista;
 
 import Modelo.Universitario;
 import controlador.Controlador;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 /**
@@ -32,6 +33,30 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
        this.universitario = universitario;
        this.vistaAnterior = aThis;
        this.setLocationRelativeTo(null);
+       limpiar();
+    }
+    
+    public void limpiar(){
+        this.txtApellido.setText("");
+        this.txtCorreo.setText("");
+        this.txtDNI.setText("");
+        this.txtDireccion.setText("");
+        this.txtLegajo.setText("");
+        this.txtNombre.setText("");
+        this.txtSexo.setText("");
+        
+        //ocultar o no las materias
+        if ("ESTUDIANTE".equals(universitario.getTipo())){
+            this.jLabel3.setText("");
+            this.listaMaterias.setVisible(false);
+            this.botonABMusuarios.setVisible(false);
+        }
+        
+        //creamos una lista y la llenamos con todos los usuarios
+        DefaultListModel modelolista = new DefaultListModel();
+        this.listaUsuario.setModel(modelolista);
+        this.listaUsuario.setListData(this.controlador.listarUniversitarios().toArray());
+        
     }
 
     /**
@@ -145,11 +170,11 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)))))
-                        .addGap(51, 51, 51))
+                        .addGap(38, 38, 38))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -185,6 +210,13 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
         );
 
+        panel1.setBackground(new java.awt.Color(253, 253, 253));
+
+        listaUsuario.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaUsuarioValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaUsuario);
 
         jLabel1.setText("Usuarios:");
@@ -198,7 +230,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -224,7 +256,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
                 .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,6 +276,21 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         this.vistaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void listaUsuarioValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuarioValueChanged
+        if (!this.listaUsuario.isSelectionEmpty()){
+            Universitario unUniversitario = (Universitario) this.listaUsuario.getSelectedValue();
+            this.txtApellido.setText(unUniversitario.getApellido());
+            this.txtCorreo.setText(unUniversitario.getCorreo());
+            String dni = Integer.toString(unUniversitario.getDni());
+            this.txtDNI.setText(dni);
+            this.txtDireccion.setText(unUniversitario.getDireccion());
+            this.txtLegajo.setText(unUniversitario.getLegajo());
+            this.txtNombre.setText(unUniversitario.getNombre());
+            String sexo =Character.toString(unUniversitario.getSexo());
+            this.txtSexo.setText(sexo);
+        }
+    }//GEN-LAST:event_listaUsuarioValueChanged
 
     /**
      * @param args the command line arguments
