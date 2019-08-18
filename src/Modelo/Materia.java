@@ -35,13 +35,13 @@ public class Materia {
     
     
     //Metodo agregar universitario
-    public void AgregarUniversitario(Universitario auxUniversitario){
-        this.profesores.add(auxUniversitario);
+    public void AgregarUniversitario(Universitario unUniversitario){
+        this.profesores.add(unUniversitario);
     }
     
     //Metodo eliminar universitario
-    public void eliminarUniversitario(Universitario auxUniversitario){
-        this.profesores.remove(auxUniversitario);
+    public void eliminarUniversitario(Universitario unUniversitario){
+        this.profesores.remove(unUniversitario);
     }
     
 }

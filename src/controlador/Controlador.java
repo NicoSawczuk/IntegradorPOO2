@@ -65,14 +65,26 @@ public class Controlador {
         return this.persistencia.buscarTodos(Universitario.class);
     }
     
+    public List listarUniversitarios(){
+        List listaUniversitarios = this.persistencia.buscarTodos(Universitario.class);
+        Universitario auxUniversitario;
+        for (int i = 0; i <= listaUniversitarios.size()-1; i++){
+            auxUniversitario = (Universitario) listaUniversitarios.get(i);
+            if ("ADMINISTRADOR".equals(auxUniversitario.getTipo()) || "REGISTRADOR".equals(auxUniversitario.getTipo())){
+                listaUniversitarios.remove(i);
+            }
+        }
+        return listaUniversitarios;
+    }
+    
     
     //Cargar
     public void crearEstudiante(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
-        Universitario auxEstudiante = new Universitario();
+        Universitario unEstudiante = new Universitario();
         try {
-            auxEstudiante.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
-            this.persistencia.insertar(auxEstudiante);
+            unEstudiante.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(unEstudiante);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -82,10 +94,10 @@ public class Controlador {
     
     public void crearProfesor(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
-        Universitario auxProfesor = new Universitario();
+        Universitario unProfesor = new Universitario();
         try {
-            auxProfesor.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
-            this.persistencia.insertar(auxProfesor);
+            unProfesor.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(unProfesor);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -95,20 +107,20 @@ public class Controlador {
     
     
     //Editar
-    public void editarEstudiante(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){        
+    public void editarEstudiante(Universitario unUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){        
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.setNombre(nombre);
-            auxUniversitario.setApellido(apellido);
-            auxUniversitario.setDni(dni);
-            auxUniversitario.setLegajo(legajo);
-            auxUniversitario.setCorreo(correo);
-            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
-            auxUniversitario.setFechaNac(fecha);
-            auxUniversitario.setDireccion(direccion);
-            auxUniversitario.setSexo(sexo);
-            auxUniversitario.setPass(pass);
-            this.persistencia.modificar(auxUniversitario);
+            unUniversitario.setNombre(nombre);
+            unUniversitario.setApellido(apellido);
+            unUniversitario.setDni(dni);
+            unUniversitario.setLegajo(legajo);
+            unUniversitario.setCorreo(correo);
+            unUniversitario.setTipo(tipoUsuario.toUpperCase());
+            unUniversitario.setFechaNac(fecha);
+            unUniversitario.setDireccion(direccion);
+            unUniversitario.setSexo(sexo);
+            unUniversitario.setPass(pass);
+            this.persistencia.modificar(unUniversitario);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -117,20 +129,20 @@ public class Controlador {
         
     }
     
-    public void editarProfesor(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+    public void editarProfesor(Universitario unUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.setNombre(nombre);
-            auxUniversitario.setApellido(apellido);
-            auxUniversitario.setDni(dni);
-            auxUniversitario.setLegajo(legajo);
-            auxUniversitario.setCorreo(correo);
-            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
-            auxUniversitario.setFechaNac(fecha);
-            auxUniversitario.setDireccion(direccion);
-            auxUniversitario.setSexo(sexo);
-            auxUniversitario.setPass(pass);
-            this.persistencia.modificar(auxUniversitario);
+            unUniversitario.setNombre(nombre);
+            unUniversitario.setApellido(apellido);
+            unUniversitario.setDni(dni);
+            unUniversitario.setLegajo(legajo);
+            unUniversitario.setCorreo(correo);
+            unUniversitario.setTipo(tipoUsuario.toUpperCase());
+            unUniversitario.setFechaNac(fecha);
+            unUniversitario.setDireccion(direccion);
+            unUniversitario.setSexo(sexo);
+            unUniversitario.setPass(pass);
+            this.persistencia.modificar(unUniversitario);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -139,35 +151,51 @@ public class Controlador {
     }
     
     //Borrar
-    public void borrarUsuario(Universitario auxUniversitario){
+    public void borrarUsuario(Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
-        if (auxUniversitario.isEstado() == true){
-            auxUniversitario.setEstado(false);
+        try {
+            if (unUniversitario.isEstado() == true){
+                unUniversitario.setEstado(false);
+            }
+            else{
+                unUniversitario.setEstado(true);
+            }
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo cambiar el estado");
         }
-        if(auxUniversitario.isEstado() != true){
-            auxUniversitario.setEstado(true);
-        }
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.descartarTransaccion();
+        
     }
     
     //Asociar
-    public void asociarMaterias(Materia auxMateria,Universitario auxUniversitario){
+    public void asociarMaterias(Materia unaMateria,Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
-        auxUniversitario.agregarMaterias(auxMateria);
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.modificar(auxMateria);
-        this.persistencia.descartarTransaccion();
+        try {
+            unUniversitario.agregarMaterias(unaMateria);
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.modificar(unaMateria);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo asociar la materia");
+        }
     }
     
     
     //Desasociar
-    public void desasociarMateria(Materia auxMateria, Universitario auxUniversitario){
+    public void desasociarMateria(Materia unaMateria, Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
-        auxUniversitario.eliminarMaterias(auxMateria);
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.modificar(auxMateria);
-        this.persistencia.descartarTransaccion(); 
+        try {
+            unUniversitario.eliminarMaterias(unaMateria);
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.modificar(unaMateria);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo desasociar la materia");
+        }
     }
 
     public List buscarListaTemas() {
