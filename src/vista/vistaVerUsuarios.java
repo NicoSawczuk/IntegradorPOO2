@@ -5,6 +5,7 @@
  */
 package vista;
 
+import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
 
@@ -19,8 +20,18 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
      */
     private Controlador controlador;
     private JFrame vistaAnterior;
+    private Universitario universitario;
+    
     public vistaVerUsuarios() {
         initComponents();
+    }
+
+    vistaVerUsuarios(Controlador controlador, Universitario universitario, vistaHome aThis) {
+        initComponents();
+       this.controlador = controlador;
+       this.universitario = universitario;
+       this.vistaAnterior = aThis;
+       this.setLocationRelativeTo(null);
     }
 
     /**

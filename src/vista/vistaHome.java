@@ -488,7 +488,12 @@ public class vistaHome extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void botonVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerUsuariosActionPerformed
-        // TODO add your handling code here:
+        // abre la ventana de ver usuarios
+        vistaVerUsuarios vistaUser = new vistaVerUsuarios(controlador,universitario,this);
+        vistaUser.setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_botonVerUsuariosActionPerformed
 
     private void botonAgregarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarForoActionPerformed
