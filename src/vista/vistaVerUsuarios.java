@@ -61,7 +61,10 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         //creamos la lista de materias
         DefaultListModel modelolista2 = new DefaultListModel();
         this.listaMaterias.setModel(modelolista2);
-
+        
+        if("ESTUDIANTE".equals(this.universitario.getTipo()) || "PROFESOR".equals(this.universitario.getTipo())){
+            this.botonABMusuarios.setVisible(false);
+        }
         
     }
 
@@ -300,12 +303,10 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
             if ("ESTUDIANTE".equals(unUniversitario.getTipo())){
                 this.jLabel3.setText("");
                 this.listaMaterias.setVisible(false);
-                this.botonABMusuarios.setVisible(false);
             }
-            else{
+            if ("PROFESOR".equals(unUniversitario.getTipo())){
                 this.jLabel3.setText("Materias:");
                 this.listaMaterias.setVisible(true);
-                this.botonABMusuarios.setVisible(true);
                 this.listaMaterias.setListData(unUniversitario.getMaterias().toArray());
             }
         }
