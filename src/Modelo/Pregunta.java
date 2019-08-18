@@ -46,5 +46,10 @@ public class Pregunta {
 
     public Pregunta() {
     }
+
+    public Foro getForo() {
+        return foro;
+    }
+    
     
 }

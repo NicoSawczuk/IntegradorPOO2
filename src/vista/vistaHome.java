@@ -6,6 +6,7 @@
 package vista;
 
 import Modelo.Tema;
+import Modelo.Foro;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
@@ -125,6 +126,11 @@ public class vistaHome extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listaTemas);
 
+        listaForos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaForosValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaForos);
 
         jScrollPane3.setViewportView(listaPreguntas);
@@ -137,6 +143,11 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonAgregarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
+        botonAgregarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarPreguntaActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -264,6 +275,11 @@ public class vistaHome extends javax.swing.JFrame {
         botonEliminarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
 
         botonActualizarPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
+        botonActualizarPreguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarPreguntasActionPerformed(evt);
+            }
+        });
 
         botonActualizarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
         botonActualizarForo.addActionListener(new java.awt.event.ActionListener() {
@@ -543,6 +559,36 @@ public class vistaHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonActualizarForoActionPerformed
 
+    private void listaForosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaForosValueChanged
+        // al seleccionar un  foro, la lista de reguntas debe actualizar lo que tiene
+        actualizarListaPreguntas();
+        
+    }//GEN-LAST:event_listaForosValueChanged
+
+    private void botonActualizarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarPreguntasActionPerformed
+        // boton que actualiza la lista de preguntas, siempre que un tema este seleccionado
+        if(!this.listaForos.isSelectionEmpty()){
+            actualizarListaPreguntas();
+        }else{
+        
+             JOptionPane.showMessageDialog(null, "Debe seleccionar un Foro");
+        }
+        
+        
+    }//GEN-LAST:event_botonActualizarPreguntasActionPerformed
+
+    private void botonAgregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPreguntaActionPerformed
+        // se abre una ventana nueva para crear una pregunta
+        if(!this.listaForos.isSelectionEmpty()){//si selecciono un tema
+            vistaAgregarPregunta preguntaNueva = new vistaAgregarPregunta (controlador,universitario,this, (Foro) listaForos.getSelectedValue());
+            preguntaNueva.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "seleccione el foro para crear una pregunta");
+        }
+        
+        
+    }//GEN-LAST:event_botonAgregarPreguntaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
     private javax.swing.JButton botonActualizarPreguntas;
@@ -598,6 +644,15 @@ public class vistaHome extends javax.swing.JFrame {
         
             Tema auxTema = (Tema) listaTemas.getSelectedValue();
             this.listaForos.setListData(controlador.buscarForosDeTema(auxTema).toArray());
+        
+        }
+    }
+
+    private void actualizarListaPreguntas() {
+        if(!this.listaForos.isSelectionEmpty()){
+        
+            Foro auxForo = (Foro) listaForos.getSelectedValue();
+            this.listaPreguntas.setListData(controlador.buscarPreguntasDeForo(auxForo).toArray());
         
         }
     }

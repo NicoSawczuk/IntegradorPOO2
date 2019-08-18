@@ -7,6 +7,7 @@ package controlador;
 
 import Modelo.Foro;
 import Modelo.Materia;
+import Modelo.Pregunta;
 import Modelo.Tema;
 import Modelo.Universitario;
 import dao.Persistencia;
@@ -202,6 +203,19 @@ public class Controlador {
         }
          
          return auxForos;
+    }
+
+    public List buscarPreguntasDeForo(Foro auxForo) {
+       List preguntas = persistencia.buscarTodos(Pregunta.class);
+         List auxPreguntas = new ArrayList<>();
+         for (int i = 0; i < preguntas.size(); i++) {
+            Pregunta p1 = (Pregunta) preguntas.get(i);
+             if (p1.getForo() == auxForo) {
+                 auxPreguntas.add(p1);
+             }
+        }
+         
+         return auxPreguntas;
     }
     
     

@@ -5,6 +5,9 @@
  */
 package vista;
 
+import Modelo.Foro;
+import Modelo.Tema;
+import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
 
@@ -19,8 +22,20 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
      */
     private Controlador controlador;
     private JFrame vistaAnterior;
+    private Universitario universitario;
+    private Foro foro;
+    
     public vistaAgregarPregunta() {
         initComponents();
+    }
+
+    vistaAgregarPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Foro foro) {
+       initComponents();
+       this.controlador = controlador;
+       this.universitario = universitario;
+       this.vistaAnterior = aThis;
+       this.foro = foro;
+       this.setLocationRelativeTo(null);
     }
 
     /**
