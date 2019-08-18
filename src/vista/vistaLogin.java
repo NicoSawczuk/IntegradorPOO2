@@ -162,18 +162,17 @@ public class vistaLogin extends javax.swing.JFrame {
             if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
                 
                 usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
-                
-                if(true){  //si es registrado va solo a abm usuarios
-                    this.dispose();
-                   // VentanaEspecialidades e1 = new VentanaEspecialidades(Controlador, this);
-                   vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
-                
-                }else{
-                    //this.dispose();
-                   // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
-                    
+                if(true ){//comprobar contrasenia
+                    if(true){  //si es registrado va solo a abm usuarios
+                        this.dispose();
+                        vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
+
+                    }else{
+                        //this.dispose();
+                       // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
+
+                    }
                 }
-                
             
             }else{
                 JOptionPane.showMessageDialog(null, "Usted no existe");
@@ -181,6 +180,8 @@ public class vistaLogin extends javax.swing.JFrame {
             
             
             
+        }else{
+            JOptionPane.showMessageDialog(null, "complete todos los campos por favor");
         }
         
         
