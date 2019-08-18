@@ -5,6 +5,8 @@
  */
 package vista;
 
+import Modelo.Pregunta;
+import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
 
@@ -17,12 +19,25 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     /**
      * Creates new form vistaVerPregunta
      */
-    Controlador c;
+    private Controlador controlador;
     private JFrame vistaAnterior;
+    private Universitario universitario;
+    private Pregunta pregunta;
+    
+    
     public vistaVerPregunta(Controlador c) {
         this.setVisible(true);
         initComponents();
-        this.c=c;
+        this.controlador=c;
+    }
+
+    public vistaVerPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Pregunta p1) {
+       initComponents();
+       this.controlador = controlador;
+       this.universitario = universitario;
+       this.vistaAnterior = aThis;
+       this.pregunta = p1;
+       this.setLocationRelativeTo(null);
     }
 
     /**

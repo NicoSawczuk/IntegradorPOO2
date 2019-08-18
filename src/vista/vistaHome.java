@@ -160,6 +160,11 @@ public class vistaHome extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
         botonVerPregunta.setText("Ver Pregunta");
+        botonVerPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerPreguntaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Descripcion:");
 
@@ -616,6 +621,23 @@ public class vistaHome extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_listaPreguntasValueChanged
+
+    private void botonVerPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerPreguntaActionPerformed
+        // boton de ver la pregunta, si se lecciono una pregunta se abre una ventana nueva para ver la pregunta
+        if(!this.listaPreguntas.isSelectionEmpty()){
+            Pregunta p1 = (Pregunta) listaPreguntas.getSelectedValue();
+            vistaVerPregunta verPregunta = new vistaVerPregunta (controlador,universitario,this,p1);
+            verPregunta.setVisible(true);
+            
+        }else{
+        
+            JOptionPane.showMessageDialog(null, "seleccione una pregunta");
+        
+        }
+        
+       
+        
+    }//GEN-LAST:event_botonVerPreguntaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
