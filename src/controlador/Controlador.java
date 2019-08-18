@@ -61,6 +61,18 @@ public class Controlador {
         return this.persistencia.buscarTodos(Universitario.class);
     }
     
+    public List listarUniversitarios(){
+        List listaUniversitarios = this.persistencia.buscarTodos(Universitario.class);
+        Universitario auxUniversitario;
+        for (int i = 0; i <= listaUniversitarios.size()-1; i++){
+            auxUniversitario = (Universitario) listaUniversitarios.get(i);
+            if ("ADMINISTRADOR".equals(auxUniversitario.getTipo()) || "REGISTRADOR".equals(auxUniversitario.getTipo())){
+                listaUniversitarios.remove(i);
+            }
+        }
+        return listaUniversitarios;
+    }
+    
     
     //Cargar
     public void crearEstudiante(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
@@ -137,33 +149,49 @@ public class Controlador {
     //Borrar
     public void borrarUsuario(Universitario auxUniversitario){
         this.persistencia.iniciarTransaccion();
-        if (auxUniversitario.isEstado() == true){
-            auxUniversitario.setEstado(false);
+        try {
+            if (auxUniversitario.isEstado() == true){
+                auxUniversitario.setEstado(false);
+            }
+            else{
+                auxUniversitario.setEstado(true);
+            }
+            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo cambiar el estado");
         }
-        if(auxUniversitario.isEstado() != true){
-            auxUniversitario.setEstado(true);
-        }
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.descartarTransaccion();
+        
     }
     
     //Asociar
     public void asociarMaterias(Materia auxMateria,Universitario auxUniversitario){
         this.persistencia.iniciarTransaccion();
-        auxUniversitario.agregarMaterias(auxMateria);
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.modificar(auxMateria);
-        this.persistencia.descartarTransaccion();
+        try {
+            auxUniversitario.agregarMaterias(auxMateria);
+            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.modificar(auxMateria);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo asociar la materia");
+        }
     }
     
     
     //Desasociar
     public void desasociarMateria(Materia auxMateria, Universitario auxUniversitario){
         this.persistencia.iniciarTransaccion();
-        auxUniversitario.eliminarMaterias(auxMateria);
-        this.persistencia.modificar(auxUniversitario);
-        this.persistencia.modificar(auxMateria);
-        this.persistencia.descartarTransaccion(); 
+        try {
+            auxUniversitario.eliminarMaterias(auxMateria);
+            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.modificar(auxMateria);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo desasociar la materia");
+        }
     }
     
     

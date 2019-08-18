@@ -35,6 +35,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         initComponents();
     }
     
+    //Metodo carar la lista de usuarios correctamente
 
     public void limpiar(){
         //vaciamos todos los txt
@@ -58,7 +59,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         //creamos una lista y la llenamos con todos los usuarios
         DefaultListModel modelolista = new DefaultListModel();
         this.listaUsuarios.setModel(modelolista);
-        this.listaUsuarios.setListData(this.controlador.listarUsuarios().toArray());
+        this.listaUsuarios.setListData(this.controlador.listarUniversitarios().toArray());
         
         //Creamos la lista de materias y la vaciamos
         DefaultListModel modelolista1 = new DefaultListModel();
@@ -544,6 +545,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
             Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
             this.controlador.borrarUsuario(auxUniversitario);
         }
+        this.listaUsuarios.setListData(this.controlador.listarUniversitarios().toArray());
     }//GEN-LAST:event_botonCambiarEstadoActionPerformed
 
     private void botonAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMateriaActionPerformed
