@@ -5,9 +5,11 @@
  */
 package vista;
 
+import Modelo.Tema;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +39,11 @@ public class vistaHome extends javax.swing.JFrame {
        this.labelNombre.setText(universitario.getNombre());
        this.labelLegajo.setText(universitario.getLegajo());
        this.labelTipo.setText(universitario.getTipo());
-       if(universitario.getTipo().equals("administrador")){//si es administrador puede ver los botones de agregar, eliminar foro
+       
+       //cargar lista temas
+       this.listaTemas.setListData(controlador.buscarListaTemas().toArray());
+       
+       if(universitario.getTipo().equals("ADMINISTRADOR")){//si es administrador puede ver los botones de agregar, eliminar foro
            this.botonAgregarForo.setVisible(true);
            this.botonEliminarForo.setVisible(true);
        }else{
@@ -45,6 +51,8 @@ public class vistaHome extends javax.swing.JFrame {
            this.botonAgregarForo.setVisible(false);
            this.botonEliminarForo.setVisible(false);
        }
+       
+       this.actualizarListaForo();
        
     }
 
@@ -115,6 +123,11 @@ public class vistaHome extends javax.swing.JFrame {
         jScrollPane3.setViewportView(listaPreguntas);
 
         botonAgregarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
+        botonAgregarForo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarForoActionPerformed(evt);
+            }
+        });
 
         botonAgregarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
 
@@ -473,6 +486,17 @@ public class vistaHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonVerUsuariosActionPerformed
 
+    private void botonAgregarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarForoActionPerformed
+        // boton agregar un nuevo foro, para el administrador. se abre nueva ventana para hacerlo.
+        if(!this.listaTemas.isSelectionEmpty()){//si selecciono un tema
+            vistaAgregarForo foroNuevo = new vistaAgregarForo (controlador,universitario,this, (Tema) listaTemas.getSelectedValue());
+            foroNuevo.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "seleccione el tema para crear un foro");
+        }
+        
+    }//GEN-LAST:event_botonAgregarForoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarForo;
     private javax.swing.JButton botonAgregarPregunta;
@@ -520,4 +544,8 @@ public class vistaHome extends javax.swing.JFrame {
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    public void actualizarListaForo() {
+        
+    }
 }

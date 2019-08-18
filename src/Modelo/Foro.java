@@ -39,5 +39,13 @@ public class Foro {
 
     public Foro() {
     }
+
+    public void cargarForo(String titulo) {
+       this.titulo = titulo;
+    }
+
+    public void asociarTema(Tema unTema) {
+        this.tema = unTema;
+    }
     
 }

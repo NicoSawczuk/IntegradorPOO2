@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import Modelo.Foro;
 import Modelo.Materia;
+import Modelo.Tema;
 import Modelo.Universitario;
 import dao.Persistencia;
 import java.util.ArrayList;
@@ -165,6 +167,28 @@ public class Controlador {
         this.persistencia.modificar(auxUniversitario);
         this.persistencia.modificar(auxMateria);
         this.persistencia.descartarTransaccion(); 
+    }
+
+    public List buscarListaTemas() {
+        
+        return this.persistencia.buscarTodos(Tema.class);
+    }
+
+    public void crearForo(Tema unTema, String titulo) {
+        try{
+            this.persistencia.iniciarTransaccion();
+            //creo,cargo,asocio
+            Foro unForo = new Foro();
+            unForo.cargarForo(titulo);
+            unForo.asociarTema(unTema);
+            this.persistencia.insertar(unForo);
+            
+            System.out.println("se creo foro");
+            this.persistencia.confirmarTransaccion();
+        }catch(Exception e){
+            this.persistencia.descartarTransaccion();
+        }
+
     }
     
     

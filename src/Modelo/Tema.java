@@ -36,5 +36,11 @@ public class Tema {
 
     public Tema() {
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
+    
     
 }

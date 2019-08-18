@@ -5,8 +5,11 @@
  */
 package vista;
 
+import Modelo.Tema;
+import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +22,22 @@ public class vistaAgregarForo extends javax.swing.JFrame {
      */
     private Controlador controlador;
     private JFrame vistaAnterior;
+    private Universitario universitario;
+    private Tema unTema;
+    
+    
     public vistaAgregarForo() {
         initComponents();
+    }
+
+    public vistaAgregarForo(Controlador controlador, Universitario universitario, vistaHome aThis,Tema t) {
+       initComponents();
+       this.controlador = controlador;
+       this.universitario = universitario;
+       this.vistaAnterior = aThis;
+       this.unTema=t;
+       this.setLocationRelativeTo(null);
+       this.labelTema.setText(unTema.toString());
     }
 
     /**
@@ -147,7 +164,15 @@ public class vistaAgregarForo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
-        // TODO add your handling code here:
+        // al precionar crear llama al controlador (modulo (para los amigos) para el DSD )
+        if(!this.txtTitulo.getText().isEmpty()){//si completo el campo
+            String titulo = txtTitulo.getText().toUpperCase();
+            this.controlador.crearForo(unTema,titulo);
+            this.dispose();
+        }else{
+             JOptionPane.showMessageDialog(null, "complete el campo titulo");
+        }
+        
     }//GEN-LAST:event_botonCrearActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
