@@ -45,7 +45,8 @@ public class Controlador {
         
         for (int i = 0; i < universitarios.size(); i++) {
             Universitario auxU = (Universitario) universitarios.get(i);
-            if (auxU.getCorreo() == auxCorreo) {
+            if (auxCorreo.equals(auxU.getCorreo())) {
+                
                 return auxU;
             }
         }

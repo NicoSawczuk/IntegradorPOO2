@@ -155,15 +155,21 @@ public class vistaLogin extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         // Boton de inicio, toma los datos y verifica que exista el usuario y ve quien es.
         
-        if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
+        if(!(this.txtUsuario.getText().isEmpty()) && !(this.txtContra.getPassword().length == 0)){//si completo todo
             
             String auxCorreo =  this.txtUsuario.getText() + this.comboTIpo.getItemAt(this.comboTIpo.getSelectedIndex());
             
             if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
                 
                 usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
-                if(true ){//comprobar contrasenia
-                    if(true){  //si es registrado va solo a abm usuarios
+                char pase[]=txtContra.getPassword();
+
+                String pass=new String(pase);
+                System.out.println(pass);
+                System.out.println(usuarioActual);
+                if(pass.equals(usuarioActual.getPass()) ){//comprobar contrasenia
+                    
+                    if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
                         this.dispose();
                         vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
 
@@ -172,6 +178,8 @@ public class vistaLogin extends javax.swing.JFrame {
                        // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
 
                     }
+                }else{
+                    JOptionPane.showMessageDialog(null, "error de contraseña");
                 }
             
             }else{
