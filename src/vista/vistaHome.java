@@ -7,6 +7,7 @@ package vista;
 
 import Modelo.Tema;
 import Modelo.Foro;
+import Modelo.Pregunta;
 import Modelo.Universitario;
 import controlador.Controlador;
 import java.util.ArrayList;
@@ -135,6 +136,11 @@ public class vistaHome extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listaForos);
 
+        listaPreguntas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaPreguntasValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(listaPreguntas);
 
         botonAgregarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
@@ -162,8 +168,11 @@ public class vistaHome extends javax.swing.JFrame {
 
         jLabel9.setText("Titulo:");
 
+        txtTitulo.setFocusable(false);
+
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.setFocusable(false);
         jScrollPane4.setViewportView(txtDescripcion);
 
         jLabel10.setText("Autor:");
@@ -591,6 +600,23 @@ public class vistaHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonAgregarPreguntaActionPerformed
 
+    private void listaPreguntasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaPreguntasValueChanged
+        // al seleccionar una pregunta se muestran sus datos
+        if(!this.listaPreguntas.isSelectionEmpty()){
+            Pregunta p1 = (Pregunta) listaPreguntas.getSelectedValue();
+            this.txtTitulo.setText(p1.getTitulo());
+            this.txtDescripcion.setText(p1.getDescripcion());
+            this.labelTema.setText(p1.getForo().getTema().toString());
+            this.labelAutor.setText(p1.getUniversitario().getApellido() + " " + p1.getUniversitario().getNombre());
+            this.labelFecha.setText(p1.getFecha().toString());
+            this.labelForo.setText(p1.getForo().toString());
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_listaPreguntasValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
     private javax.swing.JButton botonActualizarPreguntas;
@@ -648,6 +674,7 @@ public class vistaHome extends javax.swing.JFrame {
             this.listaForos.setListData(controlador.verForo(unTema).toArray());
             List auxList = new ArrayList<>();
             this.listaPreguntas.setListData(auxList.toArray());
+            this.limpiarPreguntaSeleccionada();
         
         }
     }
@@ -657,7 +684,18 @@ public class vistaHome extends javax.swing.JFrame {
         
             Foro auxForo = (Foro) listaForos.getSelectedValue();
             this.listaPreguntas.setListData(controlador.buscarPreguntasDeForo(auxForo).toArray());
+            this.limpiarPreguntaSeleccionada();
         
         }
+    }
+    private void limpiarPreguntaSeleccionada(){
+        this.txtTitulo.setText("");
+        this.txtDescripcion.setText("");
+        this.labelTema.setText("");
+        this.labelAutor.setText("");
+        this.labelFecha.setText("");
+        this.labelForo.setText("");
+    
+    
     }
 }

@@ -70,6 +70,22 @@ public class Pregunta {
     public String toString() {
         return titulo;
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public Universitario getUniversitario() {
+        return universitario;
+    }
     
     
 }
