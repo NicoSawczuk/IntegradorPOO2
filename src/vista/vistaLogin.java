@@ -170,12 +170,18 @@ public class vistaLogin extends javax.swing.JFrame {
                 if(pass.equals(usuarioActual.getPass()) ){//comprobar contrasenia
                     
                     if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
+                        
+                        this.limpiar();
                         this.dispose();
                         vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
+                        
 
                     }else{
-                        //this.dispose();
-                       // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
+                        
+                        this.limpiar();
+                        this.dispose();
+                        vistaHome homeOne = new vistaHome(controlador,usuarioActual,this);
+                        
 
                     }
                 }else{
@@ -214,6 +220,12 @@ public class vistaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        this.txtContra.setText("");
+        this.txtUsuario.setText("");
+        this.comboTIpo.setSelectedIndex(0);
+    }
 
     
 }

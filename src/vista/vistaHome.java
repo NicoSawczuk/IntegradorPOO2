@@ -7,6 +7,7 @@ package vista;
 
 import Modelo.Universitario;
 import controlador.Controlador;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,12 +19,20 @@ public class vistaHome extends javax.swing.JFrame {
      * Creates new form vistaHome
      */
     private Controlador controlador;
-   
+    private JFrame vistaAnterior;
     private Universitario universitario;
     
     public vistaHome() {
         initComponents();
         
+    }
+
+    public vistaHome(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {
+       initComponents();
+       this.controlador = controlador;
+       this.universitario = usuarioActual;
+       this.vistaAnterior = aThis;
+       this.setVisible(true);
     }
 
     /**
