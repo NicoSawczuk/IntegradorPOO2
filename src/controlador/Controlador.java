@@ -190,6 +190,19 @@ public class Controlador {
         }
 
     }
+
+    public List buscarForosDeTema(Tema auxTema) {
+         List foros = persistencia.buscarTodos(Foro.class);
+         List auxForos = new ArrayList<>();
+         for (int i = 0; i < foros.size(); i++) {
+            Foro f1 = (Foro) foros.get(i);
+             if (f1.getTema() == auxTema) {
+                 auxForos.add(f1);
+             }
+        }
+         
+         return auxForos;
+    }
     
     
 }

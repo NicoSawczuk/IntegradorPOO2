@@ -168,6 +168,7 @@ public class vistaAgregarForo extends javax.swing.JFrame {
         if(!this.txtTitulo.getText().isEmpty()){//si completo el campo
             String titulo = txtTitulo.getText().toUpperCase();
             this.controlador.crearForo(unTema,titulo);
+            
             this.dispose();
         }else{
              JOptionPane.showMessageDialog(null, "complete el campo titulo");

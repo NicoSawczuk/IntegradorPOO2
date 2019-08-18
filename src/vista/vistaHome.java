@@ -116,6 +116,11 @@ public class vistaHome extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 255));
 
+        listaTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaTemasValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaTemas);
 
         jScrollPane2.setViewportView(listaForos);
@@ -497,6 +502,12 @@ public class vistaHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonAgregarForoActionPerformed
 
+    private void listaTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaTemasValueChanged
+        // al seleccionar un tema de la lista , la lista del medio muestra los foros relacionados al tema
+        actualizarListaForo();
+        
+    }//GEN-LAST:event_listaTemasValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarForo;
     private javax.swing.JButton botonAgregarPregunta;
@@ -546,6 +557,11 @@ public class vistaHome extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarListaForo() {
+        if(!this.listaTemas.isSelectionEmpty()){
         
+            Tema auxTema = (Tema) listaTemas.getSelectedValue();
+            this.listaForos.setListData(controlador.buscarForosDeTema(auxTema).toArray());
+        
+        }
     }
 }
