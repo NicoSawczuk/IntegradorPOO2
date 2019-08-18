@@ -172,14 +172,14 @@ public class vistaLogin extends javax.swing.JFrame {
                     if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
                         
                         this.limpiar();
-                        this.setVisible(false);
+                      //  this.setVisible(false);
                         vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
                         crearUser1.setVisible(true);
 
                     }else{
                         
                         this.limpiar();
-                        this.setVisible(false);
+                       // this.setVisible(false);
                         vistaHome homeOne = new vistaHome(controlador,usuarioActual,this);
                         homeOne.setVisible(true);
 
