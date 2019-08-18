@@ -550,10 +550,10 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
 
     private void botonAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMateriaActionPerformed
         if (this.listaUsuarios.getSelectedValue() != null && this.comboMaterias.getSelectedItem() != null){
-            Materia auxMateria = (Materia) this.comboMaterias.getSelectedItem();
-            Universitario auxUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
-            this.controlador.asociarMaterias(auxMateria, auxUniversitario);
-            this.listaMaterias.setListData(auxUniversitario.getMaterias().toArray());
+            Materia unMateria = (Materia) this.comboMaterias.getSelectedItem();
+            Universitario unUniversitario = (Universitario) this.listaUsuarios.getSelectedValue();
+            this.controlador.asociarMaterias(unMateria, unUniversitario);
+            this.listaMaterias.setListData(unUniversitario.getMaterias().toArray());
         }
         this.comboMaterias.setSelectedIndex(-1);
     }//GEN-LAST:event_botonAgregarMateriaActionPerformed

@@ -181,16 +181,16 @@ public class Universitario {
     
     
     //Metodo agregar materias
-    public void agregarMaterias(Materia auxMateria){
-        this.materias.add(auxMateria);
-        auxMateria.AgregarUniversitario(this);
+    public void agregarMaterias(Materia unaMateria){
+        this.materias.add(unaMateria);
+        unaMateria.AgregarUniversitario(this);
         
     }
     
     //Metodo eliminar materias
-    public void eliminarMaterias(Materia auxMateria){
-        this.materias.remove(auxMateria);
-        auxMateria.eliminarUniversitario(this);
+    public void eliminarMaterias(Materia unaMateria){
+        this.materias.remove(unaMateria);
+        unaMateria.eliminarUniversitario(this);
     }
 
     @Override

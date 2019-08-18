@@ -80,10 +80,10 @@ public class Controlador {
     //Cargar
     public void crearEstudiante(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
-        Universitario auxEstudiante = new Universitario();
+        Universitario unEstudiante = new Universitario();
         try {
-            auxEstudiante.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
-            this.persistencia.insertar(auxEstudiante);
+            unEstudiante.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(unEstudiante);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -93,10 +93,10 @@ public class Controlador {
     
     public void crearProfesor(String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
-        Universitario auxProfesor = new Universitario();
+        Universitario unProfesor = new Universitario();
         try {
-            auxProfesor.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
-            this.persistencia.insertar(auxProfesor);
+            unProfesor.cargarDatos(nombre, apellido, dni, legajo, correo, tipoUsuario, fecha, direccion, sexo, pass);
+            this.persistencia.insertar(unProfesor);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -106,20 +106,20 @@ public class Controlador {
     
     
     //Editar
-    public void editarEstudiante(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){        
+    public void editarEstudiante(Universitario unUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){        
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.setNombre(nombre);
-            auxUniversitario.setApellido(apellido);
-            auxUniversitario.setDni(dni);
-            auxUniversitario.setLegajo(legajo);
-            auxUniversitario.setCorreo(correo);
-            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
-            auxUniversitario.setFechaNac(fecha);
-            auxUniversitario.setDireccion(direccion);
-            auxUniversitario.setSexo(sexo);
-            auxUniversitario.setPass(pass);
-            this.persistencia.modificar(auxUniversitario);
+            unUniversitario.setNombre(nombre);
+            unUniversitario.setApellido(apellido);
+            unUniversitario.setDni(dni);
+            unUniversitario.setLegajo(legajo);
+            unUniversitario.setCorreo(correo);
+            unUniversitario.setTipo(tipoUsuario.toUpperCase());
+            unUniversitario.setFechaNac(fecha);
+            unUniversitario.setDireccion(direccion);
+            unUniversitario.setSexo(sexo);
+            unUniversitario.setPass(pass);
+            this.persistencia.modificar(unUniversitario);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -128,20 +128,20 @@ public class Controlador {
         
     }
     
-    public void editarProfesor(Universitario auxUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
+    public void editarProfesor(Universitario unUniversitario,String nombre, String apellido, int dni, String legajo, String correo, String tipoUsuario, Date fecha, String direccion, char sexo, String pass){
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.setNombre(nombre);
-            auxUniversitario.setApellido(apellido);
-            auxUniversitario.setDni(dni);
-            auxUniversitario.setLegajo(legajo);
-            auxUniversitario.setCorreo(correo);
-            auxUniversitario.setTipo(tipoUsuario.toUpperCase());
-            auxUniversitario.setFechaNac(fecha);
-            auxUniversitario.setDireccion(direccion);
-            auxUniversitario.setSexo(sexo);
-            auxUniversitario.setPass(pass);
-            this.persistencia.modificar(auxUniversitario);
+            unUniversitario.setNombre(nombre);
+            unUniversitario.setApellido(apellido);
+            unUniversitario.setDni(dni);
+            unUniversitario.setLegajo(legajo);
+            unUniversitario.setCorreo(correo);
+            unUniversitario.setTipo(tipoUsuario.toUpperCase());
+            unUniversitario.setFechaNac(fecha);
+            unUniversitario.setDireccion(direccion);
+            unUniversitario.setSexo(sexo);
+            unUniversitario.setPass(pass);
+            this.persistencia.modificar(unUniversitario);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -150,16 +150,16 @@ public class Controlador {
     }
     
     //Borrar
-    public void borrarUsuario(Universitario auxUniversitario){
+    public void borrarUsuario(Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
         try {
-            if (auxUniversitario.isEstado() == true){
-                auxUniversitario.setEstado(false);
+            if (unUniversitario.isEstado() == true){
+                unUniversitario.setEstado(false);
             }
             else{
-                auxUniversitario.setEstado(true);
+                unUniversitario.setEstado(true);
             }
-            this.persistencia.modificar(auxUniversitario);
+            this.persistencia.modificar(unUniversitario);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -169,12 +169,12 @@ public class Controlador {
     }
     
     //Asociar
-    public void asociarMaterias(Materia auxMateria,Universitario auxUniversitario){
+    public void asociarMaterias(Materia unaMateria,Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.agregarMaterias(auxMateria);
-            this.persistencia.modificar(auxUniversitario);
-            this.persistencia.modificar(auxMateria);
+            unUniversitario.agregarMaterias(unaMateria);
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.modificar(unaMateria);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
@@ -184,12 +184,12 @@ public class Controlador {
     
     
     //Desasociar
-    public void desasociarMateria(Materia auxMateria, Universitario auxUniversitario){
+    public void desasociarMateria(Materia unaMateria, Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
         try {
-            auxUniversitario.eliminarMaterias(auxMateria);
-            this.persistencia.modificar(auxUniversitario);
-            this.persistencia.modificar(auxMateria);
+            unUniversitario.eliminarMaterias(unaMateria);
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.modificar(unaMateria);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
