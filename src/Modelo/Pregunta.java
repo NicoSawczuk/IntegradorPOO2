@@ -65,6 +65,11 @@ public class Pregunta {
     public void asociarForo(Foro unForo) {
         this.foro = unForo;
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
     
     
 }

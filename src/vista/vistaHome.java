@@ -9,6 +9,8 @@ import Modelo.Tema;
 import Modelo.Foro;
 import Modelo.Universitario;
 import controlador.Controlador;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -644,6 +646,8 @@ public class vistaHome extends javax.swing.JFrame {
         
             Tema unTema = (Tema) listaTemas.getSelectedValue();
             this.listaForos.setListData(controlador.verForo(unTema).toArray());
+            List auxList = new ArrayList<>();
+            this.listaPreguntas.setListData(auxList.toArray());
         
         }
     }
