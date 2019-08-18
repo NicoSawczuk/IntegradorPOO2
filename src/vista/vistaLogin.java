@@ -155,25 +155,38 @@ public class vistaLogin extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         // Boton de inicio, toma los datos y verifica que exista el usuario y ve quien es.
         
-        if(!this.txtUsuario.getText().isEmpty() || !(this.txtContra.getPassword().length == 0)){//si completo todo
+        if(!(this.txtUsuario.getText().isEmpty()) && !(this.txtContra.getPassword().length == 0)){//si completo todo
             
             String auxCorreo =  this.txtUsuario.getText() + this.comboTIpo.getItemAt(this.comboTIpo.getSelectedIndex());
             
             if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
                 
                 usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
-                
-                if(true){  //si es registrado va solo a abm usuarios
-                    this.dispose();
-                   // VentanaEspecialidades e1 = new VentanaEspecialidades(Controlador, this);
-                   vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
-                
-                }else{
-                    //this.dispose();
-                   // vistaHome homeOne = new vistaHome(controlador,usuarioActual);
+                char pase[]=txtContra.getPassword();
+
+                String pass=new String(pase);
+                System.out.println(pass);
+                System.out.println(usuarioActual);
+                if(pass.equals(usuarioActual.getPass()) ){//comprobar contrasenia
                     
+                    if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
+                        
+                        this.limpiar();
+                      //  this.setVisible(false);
+                        vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
+                        crearUser1.setVisible(true);
+
+                    }else{
+                        
+                        this.limpiar();
+                       // this.setVisible(false);
+                        vistaHome homeOne = new vistaHome(controlador,usuarioActual,this);
+                        homeOne.setVisible(true);
+
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "error de contraseña");
                 }
-                
             
             }else{
                 JOptionPane.showMessageDialog(null, "Usted no existe");
@@ -181,6 +194,8 @@ public class vistaLogin extends javax.swing.JFrame {
             
             
             
+        }else{
+            JOptionPane.showMessageDialog(null, "complete todos los campos por favor");
         }
         
         
@@ -205,6 +220,12 @@ public class vistaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        this.txtContra.setText("");
+        this.txtUsuario.setText("");
+        this.comboTIpo.setSelectedIndex(0);
+    }
 
     
 }

@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import Modelo.Foro;
 import Modelo.Materia;
+import Modelo.Tema;
 import Modelo.Universitario;
 import dao.Persistencia;
 import java.util.ArrayList;
@@ -45,7 +47,8 @@ public class Controlador {
         
         for (int i = 0; i < universitarios.size(); i++) {
             Universitario auxU = (Universitario) universitarios.get(i);
-            if (auxU.getCorreo() == auxCorreo) {
+            if (auxCorreo.equals(auxU.getCorreo())) {
+                
                 return auxU;
             }
         }
@@ -192,6 +195,41 @@ public class Controlador {
             this.persistencia.descartarTransaccion();
             System.err.println("No se pudo desasociar la materia");
         }
+    }
+
+    public List buscarListaTemas() {
+        
+        return this.persistencia.buscarTodos(Tema.class);
+    }
+
+    public void crearForo(Tema unTema, String titulo) {
+        try{
+            this.persistencia.iniciarTransaccion();
+            //creo,cargo,asocio
+            Foro unForo = new Foro();
+            unForo.cargarForo(titulo);
+            unForo.asociarTema(unTema);
+            this.persistencia.insertar(unForo);
+            
+            System.out.println("se creo foro");
+            this.persistencia.confirmarTransaccion();
+        }catch(Exception e){
+            this.persistencia.descartarTransaccion();
+        }
+
+    }
+
+    public List buscarForosDeTema(Tema auxTema) {
+         List foros = persistencia.buscarTodos(Foro.class);
+         List auxForos = new ArrayList<>();
+         for (int i = 0; i < foros.size(); i++) {
+            Foro f1 = (Foro) foros.get(i);
+             if (f1.getTema() == auxTema) {
+                 auxForos.add(f1);
+             }
+        }
+         
+         return auxForos;
     }
     
     
