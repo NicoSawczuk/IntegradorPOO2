@@ -266,6 +266,11 @@ public class vistaHome extends javax.swing.JFrame {
         botonActualizarPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
 
         botonActualizarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
+        botonActualizarForo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarForoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -526,6 +531,17 @@ public class vistaHome extends javax.swing.JFrame {
         actualizarListaForo();
         
     }//GEN-LAST:event_listaTemasValueChanged
+
+    private void botonActualizarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarForoActionPerformed
+        // al seleccionar actualiza la lista siempre que tenga algo seleccionado
+        if(!this.listaTemas.isSelectionEmpty()){
+            actualizarListaForo();
+        }else{
+        
+             JOptionPane.showMessageDialog(null, "Debe seleccionar un tema");
+        }
+        
+    }//GEN-LAST:event_botonActualizarForoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
