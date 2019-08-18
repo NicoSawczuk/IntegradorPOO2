@@ -217,6 +217,10 @@ public class Controlador {
          
          return auxPreguntas;
     }
+
+    public void publicarPregunta(Universitario unUniversitario, String titulo, String descripcion, Foro unForo) {
+        
+    }
     
     
 }

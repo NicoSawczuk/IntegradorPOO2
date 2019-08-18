@@ -10,6 +10,7 @@ import Modelo.Tema;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,8 +23,8 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
      */
     private Controlador controlador;
     private JFrame vistaAnterior;
-    private Universitario universitario;
-    private Foro foro;
+    private Universitario unUniversitario;
+    private Foro unForo;
     
     public vistaAgregarPregunta() {
         initComponents();
@@ -32,10 +33,13 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     vistaAgregarPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Foro foro) {
        initComponents();
        this.controlador = controlador;
-       this.universitario = universitario;
+       this.unUniversitario = universitario;
        this.vistaAnterior = aThis;
-       this.foro = foro;
+       this.unForo = foro;
        this.setLocationRelativeTo(null);
+       this.labelAutor.setText(universitario.getApellido() + "  " + universitario.getNombre());
+       this.labelForo.setText(foro.toString());
+       this.labelTema.setText(foro.getTema().toString());
     }
 
     /**
@@ -77,6 +81,11 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
         jLabel3.setText("Descripción:");
 
         botonAgregarPregunta.setText("Agregar pregunta");
+        botonAgregarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarPreguntaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Agregar una nueva pregunta");
@@ -207,6 +216,22 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
         this.vistaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void botonAgregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPreguntaActionPerformed
+        // Agrega una pregunta nueva a la base de datos, primero comprobando que los campos sean cargados
+        if(!this.txtTitulo.getText().isEmpty() && !this.txtDescripcion.getText().isEmpty()){//si completo el campo
+            String titulo = txtTitulo.getText().toUpperCase();
+            String descripcion = txtDescripcion.getText().toUpperCase();
+            this.controlador.publicarPregunta(unUniversitario,titulo,descripcion,unForo); //funcion del controlador segun el DSD
+            
+            this.dispose();
+        }else{
+             JOptionPane.showMessageDialog(null, "complete todos los campos");
+        }
+        
+        
+        
+    }//GEN-LAST:event_botonAgregarPreguntaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarPregunta;
