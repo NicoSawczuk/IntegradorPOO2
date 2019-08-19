@@ -170,11 +170,11 @@ public class Controlador {
     }
     
     //Asociar
-    public void asociarMaterias(Materia unaMateria,Universitario unUniversitario){
+    public void asociarMaterias(Materia unaMateria,Universitario unProfesor){
         this.persistencia.iniciarTransaccion();
         try {
-            unUniversitario.agregarMaterias(unaMateria);
-            this.persistencia.modificar(unUniversitario);
+            unProfesor.agregarMaterias(unaMateria);
+            this.persistencia.modificar(unProfesor);
             this.persistencia.modificar(unaMateria);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
