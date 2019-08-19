@@ -379,6 +379,11 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-search-30.png"))); // NOI18N
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         opcionTitulo.setBackground(new java.awt.Color(204, 255, 204));
         opcionTitulo.setText("Titulo");
@@ -638,6 +643,16 @@ public class vistaHome extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_botonVerPreguntaActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        // boton de buscar comprueba todos los parametros y le pide al controlador las preguntas
+        //segun los parametros enviados
+        //luego de revibir la lista de preguntas, se muestran en pantalla
+        
+        
+        
+        
+    }//GEN-LAST:event_botonBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
