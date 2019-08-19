@@ -258,4 +258,33 @@ public class Controlador {
     }
     
     
+    public List verDatosUsuario(Universitario unUniversitario){
+        ArrayList datosUniversitario= new ArrayList();
+        
+        String dni = String.valueOf(unUniversitario.getDni());
+        datosUniversitario.add(0, dni);
+        
+        String legajo = unUniversitario.getLegajo();
+        datosUniversitario.add(1, legajo);
+        
+        
+        String sexo = String.valueOf(unUniversitario.getSexo());
+        datosUniversitario.add(2, sexo);
+        
+        String nombre = unUniversitario.getNombre();
+        datosUniversitario.add(3, nombre);
+        
+        String apellido = unUniversitario.getApellido();
+        datosUniversitario.add(4, apellido);
+        
+        String correo = unUniversitario.getCorreo();
+        datosUniversitario.add(5, correo);
+        
+        String direccion = unUniversitario.getDireccion();
+        datosUniversitario.add(6, direccion);
+        
+        return datosUniversitario;
+    }
+    
+    
 }

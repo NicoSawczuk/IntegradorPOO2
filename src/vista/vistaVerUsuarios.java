@@ -7,6 +7,7 @@ package vista;
 
 import Modelo.Universitario;
 import controlador.Controlador;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.ListModel;
@@ -289,7 +290,7 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void listaUsuarioValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaUsuarioValueChanged
-        if (!this.listaUsuario.isSelectionEmpty()){
+        /*if (!this.listaUsuario.isSelectionEmpty()){
             Universitario unUniversitario = (Universitario) this.listaUsuario.getSelectedValue();
             this.txtApellido.setText(unUniversitario.getApellido());
             this.txtCorreo.setText(unUniversitario.getCorreo());
@@ -300,6 +301,26 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
             this.txtNombre.setText(unUniversitario.getNombre());
             String sexo =Character.toString(unUniversitario.getSexo());
             this.txtSexo.setText(sexo);
+            if ("ESTUDIANTE".equals(unUniversitario.getTipo())){
+                this.jLabel3.setText("");
+                this.listaMaterias.setVisible(false);
+            }
+            if ("PROFESOR".equals(unUniversitario.getTipo())){
+                this.jLabel3.setText("Materias:");
+                this.listaMaterias.setVisible(true);
+                this.listaMaterias.setListData(unUniversitario.getMaterias().toArray());
+            }
+        }*/
+        if (!this.listaUsuario.isSelectionEmpty()){
+            Universitario unUniversitario = (Universitario) this.listaUsuario.getSelectedValue();
+            List datosUniversitario = this.controlador.verDatosUsuario((Universitario) this.listaUsuario.getSelectedValue());
+            this.txtDNI.setText((String) datosUniversitario.get(0));
+            this.txtLegajo.setText((String) datosUniversitario.get(1));
+            this.txtSexo.setText((String) datosUniversitario.get(2));
+            this.txtNombre.setText((String) datosUniversitario.get(3));
+            this.txtApellido.setText((String) datosUniversitario.get(4));
+            this.txtCorreo.setText((String) datosUniversitario.get(5));
+            this.txtDireccion.setText((String) datosUniversitario.get(6));
             if ("ESTUDIANTE".equals(unUniversitario.getTipo())){
                 this.jLabel3.setText("");
                 this.listaMaterias.setVisible(false);
