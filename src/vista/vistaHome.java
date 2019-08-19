@@ -701,6 +701,36 @@ public class vistaHome extends javax.swing.JFrame {
         // boton de buscar comprueba todos los parametros y le pide al controlador las preguntas
         //segun los parametros enviados
         //luego de revibir la lista de preguntas, se muestran en pantalla
+        String textoBuscado = this.txtBuscar.getText();
+        String nomUser = this.txtUser.getText();
+        boolean critUser = this.opcionUsuario.isSelected();
+        boolean critCoinci = this.opcionCoincidencia.isSelected();
+        Tema unTema = (Tema) this.listaTemas.getSelectedValue();
+        Foro unForo;
+        if(!this.listaForos.isSelectionEmpty()){
+            unForo = (Foro) this.listaForos.getSelectedValue();
+        }else{
+            unForo = null;
+        }
+        
+        
+        
+        if(this.txtBuscar.getText().isEmpty()){
+            if(this.opcionUsuario.isSelected()){
+                this.listaPreguntas.setListData(controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo).toArray());
+                
+                
+            }else{
+            
+                JOptionPane.showMessageDialog(null, "si deja vacio el campo de busqueda se buscara todas las preguntas del usuario, por favor inserte un usuario");
+            }
+            
+            
+        }else{
+        
+            this.listaPreguntas.setListData(controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo).toArray());
+        
+        }
         
         
         

@@ -301,6 +301,44 @@ public class Controlador {
         
         return datosUniversitario;
     }
+
+    public List realizarBusqueda(String textoBuscado, String nomUser, boolean critUser, boolean critCoinci, Tema unTema, Foro unForo) {
+        
+        List listaPreguntasFinales = new ArrayList<>();
+        
+        if (unForo == null) {
+            
+            List listaForos = unTema.getlistaForos();
+            
+            for (int i = 0; i < listaForos.size(); i++) {
+                Foro f = (Foro) listaForos.get(i);
+                List listaPreguntas = f.getPreguntas();
+                
+                for (int j = 0; j < listaPreguntas.size(); j++) {
+                    Pregunta pg = (Pregunta) listaPreguntas.get(i);
+                    
+                    
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            
+        }else{
+        
+        
+        
+        
+        
+        
+        }
+        
+        
+        return null;
+    }
     
     
 }
