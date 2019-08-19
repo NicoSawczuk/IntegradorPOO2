@@ -163,4 +163,18 @@ public class Pregunta {
        return this.coincideTitulo(textoBuscado);
     }
     
+    //Getters and Setters
+
+    public List<Respuesta> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
+    
+    
+    
+    
+    
 }

@@ -62,6 +62,60 @@ public class Respuesta {
         this.universitario=unUniversitario;
     }
     
+    //Getters and setters
+
+    public int getIdRespuesta() {
+        return idRespuesta;
+    }
+
+    public void setIdRespuesta(int idRespuesta) {
+        this.idRespuesta = idRespuesta;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public List<Voto> getVotos() {
+        return votos;
+    }
+
+    public void setVotos(List<Voto> votos) {
+        this.votos = votos;
+    }
+
+    public Universitario getUniversitario() {
+        return universitario;
+    }
+
+    public void setUniversitario(Universitario universitario) {
+        this.universitario = universitario;
+    }
     
+    
+    @Override
+    public String toString(){
+        return this.respuesta;
+    }
     
 }

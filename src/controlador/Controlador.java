@@ -15,6 +15,7 @@ import dao.Persistencia;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static javafx.scene.input.KeyCode.T;
 
 /**
  *
@@ -76,6 +77,10 @@ public class Controlador {
             }
         }
         return listaUniversitarios;
+    }
+    
+    public List listarRespuestas(Pregunta unaPregunta){
+        return unaPregunta.getRespuestas();
     }
     
     
