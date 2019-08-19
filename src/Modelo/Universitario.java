@@ -193,6 +193,14 @@ public class Universitario {
         unaMateria.eliminarUniversitario(this);
     }
 
+    
+    //Metodo asociar respuesta
+    public void asociarRespuesta(Respuesta unaRespuesta){
+        this.respuestas.add(unaRespuesta);
+        unaRespuesta.asociarUniversitario(this);
+        
+    }
+    
     @Override
     public String toString() {
         return this.nombre+"    "+this.tipo+"    "+this.estado;

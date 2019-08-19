@@ -9,6 +9,7 @@ import Modelo.Pregunta;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -265,6 +266,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         txtRespuesta.setToolTipText("");
 
         botonResponder.setText("Responder");
+        botonResponder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonResponderActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Respuestas");
@@ -342,6 +348,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         this.vistaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void botonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResponderActionPerformed
+        if (!this.txtRespuesta.getText().isEmpty()){
+            this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Primero complete el campo respuesta");
+        }
+    }//GEN-LAST:event_botonResponderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

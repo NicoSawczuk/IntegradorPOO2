@@ -182,12 +182,10 @@ public class vistaAgregarForo extends javax.swing.JFrame {
             
             if ("Crear un nuevo foro".equals(this.jLabel1.getText())){
                 this.controlador.crearForo(unTema,titulo);
-                System.out.println("entro a crear");
             }
             else{
                 
                 this.controlador.editarForo(unForo, titulo);
-                System.out.println("entro a editar");
             }
             
             this.dispose();
