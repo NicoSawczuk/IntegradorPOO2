@@ -49,6 +49,10 @@ public class Tema {
     public void add(Foro unForo) {
         foros.add(unForo);
     }
+
+    public List getlistaForos() {
+        return this.foros;
+    }
     
     
 }
