@@ -88,4 +88,10 @@ public class Pregunta {
     }
     
     
+    //Metodos del DSD
+    public void asociarRespuesta(Respuesta unaRespuesta){
+        this.respuestas.add(unaRespuesta);
+    }
+    
+    
 }

@@ -8,6 +8,7 @@ package controlador;
 import Modelo.Foro;
 import Modelo.Materia;
 import Modelo.Pregunta;
+import Modelo.Respuesta;
 import Modelo.Tema;
 import Modelo.Universitario;
 import dao.Persistencia;
@@ -270,6 +271,24 @@ public class Controlador {
             this.persistencia.confirmarTransaccion();
         }catch(Exception e){
             this.persistencia.descartarTransaccion();
+        }
+    }
+    
+    public void publicarRespuesta(Universitario unUniversitario, String respuesta, Pregunta unaPregunta){
+        this.persistencia.iniciarTransaccion();
+        try {
+            Respuesta unaRespuesta = new Respuesta();
+            unaRespuesta.cargarRespuesta(respuesta);
+            unaRespuesta.asociarPregunta(unaPregunta);
+            unUniversitario.asociarRespuesta(unaRespuesta);
+            unaRespuesta.asociarUniversitario(unUniversitario);
+            this.persistencia.insertar(unaRespuesta);
+            this.persistencia.modificar(unaPregunta);
+            this.persistencia.modificar(unUniversitario);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo publicar la respuesta");
         }
     }
     

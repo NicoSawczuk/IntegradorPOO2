@@ -46,7 +46,22 @@ public class Respuesta {
     //Metodos de los DSD
 
     public Respuesta() {
+        this.fecha = new Date();
     }
+    
+    public void cargarRespuesta(String respuesta){
+        this.respuesta=respuesta;
+    }
+    
+    public void asociarPregunta(Pregunta unaPregunta){
+        this.pregunta=unaPregunta;
+        unaPregunta.asociarRespuesta(this);
+    }
+    
+    public void asociarUniversitario(Universitario unUniversitario){
+        this.universitario=unUniversitario;
+    }
+    
     
     
 }
