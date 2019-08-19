@@ -39,9 +39,6 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         this.jLabel5.setText("");
         this.jLabel2.setText("");
         this.panel3.setVisible(false);
-        this.jLabel9.setText("");
-        this.txtRespuesta.setVisible(false);
-        this.botonResponder.setVisible(false);
         
         Universitario auxUniversitario = unaPregunta.getUniversitario();
         String autor = auxUniversitario.getNombre() + " "+auxUniversitario.getApellido();
