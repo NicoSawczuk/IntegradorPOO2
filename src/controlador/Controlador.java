@@ -350,9 +350,9 @@ public class Controlador {
                         }else{//busqueda solo en el titulo
                         
                             if(critUser){//hacer que coincida con el usuario tambien
-                                res = pg.claveConUser(textoBuscado,nomUser);
+                                res = pg.tituloConUser(textoBuscado,nomUser);
                             }else{ // no importa el usuario, no hay
-                                res = pg.claveSinUser(textoBuscado);
+                                res = pg.tituloSinUser(textoBuscado);
                             }
                             
                             
@@ -394,9 +394,9 @@ public class Controlador {
                         }else{//busqueda solo en el titulo
                         
                             if(critUser){//hacer que coincida con el usuario tambien
-                                res = pg.claveConUser(textoBuscado,nomUser);
+                                res = pg.tituloConUser(textoBuscado,nomUser);
                             }else{ // no importa el usuario, no hay
-                                res = pg.claveSinUser(textoBuscado);
+                                res = pg.tituloSinUser(textoBuscado);
                             }
                             
                             
@@ -422,7 +422,7 @@ public class Controlador {
         }
         
         
-        return null;
+        return listaPreguntasFinales;
     }
     
     
