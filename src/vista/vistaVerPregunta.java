@@ -97,9 +97,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         botonEditarPregunta.setBackground(new java.awt.Color(244, 244, 244));
         botonEditarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-edit-26.png"))); // NOI18N
+        botonEditarPregunta.setBorder(null);
+        botonEditarPregunta.setContentAreaFilled(false);
 
         botonEliminarPregunta.setBackground(new java.awt.Color(244, 244, 244));
         botonEliminarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
+        botonEliminarPregunta.setBorder(null);
+        botonEliminarPregunta.setContentAreaFilled(false);
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -124,9 +128,9 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel2Layout.createSequentialGroup()
-                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminarPregunta)
-                            .addComponent(botonEditarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonEditarPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(botonEliminarPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 2, Short.MAX_VALUE))))
         );
 
@@ -178,9 +182,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         botonLike.setBackground(new java.awt.Color(244, 244, 244));
         botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-love-26.png"))); // NOI18N
+        botonLike.setBorder(null);
+        botonLike.setContentAreaFilled(false);
 
         botonDislike.setBackground(new java.awt.Color(244, 244, 244));
         botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-broken-heart-26.png"))); // NOI18N
+        botonDislike.setBorder(null);
+        botonDislike.setContentAreaFilled(false);
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Autor");
