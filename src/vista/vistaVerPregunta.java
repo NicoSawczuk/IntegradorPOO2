@@ -6,6 +6,7 @@
 package vista;
 
 import Modelo.Pregunta;
+import Modelo.Respuesta;
 import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.DefaultListModel;
@@ -235,8 +236,10 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         panel3Layout.setHorizontalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(contadorLikes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,11 +247,6 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addComponent(contadorDislikes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonDislike, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel3Layout.createSequentialGroup()
-                    .addGap(114, 114, 114)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(314, Short.MAX_VALUE)))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,12 +263,9 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                                     .addComponent(contadorLikes)
                                     .addComponent(contadorDislikes))))
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panel3Layout.createSequentialGroup()
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
 
         jLabel9.setText("Agregar una respuesta");
@@ -373,9 +368,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     }//GEN-LAST:event_botonResponderActionPerformed
 
     private void listaRespuestaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaRespuestaValueChanged
-        /*if(!this.listaRespuesta.isSelectionEmpty()){
-            
-        }*/
+        if(!this.listaRespuesta.isSelectionEmpty()){
+           Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+           this.panel3.setVisible(true);
+           this.jLabel5.setText(this.unaPregunta.getTitulo());
+           this.jLabel2.setText(unaRespuesta.getRespuesta());
+           this.jLabel7.setText(unaRespuesta.getUniversitario().getNombre()+ " "+unaRespuesta.getUniversitario().getApellido());
+           this.jLabel8.setText(unaRespuesta.getFecha().toString());
+           
+        }
     }//GEN-LAST:event_listaRespuestaValueChanged
 
 
