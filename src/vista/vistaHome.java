@@ -375,6 +375,11 @@ public class vistaHome extends javax.swing.JFrame {
 
         opcionForo.setBackground(new java.awt.Color(204, 255, 204));
         opcionForo.setText("Foro");
+        opcionForo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionForoItemStateChanged(evt);
+            }
+        });
 
         opcionCoincidencia.setBackground(new java.awt.Color(204, 255, 204));
         opcionCoincidencia.setText("Coincidencia");
@@ -407,9 +412,19 @@ public class vistaHome extends javax.swing.JFrame {
 
         opcionUsuario.setBackground(new java.awt.Color(204, 255, 204));
         opcionUsuario.setText("Usuario");
+        opcionUsuario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionUsuarioItemStateChanged(evt);
+            }
+        });
 
         txtUser.setText("Ingrese el usuario");
         txtUser.setEnabled(false);
+        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUserFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -700,6 +715,40 @@ public class vistaHome extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_opcionTituloItemStateChanged
+
+    private void opcionForoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionForoItemStateChanged
+        // el cambiar el estado de foro
+        if(this.opcionForo.isSelected()){
+            if(this.listaForos.isSelectionEmpty()){//si no esta seleccionado un foro?
+                
+                JOptionPane.showMessageDialog(null, "seleccione una foro primero");
+                this.opcionForo.setSelected(false);
+            }
+        
+        
+        }
+    }//GEN-LAST:event_opcionForoItemStateChanged
+
+    private void opcionUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionUsuarioItemStateChanged
+        // cambia el estado de la seleccion usuario
+        if(this.opcionUsuario.isSelected()){
+            this.txtUser.setEnabled(true);
+        
+        }else{
+            this.txtUser.setEnabled(false);
+            this.txtUser.setText("Ingrese el usuario");
+        
+        
+        }
+        
+    }//GEN-LAST:event_opcionUsuarioItemStateChanged
+
+    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
+        // cuando el campo de ingreso del usuario gana el foco de atencion, se borra el texto "ingrese usuario"
+        if(this.txtUser.getText().equals("Ingrese el usuario")){
+            this.txtUser.setText("");
+        }
+    }//GEN-LAST:event_txtUserFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
