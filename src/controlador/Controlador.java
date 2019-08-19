@@ -331,7 +331,7 @@ public class Controlador {
         List listaPreguntasFinales = new ArrayList<>();
         
         if (unForo == null) {
-            
+            System.out.println("entro en null");
             List listaForos = unTema.getlistaForos();
             
             for (int i = 0; i < listaForos.size(); i++) {
@@ -339,7 +339,7 @@ public class Controlador {
                 List listaPreguntas = f.getPreguntas();
                 
                 for (int j = 0; j < listaPreguntas.size(); j++) {
-                    Pregunta pg = (Pregunta) listaPreguntas.get(i);
+                    Pregunta pg = (Pregunta) listaPreguntas.get(j);
                     boolean res;
                     if(textoBuscado.isEmpty()){//texto buscado es vacio
                         res = pg.coincideUser(nomUser.toUpperCase());

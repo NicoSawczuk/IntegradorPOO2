@@ -868,6 +868,7 @@ public class vistaHome extends javax.swing.JFrame {
             List auxList = new ArrayList<>();
             this.listaPreguntas.setListData(auxList.toArray());
             this.limpiarPreguntaSeleccionada();
+            this.opcionForo.setSelected(false);
         
         }
     }
