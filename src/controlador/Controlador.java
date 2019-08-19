@@ -316,7 +316,34 @@ public class Controlador {
                 
                 for (int j = 0; j < listaPreguntas.size(); j++) {
                     Pregunta pg = (Pregunta) listaPreguntas.get(i);
+                    boolean res;
+                    if(textoBuscado.isEmpty()){//texto buscado es vacio
+                        res = pg.coincideUser(nomUser);
+                    }else{//texto buscado no vacio
+                        if(critCoinci){ //si la busqueda se realiza por coincidencia (palabra clave que este en algo de la pregunta)
+                            
+                            if(critUser){ //hacer que coincida con el usuario tambien
+                                res = pg.claveConUser(textoBuscado,nomUser);
+                            }else{ 
+                                res = pg.claveSinUser(textoBuscado);
+                            }
+                        
+                        }else{//busqueda solo en el titulo
+                        
+                            if(critUser){//hacer que coincida con el usuario tambien
+                                res = pg.claveConUser(textoBuscado,nomUser);
+                            }else{ // no importa el usuario, no hay
+                                res = pg.claveSinUser(textoBuscado);
+                            }
+                            
+                            
+                        }
                     
+                    }
+                    
+                    if(res){//si res es true se agrega la pregunta a la lista final
+                        listaPreguntasFinales.add(pg);
+                    }
                     
                     
                 }
@@ -327,7 +354,46 @@ public class Controlador {
             
             
             
-        }else{
+        }else{//si busco solo las preguntas que coincidan con el foro obtenido
+            
+            List listaPreguntas = unForo.getPreguntas();
+            
+            for (int i = 0; i < listaPreguntas.size(); i++) {
+                Pregunta pg = (Pregunta) listaPreguntas.get(i);
+                boolean res;
+                    if(textoBuscado.isEmpty()){//texto buscado es vacio
+                        res = pg.coincideUser(nomUser);
+                    }else{//texto buscado no vacio
+                        if(critCoinci){ //si la busqueda se realiza por coincidencia (palabra clave que este en algo de la pregunta)
+                            
+                            if(critUser){ //hacer que coincida con el usuario tambien
+                                res = pg.claveConUser(textoBuscado,nomUser);
+                            }else{ 
+                                res = pg.claveSinUser(textoBuscado);
+                            }
+                        
+                        }else{//busqueda solo en el titulo
+                        
+                            if(critUser){//hacer que coincida con el usuario tambien
+                                res = pg.claveConUser(textoBuscado,nomUser);
+                            }else{ // no importa el usuario, no hay
+                                res = pg.claveSinUser(textoBuscado);
+                            }
+                            
+                            
+                        }
+                    
+                    }
+                    
+                    if(res){//si res es true se agrega la pregunta a la lista final
+                        listaPreguntasFinales.add(pg);
+                    }
+                
+                
+                
+                
+                
+            }
         
         
         
