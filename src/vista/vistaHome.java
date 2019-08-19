@@ -55,11 +55,11 @@ public class vistaHome extends javax.swing.JFrame {
        
        if(universitario.getTipo().equals("ADMINISTRADOR")){//si es administrador puede ver los botones de agregar, eliminar foro
            this.botonAgregarForo.setVisible(true);
-           this.botonEliminarForo.setVisible(true);
+           this.botonEditarForo.setVisible(true);
        }else{
        
            this.botonAgregarForo.setVisible(false);
-           this.botonEliminarForo.setVisible(false);
+           this.botonEditarForo.setVisible(false);
        }
        
        this.actualizarListaForo();
@@ -104,7 +104,7 @@ public class vistaHome extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        botonEliminarForo = new javax.swing.JButton();
+        botonEditarForo = new javax.swing.JButton();
         botonActualizarPreguntas = new javax.swing.JButton();
         botonActualizarForo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -151,6 +151,8 @@ public class vistaHome extends javax.swing.JFrame {
         jScrollPane3.setViewportView(listaPreguntas);
 
         botonAgregarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
+        botonAgregarForo.setBorder(null);
+        botonAgregarForo.setContentAreaFilled(false);
         botonAgregarForo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarForoActionPerformed(evt);
@@ -158,6 +160,10 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonAgregarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-plus-math-26.png"))); // NOI18N
+        botonAgregarPregunta.setBorder(null);
+        botonAgregarPregunta.setContentAreaFilled(false);
+        botonAgregarPregunta.setMaximumSize(new java.awt.Dimension(63, 39));
+        botonAgregarPregunta.setMinimumSize(new java.awt.Dimension(63, 39));
         botonAgregarPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarPreguntaActionPerformed(evt);
@@ -176,7 +182,7 @@ public class vistaHome extends javax.swing.JFrame {
         jLabel2.setText("Descripcion:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel5.setText("Detalles:");
+        jLabel5.setText("Detalles de pregunta:");
 
         jLabel9.setText("Titulo:");
 
@@ -295,9 +301,18 @@ public class vistaHome extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Preguntas:");
 
-        botonEliminarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
+        botonEditarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-edit-26.png"))); // NOI18N
+        botonEditarForo.setBorder(null);
+        botonEditarForo.setContentAreaFilled(false);
+        botonEditarForo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarForoActionPerformed(evt);
+            }
+        });
 
         botonActualizarPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
+        botonActualizarPreguntas.setBorder(null);
+        botonActualizarPreguntas.setContentAreaFilled(false);
         botonActualizarPreguntas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonActualizarPreguntasActionPerformed(evt);
@@ -305,6 +320,8 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonActualizarForo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-actualizar-30.png"))); // NOI18N
+        botonActualizarForo.setBorder(null);
+        botonActualizarForo.setContentAreaFilled(false);
         botonActualizarForo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonActualizarForoActionPerformed(evt);
@@ -318,56 +335,58 @@ public class vistaHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonEliminarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEditarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonActualizarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonAgregarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(11, 11, 11))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8)
-                        .addGap(57, 57, 57)
-                        .addComponent(botonActualizarPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAgregarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                        .addGap(51, 51, 51)
+                        .addComponent(botonActualizarPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonAgregarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 237, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel8)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
-                        .addComponent(botonEliminarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonAgregarPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonActualizarPreguntas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(botonAgregarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonActualizarPreguntas))
+                    .addComponent(botonAgregarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8)
+                        .addComponent(botonAgregarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonEditarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonActualizarForo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
@@ -396,6 +415,8 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-search-30.png"))); // NOI18N
+        botonBuscar.setBorder(null);
+        botonBuscar.setContentAreaFilled(false);
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarActionPerformed(evt);
@@ -501,7 +522,7 @@ public class vistaHome extends javax.swing.JFrame {
                                 .addComponent(labelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelLegajo)
                             .addComponent(labelNombre))
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -750,13 +771,22 @@ public class vistaHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtUserFocusGained
 
+    private void botonEditarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarForoActionPerformed
+        if(!this.listaForos.isSelectionEmpty() && !this.listaForos.isSelectionEmpty()){//si selecciono un tema
+            vistaAgregarForo editarForo = new vistaAgregarForo (controlador,universitario,this, (Foro) listaForos.getSelectedValue());
+            editarForo.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "seleccione el foro para editar");
+        }
+    }//GEN-LAST:event_botonEditarForoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
     private javax.swing.JButton botonActualizarPreguntas;
     private javax.swing.JButton botonAgregarForo;
     private javax.swing.JButton botonAgregarPregunta;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonEliminarForo;
+    private javax.swing.JButton botonEditarForo;
     private javax.swing.JToggleButton botonVerPregunta;
     private javax.swing.JButton botonVerUsuarios;
     private javax.swing.JLabel jLabel1;

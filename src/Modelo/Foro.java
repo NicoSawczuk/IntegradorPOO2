@@ -60,6 +60,16 @@ public class Foro {
     public void add(Pregunta unaPregunta) {
        this.preguntas.add(unaPregunta);
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    
     
     
 }

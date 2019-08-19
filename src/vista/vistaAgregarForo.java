@@ -5,6 +5,7 @@
  */
 package vista;
 
+import Modelo.Foro;
 import Modelo.Tema;
 import Modelo.Universitario;
 import controlador.Controlador;
@@ -24,10 +25,21 @@ public class vistaAgregarForo extends javax.swing.JFrame {
     private JFrame vistaAnterior;
     private Universitario universitario;
     private Tema unTema;
+    private Foro unForo;
     
     
     public vistaAgregarForo() {
         initComponents();
+    }
+    
+    public vistaAgregarForo(Controlador controlador, Universitario universitario, vistaHome aThis,Foro f){
+       initComponents();
+       this.controlador = controlador;
+       this.universitario = universitario;
+       this.vistaAnterior = aThis;
+       this.unForo=f; 
+       this.setLocationRelativeTo(null);
+       this.jLabel1.setText("Editar "+" "+unForo.getTitulo().toUpperCase());
     }
 
     public vistaAgregarForo(Controlador controlador, Universitario universitario, vistaHome aThis,Tema t) {
@@ -73,7 +85,7 @@ public class vistaAgregarForo extends javax.swing.JFrame {
 
         jLabel2.setText("Titulo:");
 
-        botonCrear.setText("Crear");
+        botonCrear.setText("Guardar");
         botonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCrearActionPerformed(evt);
@@ -167,7 +179,16 @@ public class vistaAgregarForo extends javax.swing.JFrame {
         // al precionar crear llama al controlador (modulo (para los amigos) para el DSD )
         if(!this.txtTitulo.getText().isEmpty()){//si completo el campo
             String titulo = txtTitulo.getText().toUpperCase();
-            this.controlador.crearForo(unTema,titulo);
+            
+            if ("Crear un nuevo foro".equals(this.jLabel1.getText())){
+                this.controlador.crearForo(unTema,titulo);
+                System.out.println("entro a crear");
+            }
+            else{
+                
+                this.controlador.editarForo(unForo, titulo);
+                System.out.println("entro a editar");
+            }
             
             this.dispose();
         }else{

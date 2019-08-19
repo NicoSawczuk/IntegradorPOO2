@@ -150,6 +150,18 @@ public class Controlador {
         }
     }
     
+    public void editarForo(Foro auxForo, String titulo){
+        this.persistencia.iniciarTransaccion();
+        try {
+            auxForo.setTitulo(titulo);
+            this.persistencia.modificar(auxForo);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo editar el Profesor");
+        }
+    }
+    
     //Borrar
     public void borrarUsuario(Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();
