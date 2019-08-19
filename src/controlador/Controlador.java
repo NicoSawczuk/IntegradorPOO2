@@ -337,22 +337,22 @@ public class Controlador {
                     Pregunta pg = (Pregunta) listaPreguntas.get(i);
                     boolean res;
                     if(textoBuscado.isEmpty()){//texto buscado es vacio
-                        res = pg.coincideUser(nomUser);
+                        res = pg.coincideUser(nomUser.toUpperCase());
                     }else{//texto buscado no vacio
                         if(critCoinci){ //si la busqueda se realiza por coincidencia (palabra clave que este en algo de la pregunta)
                             
                             if(critUser){ //hacer que coincida con el usuario tambien
-                                res = pg.claveConUser(textoBuscado,nomUser);
+                                res = pg.claveConUser(textoBuscado.toUpperCase(),nomUser.toUpperCase());
                             }else{ 
-                                res = pg.claveSinUser(textoBuscado);
+                                res = pg.claveSinUser(textoBuscado.toUpperCase());
                             }
                         
                         }else{//busqueda solo en el titulo
                         
                             if(critUser){//hacer que coincida con el usuario tambien
-                                res = pg.tituloConUser(textoBuscado,nomUser);
+                                res = pg.tituloConUser(textoBuscado.toUpperCase(),nomUser.toUpperCase());
                             }else{ // no importa el usuario, no hay
-                                res = pg.tituloSinUser(textoBuscado);
+                                res = pg.tituloSinUser(textoBuscado.toUpperCase());
                             }
                             
                             
@@ -381,22 +381,22 @@ public class Controlador {
                 Pregunta pg = (Pregunta) listaPreguntas.get(i);
                 boolean res;
                     if(textoBuscado.isEmpty()){//texto buscado es vacio
-                        res = pg.coincideUser(nomUser);
+                        res = pg.coincideUser(nomUser.toUpperCase());
                     }else{//texto buscado no vacio
                         if(critCoinci){ //si la busqueda se realiza por coincidencia (palabra clave que este en algo de la pregunta)
                             
                             if(critUser){ //hacer que coincida con el usuario tambien
-                                res = pg.claveConUser(textoBuscado,nomUser);
+                                res = pg.claveConUser(textoBuscado.toUpperCase(),nomUser.toUpperCase());
                             }else{ 
-                                res = pg.claveSinUser(textoBuscado);
+                                res = pg.claveSinUser(textoBuscado.toUpperCase());
                             }
                         
                         }else{//busqueda solo en el titulo
                         
                             if(critUser){//hacer que coincida con el usuario tambien
-                                res = pg.tituloConUser(textoBuscado,nomUser);
+                                res = pg.tituloConUser(textoBuscado.toUpperCase(),nomUser.toUpperCase());
                             }else{ // no importa el usuario, no hay
-                                res = pg.tituloSinUser(textoBuscado);
+                                res = pg.tituloSinUser(textoBuscado.toUpperCase());
                             }
                             
                             

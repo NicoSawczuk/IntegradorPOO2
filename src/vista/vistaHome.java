@@ -707,7 +707,7 @@ public class vistaHome extends javax.swing.JFrame {
         boolean critCoinci = this.opcionCoincidencia.isSelected();
         Tema unTema = (Tema) this.listaTemas.getSelectedValue();
         Foro unForo;
-        if(!this.listaForos.isSelectionEmpty()){
+        if(!this.listaForos.isSelectionEmpty() && this.opcionForo.isSelected()){
             unForo = (Foro) this.listaForos.getSelectedValue();
         }else{
             unForo = null;
