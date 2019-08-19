@@ -56,6 +56,10 @@ public class Foro {
     public String toString() {
         return titulo;
     }
+
+    public void add(Pregunta unaPregunta) {
+       this.preguntas.add(unaPregunta);
+    }
     
     
 }

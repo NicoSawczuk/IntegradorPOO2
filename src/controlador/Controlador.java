@@ -210,6 +210,7 @@ public class Controlador {
             Foro unForo = new Foro();
             unForo.cargarForo(titulo);
             unForo.asociarTema(unTema);
+            unTema.add(unForo);
             this.persistencia.insertar(unForo);
             
             System.out.println("se creo foro");
@@ -246,6 +247,9 @@ public class Controlador {
             unaPregunta.cargarPregunta(titulo,descripcion);//cargo la pregunta
             unaPregunta.asociarUniversitario(unUniversitario); //asocio la pregunta
             unaPregunta.asociarForo(unForo);//asociar foro con la pregunta
+            
+            unUniversitario.add(unaPregunta);
+            unForo.add(unaPregunta);
             
             this.persistencia.insertar(unaPregunta);
             

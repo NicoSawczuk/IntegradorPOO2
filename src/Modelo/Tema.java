@@ -45,6 +45,10 @@ public class Tema {
     public List obtenerListaForos() {
        return this.foros;
     }
+
+    public void add(Foro unForo) {
+        foros.add(unForo);
+    }
     
     
 }
