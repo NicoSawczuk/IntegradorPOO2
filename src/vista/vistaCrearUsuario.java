@@ -69,7 +69,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
         this.comboMaterias.setSelectedIndex(-1);
     }
 
-    public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, vistaLogin aThis) {
+    public vistaCrearUsuario(Controlador controlador, Universitario usuarioActual, JFrame aThis) {
         initComponents();
        this.controlador = controlador;
        this.universitario = usuarioActual;
