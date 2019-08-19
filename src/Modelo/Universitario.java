@@ -197,5 +197,9 @@ public class Universitario {
     public String toString() {
         return this.nombre+"    "+this.tipo+"    "+this.estado;
     }
+
+    public void add(Pregunta unaPregunta) {
+        this.preguntas.add(unaPregunta);
+    }
     
 }

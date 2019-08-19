@@ -553,6 +553,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Foro"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="opcionForoItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="opcionCoincidencia">
           <Properties>
@@ -561,6 +564,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Coincidencia"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="opcionCoincidenciaItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBuscar">
           <Events>
@@ -573,6 +579,9 @@
               <Image iconType="3" name="/imagenes/icons8-search-30.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="opcionTitulo">
           <Properties>
@@ -581,6 +590,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Titulo"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="opcionTituloItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="opcionUsuario">
           <Properties>
@@ -589,12 +601,18 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="opcionUsuarioItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUser">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el usuario"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtUserFocusGained"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

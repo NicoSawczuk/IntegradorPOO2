@@ -45,7 +45,13 @@ public class vistaHome extends javax.swing.JFrame {
        this.labelTipo.setText(universitario.getTipo());
        
        //cargar lista temas
-       this.listaTemas.setListData(controlador.buscarListaTemas().toArray());
+       List temas = controlador.buscarListaTemas();
+       this.listaTemas.setListData(temas.toArray());
+       //seleccionar tema por defecto
+       if(temas.size()>0){
+           this.listaTemas.setSelectedIndex(0);
+       
+       }
        
        if(universitario.getTipo().equals("ADMINISTRADOR")){//si es administrador puede ver los botones de agregar, eliminar foro
            this.botonAgregarForo.setVisible(true);
@@ -57,6 +63,7 @@ public class vistaHome extends javax.swing.JFrame {
        }
        
        this.actualizarListaForo();
+       this.opcionTitulo.setSelected(true);
        
     }
 
@@ -368,9 +375,19 @@ public class vistaHome extends javax.swing.JFrame {
 
         opcionForo.setBackground(new java.awt.Color(204, 255, 204));
         opcionForo.setText("Foro");
+        opcionForo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionForoItemStateChanged(evt);
+            }
+        });
 
         opcionCoincidencia.setBackground(new java.awt.Color(204, 255, 204));
         opcionCoincidencia.setText("Coincidencia");
+        opcionCoincidencia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionCoincidenciaItemStateChanged(evt);
+            }
+        });
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,15 +396,35 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-search-30.png"))); // NOI18N
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         opcionTitulo.setBackground(new java.awt.Color(204, 255, 204));
         opcionTitulo.setText("Titulo");
+        opcionTitulo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionTituloItemStateChanged(evt);
+            }
+        });
 
         opcionUsuario.setBackground(new java.awt.Color(204, 255, 204));
         opcionUsuario.setText("Usuario");
+        opcionUsuario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                opcionUsuarioItemStateChanged(evt);
+            }
+        });
 
         txtUser.setText("Ingrese el usuario");
         txtUser.setEnabled(false);
+        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUserFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -638,6 +675,80 @@ public class vistaHome extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_botonVerPreguntaActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        // boton de buscar comprueba todos los parametros y le pide al controlador las preguntas
+        //segun los parametros enviados
+        //luego de revibir la lista de preguntas, se muestran en pantalla
+        
+        
+        
+        
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void opcionCoincidenciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionCoincidenciaItemStateChanged
+        // hay un cambio en la seleccion de coincidencia
+        if(this.opcionCoincidencia.isSelected()){//esta seleccionado
+            //deseleccionar titulo
+            this.opcionTitulo.setSelected(false);
+        
+        
+        
+        }else{
+            //seleccionar titulo
+            this.opcionTitulo.setSelected(true);
+        
+        }
+    }//GEN-LAST:event_opcionCoincidenciaItemStateChanged
+
+    private void opcionTituloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionTituloItemStateChanged
+        // hay un cambio en la seleccion de titulo
+        if(this.opcionTitulo.isSelected()){//esta seleccionado
+            //deseleccionar coincidencia
+            this.opcionCoincidencia.setSelected(false);
+        
+        
+        
+        }else{
+            //seleccionar coincidencia
+            this.opcionCoincidencia.setSelected(true);
+        
+        }
+    }//GEN-LAST:event_opcionTituloItemStateChanged
+
+    private void opcionForoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionForoItemStateChanged
+        // el cambiar el estado de foro
+        if(this.opcionForo.isSelected()){
+            if(this.listaForos.isSelectionEmpty()){//si no esta seleccionado un foro?
+                
+                JOptionPane.showMessageDialog(null, "seleccione una foro primero");
+                this.opcionForo.setSelected(false);
+            }
+        
+        
+        }
+    }//GEN-LAST:event_opcionForoItemStateChanged
+
+    private void opcionUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionUsuarioItemStateChanged
+        // cambia el estado de la seleccion usuario
+        if(this.opcionUsuario.isSelected()){
+            this.txtUser.setEnabled(true);
+        
+        }else{
+            this.txtUser.setEnabled(false);
+            this.txtUser.setText("Ingrese el usuario");
+        
+        
+        }
+        
+    }//GEN-LAST:event_opcionUsuarioItemStateChanged
+
+    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
+        // cuando el campo de ingreso del usuario gana el foco de atencion, se borra el texto "ingrese usuario"
+        if(this.txtUser.getText().equals("Ingrese el usuario")){
+            this.txtUser.setText("");
+        }
+    }//GEN-LAST:event_txtUserFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarForo;
