@@ -93,6 +93,75 @@ public class Pregunta {
         this.respuestas.add(unaRespuesta);
     }
     
+    public boolean coincideUser(String nomyape){
+        String autor = this.universitario.getApellido() + " " + this.universitario.getNombre(); 
+        return autor.contains(nomyape);
+    }
+    public boolean coincideTitulo(String casiTitulo){
+        String titulon = this.titulo; 
+        return titulon.contains(casiTitulo);
+    }
+    public boolean coincideDescripcion(String casiDescripcion){
+    
+        String miDescripcion = this.descripcion; 
+        return miDescripcion.contains(casiDescripcion);
+    }
+
+    public boolean claveConUser(String textoBuscado, String nomUser) {
+        
+        if(this.coincideUser(nomUser)){//aparece user
+            if(this.coincideTitulo(textoBuscado)){//aparecce en titulo
+            
+                return true;
+                
+            }else{//o aparece en descripcion
+                if(this.coincideDescripcion(textoBuscado)){
+                
+                    return true;
+                
+                }
+            
+            }
+        
+        }
+       return false; 
+    }
+
+    public boolean claveSinUser(String textoBuscado) {
+        
+        if(this.coincideTitulo(textoBuscado)){//aparecce en titulo
+            
+                return true;
+                
+            }else{//o aparece en descripcion
+                if(this.coincideDescripcion(textoBuscado)){
+                
+                    return true;
+                
+                }
+            
+            }
+        
+        return false;
+        
+    }
+
+    public boolean tituloConUser(String textoBuscado, String nomUser) {
+        
+        if(this.coincideUser(nomUser)){
+            
+            return this.coincideTitulo(textoBuscado);
+        
+        
+        
+        }
+        
+        return false;
+    }
+
+    public boolean tituloSinUser(String textoBuscado) {
+       return this.coincideTitulo(textoBuscado);
+    }
     
     //Getters and Setters
 
