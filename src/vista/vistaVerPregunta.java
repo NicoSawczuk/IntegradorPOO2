@@ -40,6 +40,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         DefaultListModel modelolista = new DefaultListModel();
         this.listaRespuesta.setModel(modelolista);
         this.listaRespuesta.setListData(this.controlador.listarRespuestas(this.unaPregunta).toArray());
+        
+        if ("PROFESOR".equals(universitario.getTipo()) || "ESTUDIANTE".equals(universitario.getTipo())){
+            this.botonEditarPregunta.setVisible(false);
+            this.botonEliminarPregunta.setVisible(false);
+        }
     }
     
     public void verPregunta(Pregunta unaPregunta){
