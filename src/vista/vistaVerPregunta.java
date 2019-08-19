@@ -5,6 +5,7 @@
  */
 package vista;
 
+import Modelo.Foro;
 import Modelo.Pregunta;
 import Modelo.Respuesta;
 import Modelo.Universitario;
@@ -131,6 +132,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonEditarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-edit-26.png"))); // NOI18N
         botonEditarPregunta.setBorder(null);
         botonEditarPregunta.setContentAreaFilled(false);
+        botonEditarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarPreguntaActionPerformed(evt);
+            }
+        });
 
         botonEliminarPregunta.setBackground(new java.awt.Color(244, 244, 244));
         botonEliminarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
@@ -390,6 +396,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
            
         }
     }//GEN-LAST:event_listaRespuestaValueChanged
+
+    private void botonEditarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarPreguntaActionPerformed
+        vistaAgregarPregunta editarPregunta = new vistaAgregarPregunta (unaPregunta, this, controlador);
+        editarPregunta.setVisible(true);
+    }//GEN-LAST:event_botonEditarPreguntaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

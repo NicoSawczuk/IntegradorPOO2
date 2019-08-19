@@ -6,6 +6,7 @@
 package vista;
 
 import Modelo.Foro;
+import Modelo.Pregunta;
 import Modelo.Tema;
 import Modelo.Universitario;
 import controlador.Controlador;
@@ -29,7 +30,21 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     public vistaAgregarPregunta() {
         initComponents();
     }
-
+    
+    //Constructor para editar
+    public vistaAgregarPregunta (Pregunta unaPregunta, JFrame vistaAnterior, Controlador controlador){
+        initComponents();
+        this.controlador = controlador;
+        this.vistaAnterior=vistaAnterior;
+        this.jLabel1.setText("Editar Pregunta");
+        this.labelAutor.setText(unaPregunta.getUniversitario().getNombre()+ " "+ unaPregunta.getUniversitario().getApellido());
+        this.labelForo.setText(unaPregunta.getForo().toString());
+        this.labelTema.setText(unaPregunta.getForo().getTema().toString());
+        this.txtTitulo.setText(unaPregunta.getTitulo());
+        this.txtDescripcion.setText(unaPregunta.getDescripcion());
+        
+    }
+    
     vistaAgregarPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Foro foro) {
        initComponents();
        this.controlador = controlador;
