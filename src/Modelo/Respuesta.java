@@ -62,6 +62,9 @@ public class Respuesta {
         this.universitario=unUniversitario;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.respuesta;
+    }
     
 }

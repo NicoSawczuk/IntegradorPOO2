@@ -8,6 +8,7 @@ package vista;
 import Modelo.Pregunta;
 import Modelo.Universitario;
 import controlador.Controlador;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -33,6 +34,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         
     }
     
+    public void limpiar(){
+        //creamos una lista y la llenamos con todos los usuarios
+        DefaultListModel modelolista = new DefaultListModel();
+        this.listaRespuesta.setModel(modelolista);
+        this.listaRespuesta.setListData(this.controlador.listarRespuestas(this.unaPregunta).toArray());
+    }
+    
     public void verPregunta(Pregunta unaPregunta){
         this.jLabel1.setText(unaPregunta.getTitulo());
         this.jLabel6.setText(unaPregunta.getDescripcion());
@@ -44,7 +52,6 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         Universitario auxUniversitario = unaPregunta.getUniversitario();
         String autor = auxUniversitario.getNombre() + " "+auxUniversitario.getApellido();
         this.jLabel3.setText(autor);
-        System.out.println(unaPregunta.getTitulo());
     }
 
     public vistaVerPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Pregunta p1) {
@@ -55,6 +62,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
        this.unaPregunta = p1;
        this.setLocationRelativeTo(null);
        verPregunta(unaPregunta);
+       limpiar();
     }
 
     /**
@@ -156,18 +164,17 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+            .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         panel1Layout.setVerticalGroup(
@@ -229,7 +236,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                 .addComponent(contadorLikes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +248,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addGroup(panel3Layout.createSequentialGroup()
                     .addGap(114, 114, 114)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(470, Short.MAX_VALUE)))
+                    .addContainerGap(314, Short.MAX_VALUE)))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,21 +298,20 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonResponder))
+                    .addGroup(panel4Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRespuesta)
+                            .addComponent(txtRespuesta, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel4Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panel4Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(panel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonResponder)))
-                .addGap(0, 0, 0))
+                                .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel5)
+                                    .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,13 +322,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(70, 70, 70)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonResponder)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel10)
@@ -357,10 +363,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private void botonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResponderActionPerformed
         if (!this.txtRespuesta.getText().isEmpty()){
             this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
+            this.txtRespuesta.setText("");
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Primero complete el campo respuesta");
         }
+        limpiar();
     }//GEN-LAST:event_botonResponderActionPerformed
 
     private void listaRespuestaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaRespuestaValueChanged

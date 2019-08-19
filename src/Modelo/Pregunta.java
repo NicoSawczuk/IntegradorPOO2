@@ -94,4 +94,18 @@ public class Pregunta {
     }
     
     
+    //Getters and Setters
+
+    public List<Respuesta> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
+    
+    
+    
+    
+    
 }
