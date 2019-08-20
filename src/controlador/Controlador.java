@@ -212,6 +212,18 @@ public class Controlador {
         
     }
     
+    public void eliminarRespuesta(Respuesta unaRespuesta){
+        this.persistencia.iniciarTransaccion();
+        try {
+            unaRespuesta.borrarVotos(unaRespuesta);
+            this.persistencia.modificar(unaRespuesta);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo cambiar el estado");
+        }
+    }
+    
     //Asociar
     public void asociarMaterias(Materia unaMateria,Universitario unProfesor){
         this.persistencia.iniciarTransaccion();

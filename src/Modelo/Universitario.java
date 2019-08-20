@@ -226,6 +226,12 @@ public class Universitario {
         
         }
     }
+    
+    
+    
+    public void borrarRespuesta(Respuesta unaRespuesta){
+        this.respuestas.remove(unaRespuesta);
+    }
 
     
     

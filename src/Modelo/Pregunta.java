@@ -180,6 +180,8 @@ public class Pregunta {
     
     
     
-    
+    public void eliminarRespuesta(Respuesta unaRespuesta){
+        this.respuestas.remove(unaRespuesta);
+    }
     
 }

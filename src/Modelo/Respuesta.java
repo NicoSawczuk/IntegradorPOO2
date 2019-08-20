@@ -66,6 +66,20 @@ public class Respuesta {
         this.respuesta=respuesta;
     }
     
+    public void borrarVotos(Respuesta unaRespuesta){
+        int i=0;
+        while (i < votos.size()){
+            Voto unVoto = votos.get(i);
+            unVoto.desasociarRespuesta(this);
+            votos.remove(unVoto);
+            Universitario unUniversitario = unaRespuesta.getUniversitario();
+            unUniversitario.borrarRespuesta(unaRespuesta);
+            Pregunta unaPregunta = unaRespuesta.getPregunta();
+            unaPregunta.eliminarRespuesta(unaRespuesta);
+            i++;
+        }
+    }
+    
     //Getters and setters
 
     public int getIdRespuesta() {

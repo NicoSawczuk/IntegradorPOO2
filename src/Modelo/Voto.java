@@ -55,6 +55,11 @@ public class Voto {
         return respuesta;
     }
     
+    //Metodos del DSD
+    public void desasociarRespuesta(Respuesta unaRespuesta){
+        this.respuesta = null;
+    }
+    
     
     
     

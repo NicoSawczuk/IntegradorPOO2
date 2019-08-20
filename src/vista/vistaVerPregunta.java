@@ -331,6 +331,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonEliminarRespuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
         botonEliminarRespuesta.setBorder(null);
         botonEliminarRespuesta.setContentAreaFilled(false);
+        botonEliminarRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarRespuestaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel4Layout = new javax.swing.GroupLayout(panel4);
         panel4.setLayout(panel4Layout);
@@ -551,6 +556,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_botonDislikeActionPerformed
+
+    private void botonEliminarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarRespuestaActionPerformed
+        if (!this.listaRespuesta.isSelectionEmpty()){
+            Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+            this.controlador.eliminarRespuesta(unaRespuesta);
+            limpiar();
+            
+        }
+    }//GEN-LAST:event_botonEliminarRespuestaActionPerformed
 
 
 

@@ -506,6 +506,9 @@
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarRespuestaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
