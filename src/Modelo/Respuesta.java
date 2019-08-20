@@ -66,12 +66,12 @@ public class Respuesta {
         this.respuesta=respuesta;
     }
     
-    public void borrarVotos(Respuesta unaRespuesta){
+    public void borrarVotos(){
         int i=0;
         while (i < votos.size()){
             Voto unVoto = votos.get(i);
             unVoto.desasociarRespuesta(this);
-            unVoto.desasociarUniversitario(unaRespuesta.getUniversitario());
+            unVoto.desasociarUniversitario(this.getUniversitario());
             votos.remove(unVoto);
             
             i++;

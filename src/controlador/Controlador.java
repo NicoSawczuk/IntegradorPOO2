@@ -222,7 +222,7 @@ public class Controlador {
             for (int i = 0; i < votos.size(); i++) {
                 this.persistencia.eliminar(votos.get(i));
             }
-            unaRespuesta.borrarVotos(unaRespuesta);
+            unaRespuesta.borrarVotos();
             
             unaRespuesta.borrarUniversitario(unUniversitario);
             unUniversitario.borrarRespuesta(unaRespuesta);
@@ -233,6 +233,7 @@ public class Controlador {
             this.persistencia.modificar(unaRespuesta);
             this.persistencia.eliminar(unaRespuesta);
             this.persistencia.confirmarTransaccion();
+            
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
             System.err.println("No se pudo eliminar la respuesta");
