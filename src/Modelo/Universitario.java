@@ -209,5 +209,9 @@ public class Universitario {
     public void add(Pregunta unaPregunta) {
         this.preguntas.add(unaPregunta);
     }
+
+    public List getVotos() {
+        return this.votos;
+    }
     
 }

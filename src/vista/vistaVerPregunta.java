@@ -9,6 +9,7 @@ import Modelo.Foro;
 import Modelo.Pregunta;
 import Modelo.Respuesta;
 import Modelo.Universitario;
+import Modelo.Voto;
 import controlador.Controlador;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -169,7 +170,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                     .addComponent(botonEliminarPregunta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         jLabel6.setText("Descripcion");
@@ -227,6 +228,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-love-26.png"))); // NOI18N
         botonLike.setBorder(null);
         botonLike.setContentAreaFilled(false);
+        botonLike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLikeActionPerformed(evt);
+            }
+        });
 
         botonDislike.setBackground(new java.awt.Color(244, 244, 244));
         botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-broken-heart-26.png"))); // NOI18N
@@ -334,9 +340,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                     .addGroup(panel4Layout.createSequentialGroup()
                         .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtRespuesta, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonResponder)))
+                            .addComponent(botonResponder))
                         .addGap(12, 12, 12))))
         );
         panel4Layout.setVerticalGroup(
@@ -425,6 +429,35 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         vistaAgregarPregunta editarPregunta = new vistaAgregarPregunta (unaPregunta, this, controlador);
         editarPregunta.setVisible(true);
     }//GEN-LAST:event_botonEditarPreguntaActionPerformed
+
+    private void botonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLikeActionPerformed
+        // boton de like, primero ve si "yo" no vote esa "resapesta"
+        boolean valor = true;
+        Universitario unUniversitario = this.universitario;
+        if(!this.listaRespuesta.isSelectionEmpty()){
+            Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+            Voto existenteVoto = this.controlador.votoExiste(this.universitario, unaRespuesta);
+            if(existenteVoto != null){ //si ya existe veo si se mofdifica
+            
+            //ver si estaba ya en like o dislike
+            
+            
+            }else{ //creo el voto
+            
+                this.controlador.votarRespuesta(unaRespuesta, unUniversitario, valor);
+            
+            
+            }
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "seleccione una respuesta primero");
+        
+        }
+        
+        
+        
+    }//GEN-LAST:event_botonLikeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

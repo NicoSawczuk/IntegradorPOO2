@@ -36,6 +36,11 @@ public class Voto {
 
     public Voto() {
     }
+
+    public void cargarVoto(boolean valor) {
+        this.valor = valor;
+        
+    }
     
     
     
