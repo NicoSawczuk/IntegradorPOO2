@@ -520,6 +520,31 @@ public class Controlador {
             this.persistencia.descartarTransaccion();
         }
     }
+
+    public int cantVotoPositivos(Respuesta unaRespuesta) {
+        List votos = unaRespuesta.getVotos();
+        int cant = 0;
+        for (int i = 0; i < votos.size(); i++) {
+            Voto v1 = (Voto) votos.get(i);
+            if(v1.isValor()){
+                cant += 1;
+            }
+        }
+        return cant;
+    }
+
+    public int cantVotoNegativos(Respuesta unaRespuesta) {
+        List votos = unaRespuesta.getVotos();
+        int cant = 0;
+        for (int i = 0; i < votos.size(); i++) {
+            Voto v1 = (Voto) votos.get(i);
+            if(!v1.isValor()){
+                cant += 1;
+            }
+        }
+        return cant;
+    
+    }
     
     
 }

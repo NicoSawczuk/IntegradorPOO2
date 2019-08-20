@@ -6,12 +6,17 @@
 package vista;
 
 import Modelo.Foro;
+import javax.*;
 import Modelo.Pregunta;
 import Modelo.Respuesta;
 import Modelo.Universitario;
 import Modelo.Voto;
 import controlador.Controlador;
+import java.awt.Color;
+import java.io.InputStream;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -235,7 +240,8 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         panel3.setBackground(new java.awt.Color(244, 244, 244));
 
-        botonLike.setBackground(new java.awt.Color(244, 244, 244));
+        botonLike.setBackground(new java.awt.Color(51, 255, 51));
+        botonLike.setForeground(new java.awt.Color(51, 255, 51));
         botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-love-26.png"))); // NOI18N
         botonLike.setBorder(null);
         botonLike.setContentAreaFilled(false);
@@ -457,13 +463,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             this.botonEliminarRespuesta.setVisible(true);
            }
            
-           unaRespuesta.getUniversitario().getCorreo();
+           //unaRespuesta.getUniversitario().getCorreo();
            
-           if (this.universitario.getCorreo() == unaRespuesta.getUniversitario().getCorreo()){
+           if (this.universitario.getCorreo().equals(unaRespuesta.getUniversitario().getCorreo()) ){
                this.botonLike.setEnabled(false);
                this.botonDislike.setEnabled(false);
            }
-           
+           this.actualizarContador();
         }
     }//GEN-LAST:event_listaRespuestaValueChanged
 
@@ -497,7 +503,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             
             
             }
-            
+            this.actualizarContador();
         }else{
             
             JOptionPane.showMessageDialog(null, "seleccione una respuesta primero");
@@ -544,7 +550,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             
             
             }
-            
+            this.actualizarContador();
         }else{
             
             JOptionPane.showMessageDialog(null, "seleccione una respuesta primero");
@@ -588,5 +594,56 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     verPregunta(unaPregunta);
     super.setVisible(c);
 }
+
+    private void actualizarContador() {
+        if(!this.listaRespuesta.isSelectionEmpty()){}
+            //obtener votos positivos de la respuesta seleccionada
+             Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+             Voto existenteVoto = this.controlador.votoExiste(this.universitario, unaRespuesta);
+            int cantVoto = 0;
+            cantVoto = this.controlador.cantVotoPositivos(unaRespuesta);
+            //mostrarlos
+            this.contadorLikes.setText(String.valueOf(cantVoto));
+            
+            
+            //cantVoto = 0;
+            //obtener votos negativos de la respuesta seleccionada
+            //cantVoto = this.controlador.cantVotoNegativos(unaRespuesta);
+            //mostrarlos
+            this.contadorDislikes.setText(String.valueOf(this.controlador.cantVotoNegativos(unaRespuesta)));
+
+           
+            //si yo vote ,positivo, hacer algo, negativo hacer otra cosa.
+            
+                System.out.println(this.botonLike.getIcon().toString());
+                
+                
+               /* Icon iconoVerde = new ImageIcon(getClass().getResource("classes/imagenes/like.jpg"));
+                Icon iconoDisLikeNegro = new ImageIcon(getClass().getResource("imagenes/negroDislike.jpg"));
+                Icon iconoRojo = new ImageIcon(getClass().getResource("imagenes/dislike.jpg"));
+                Icon iconoLikeNegro = new ImageIcon(getClass().getResource("imagenes/negroLike.jpg"));
+                Icon iconoGrisL = new ImageIcon(getClass().getResource("imagenes/grisL.jpg"));
+                Icon iconoGrisD = new ImageIcon(getClass().getResource("imagenes/grisD.jpg"));
+            
+                if(existenteVoto != null){
+                    System.out.println("huhih");
+                    if(existenteVoto.isValor()){//si voto positivo
+                    //poner verde
+                        this.botonLike.setIcon(iconoVerde);
+                        this.botonDislike.setIcon(iconoGrisD);
+                        
+                        
+
+                    }else{
+                    //poner rojo
+                        this.botonDislike.setIcon(iconoRojo);
+                        this.botonLike.setIcon(iconoGrisL);
+                    }
+                }else{
+                    this.botonDislike.setIcon(iconoDisLikeNegro);
+                    this.botonLike.setIcon(iconoLikeNegro);
+                }*/
+            
+    }
 }
 
