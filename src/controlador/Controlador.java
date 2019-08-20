@@ -460,10 +460,17 @@ public class Controlador {
             //cargar v a resp
             Voto unVoto = new Voto();
             unVoto.cargarVoto(valor);
+            unVoto.asociarVoto(unaRespuesta,unUniversitario);
+            Universitario autor = unaRespuesta.getUniversitario();
+            autor.setModificarReputacion(valor);
             
-            
+            unaRespuesta.addVoto(unVoto);
+            unUniversitario.addVoto(unVoto);
             
             System.out.println("se creo el voto correctamente");
+            
+            this.persistencia.insertar(unVoto);
+            this.persistencia.modificar(autor);
             this.persistencia.confirmarTransaccion();
         }catch(Exception e){
         

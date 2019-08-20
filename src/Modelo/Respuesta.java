@@ -117,5 +117,12 @@ public class Respuesta {
     public String toString(){
         return this.respuesta;
     }
+
+    public void addVoto(Voto unVoto) {
+        this.votos.add(unVoto);
+        
+    }
+
+    
     
 }

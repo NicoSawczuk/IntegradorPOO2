@@ -41,6 +41,15 @@ public class Voto {
         this.valor = valor;
         
     }
+
+    public void asociarVoto(Respuesta unaRespuesta, Universitario unUniversitario) {
+        this.respuesta = unaRespuesta;
+        this.universitario = unUniversitario;
+    }
+
+    public boolean isValor() {
+        return valor;
+    }
     
     
     
