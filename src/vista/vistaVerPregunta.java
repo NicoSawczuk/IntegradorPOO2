@@ -311,6 +311,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonEditarRespuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-edit-26.png"))); // NOI18N
         botonEditarRespuesta.setBorder(null);
         botonEditarRespuesta.setContentAreaFilled(false);
+        botonEditarRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarRespuestaActionPerformed(evt);
+            }
+        });
 
         botonEliminarRespuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
         botonEliminarRespuesta.setBorder(null);
@@ -408,9 +413,18 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
     private void botonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResponderActionPerformed
         if (!this.txtRespuesta.getText().isEmpty()){
-            this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
-            this.txtRespuesta.setText("");
-            
+            if (this.listaRespuesta.isSelectionEmpty()){
+                this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
+                this.txtRespuesta.setText("");
+            }
+            else{
+                Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+                String respuesta = this.txtRespuesta.getText();
+                this.controlador.editarRespuesta(unaRespuesta, respuesta);
+                this.txtRespuesta.setText("");
+                System.out.println(respuesta);
+                
+            }           
         }
         else{
             JOptionPane.showMessageDialog(null, "Primero complete el campo respuesta");
@@ -448,6 +462,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         limpiar();
     }//GEN-LAST:event_formWindowActivated
+
+    private void botonEditarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarRespuestaActionPerformed
+        Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+        this.txtRespuesta.setText(unaRespuesta.getRespuesta());
+    }//GEN-LAST:event_botonEditarRespuestaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

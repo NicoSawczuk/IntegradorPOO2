@@ -62,6 +62,10 @@ public class Respuesta {
         this.universitario=unUniversitario;
     }
     
+    public void modificarRespuesta(String respuesta){
+        this.respuesta=respuesta;
+    }
+    
     //Getters and setters
 
     public int getIdRespuesta() {
