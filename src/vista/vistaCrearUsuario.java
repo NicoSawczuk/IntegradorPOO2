@@ -397,6 +397,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                     String auxSexo = this.comboSexo.getSelectedItem().toString();
                     char sexo = auxSexo.charAt(0);
                     this.controlador.editarEstudiante((Universitario) this.listaUsuarios.getSelectedValue(),this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                    limpiar();
                 }
                 else{
                     //Casteamos y juntamos los campos necesarios
@@ -405,14 +406,20 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                     String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
                     String auxSexo = this.comboSexo.getSelectedItem().toString();
                     char sexo = auxSexo.charAt(0);
-                    this.controlador.crearEstudiante(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                    
+                    if (!this.controlador.buscarUniversitario(correo)){
+                        this.controlador.crearEstudiante(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                        limpiar();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "El correo ingresado ya existe");
+                    }
                 } 
             }
             //sino emito un mensaje
             else{
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
             }
-            limpiar();
         }
         else{
             //Guardar profesor
@@ -425,6 +432,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                     String auxSexo = this.comboSexo.getSelectedItem().toString();
                     char sexo = auxSexo.charAt(0);
                     this.controlador.editarProfesor((Universitario) this.listaUsuarios.getSelectedValue(),this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                    limpiar();
                 }
                 else{
                     //Casteamos y juntamos los campos necesarios
@@ -433,11 +441,16 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
                     String correo = this.txtCorreo.getText().toUpperCase() + this.comboCorreo.getSelectedItem().toString().toUpperCase();
                     String auxSexo = this.comboSexo.getSelectedItem().toString();
                     char sexo = auxSexo.charAt(0);
-                    this.controlador.crearProfesor(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                    if (!this.controlador.buscarUniversitario(correo)){
+                        this.controlador.crearProfesor(this.txtNombre.getText().toUpperCase(), this.txtApellido.getText().toUpperCase(), dni, legajo, correo, (String) this.comboTipoUsuario.getSelectedItem(), this.jDateChooser1.getDate(), this.txtDireccion.getText().toUpperCase(), sexo, this.txtContrasena.getText());
+                        limpiar();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "El correo ingresado ya existe");
+                    }
                 }
             }
         }
-        limpiar();
     }//GEN-LAST:event_botonAgregarUsuarioActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
@@ -495,6 +508,7 @@ public final class vistaCrearUsuario extends javax.swing.JFrame {
             //this.txtCorreo.setText(auxUniversitario.getCorreo());
             this.txtDNI.setText(Integer.toString(auxUniversitario.getDni()));
             this.txtDireccion.setText(auxUniversitario.getDireccion());
+            this.txtCorreo.setEnabled(false);
             String legajo2 = auxUniversitario.getLegajo();
             String legajo="";
             for (int n = 3; n<= legajo2.length()-1 ;n++){
