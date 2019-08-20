@@ -12,6 +12,7 @@ import Modelo.Universitario;
 import controlador.Controlador;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,6 +27,7 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     private JFrame vistaAnterior;
     private Universitario unUniversitario;
     private Foro unForo;
+    private Pregunta unaPregunta;
     
     public vistaAgregarPregunta() {
         initComponents();
@@ -35,6 +37,8 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     public vistaAgregarPregunta (Pregunta unaPregunta, JFrame vistaAnterior, Controlador controlador){
         initComponents();
         this.controlador = controlador;
+        this.vistaAnterior=vistaAnterior;
+        this.unaPregunta=unaPregunta;
         this.vistaAnterior=vistaAnterior;
         this.jLabel1.setText("Editar Pregunta");
         this.labelAutor.setText(unaPregunta.getUniversitario().getNombre()+ " "+ unaPregunta.getUniversitario().getApellido());
@@ -242,11 +246,24 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
     private void botonAgregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPreguntaActionPerformed
         // Agrega una pregunta nueva a la base de datos, primero comprobando que los campos sean cargados
         if(!this.txtTitulo.getText().isEmpty() && !this.txtDescripcion.getText().isEmpty()){//si completo el campo
-            String titulo = txtTitulo.getText().toUpperCase();
-            String descripcion = txtDescripcion.getText().toUpperCase();
-            this.controlador.publicarPregunta(unUniversitario,titulo,descripcion,unForo); //funcion del controlador segun el DSD
+            if ("Editar Pregunta".equals(this.jLabel1.getText())){
+               String titulo = txtTitulo.getText().toUpperCase();
+               String descripcion = txtDescripcion.getText().toUpperCase(); 
+               this.controlador.editarPregunta(this.unaPregunta, titulo, descripcion);
+
+               this.vistaAnterior.setVisible(true);
+               this.dispose();
+               
+               //this.vistaAnterior
+               
+            }
+            else{
+              String titulo = txtTitulo.getText().toUpperCase();
+              String descripcion = txtDescripcion.getText().toUpperCase();
+              this.controlador.publicarPregunta(unUniversitario,titulo,descripcion,unForo); //funcion del controlador segun el DSD
+              this.dispose();  
+            }
             
-            this.dispose();
         }else{
              JOptionPane.showMessageDialog(null, "complete todos los campos");
         }

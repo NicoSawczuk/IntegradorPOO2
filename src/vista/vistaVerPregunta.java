@@ -63,7 +63,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         this.jLabel3.setText(autor);
     }
 
-    public vistaVerPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Pregunta p1) {
+    public vistaVerPregunta(Controlador controlador, Universitario universitario, JFrame aThis, Pregunta p1) {
        initComponents();
        this.controlador = controlador;
        this.universitario = universitario;
@@ -112,7 +112,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(190, 189, 189));
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -156,7 +164,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 532, Short.MAX_VALUE)
                 .addComponent(botonEditarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,11 +191,12 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(8, 8, 8))
+                        .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(8, 8, 8))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -336,9 +345,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                     .addGroup(panel4Layout.createSequentialGroup()
                         .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtRespuesta, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonResponder)))
+                            .addComponent(botonResponder))
                         .addGap(12, 12, 12))))
         );
         panel4Layout.setVerticalGroup(
@@ -433,6 +440,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         editarPregunta.setVisible(true);
     }//GEN-LAST:event_botonEditarPreguntaActionPerformed
 
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        limpiar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowStateChanged
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        limpiar();
+    }//GEN-LAST:event_formWindowActivated
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonDislike;
@@ -462,4 +478,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private java.awt.Panel panel4;
     private javax.swing.JTextField txtRespuesta;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setVisible(boolean c){
+    verPregunta(unaPregunta);
+    super.setVisible(c);
 }
+}
+
