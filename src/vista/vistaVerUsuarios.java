@@ -5,8 +5,13 @@
  */
 package vista;
 
+import Modelo.Materia;
 import Modelo.Universitario;
 import controlador.Controlador;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -134,6 +139,11 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
 
         jLabel3.setText("Materias:");
 
+        listaMaterias.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaMateriasValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(listaMaterias);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -337,6 +347,17 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,universitario,this);
         crearUser1.setVisible(true);
     }//GEN-LAST:event_botonABMusuariosActionPerformed
+
+    private void listaMateriasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaMateriasValueChanged
+        Materia materia = (Materia) this.listaMaterias.getSelectedValue();
+        Desktop enlace = Desktop.getDesktop();
+        try {
+             enlace.browse(new URI("http://www.aulavirtual-exactas.dyndns.org/index.php"));
+        } catch (IOException | URISyntaxException e) {
+           e.getMessage();
+        }
+        
+    }//GEN-LAST:event_listaMateriasValueChanged
 
     /**
      * @param args the command line arguments
