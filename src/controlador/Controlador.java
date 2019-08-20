@@ -501,6 +501,25 @@ public class Controlador {
             this.persistencia.descartarTransaccion();
         }
     }
+
+    public void modificarVoto(Voto existenteVoto, boolean b) {
+        this.persistencia.iniciarTransaccion();
+        try{
+            Voto unVoto = existenteVoto;
+            unVoto.cargarVoto(b);
+            Universitario autor = unVoto.getRespuesta().getUniversitario();
+            autor.setModificarReputacion(b);
+            
+            
+            this.persistencia.modificar(unVoto);
+            this.persistencia.modificar(autor);
+            
+            this.persistencia.confirmarTransaccion();
+        }catch(Exception e){
+        
+            this.persistencia.descartarTransaccion();
+        }
+    }
     
     
 }

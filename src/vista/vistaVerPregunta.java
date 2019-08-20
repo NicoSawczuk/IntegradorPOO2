@@ -249,6 +249,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-broken-heart-26.png"))); // NOI18N
         botonDislike.setBorder(null);
         botonDislike.setContentAreaFilled(false);
+        botonDislike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDislikeActionPerformed(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Autor");
@@ -471,6 +476,12 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             if(existenteVoto != null){ //si ya existe veo si se mofdifica
             
             //ver si estaba ya en like o dislike
+                if(!existenteVoto.isValor()){
+                    //meterle dislike, modificar voto y reputacion
+                    this.controlador.modificarVoto(existenteVoto,true);
+                    
+                
+                }
             
             
             }else{ //creo el voto
@@ -503,6 +514,36 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
         this.txtRespuesta.setText(unaRespuesta.getRespuesta());
     }//GEN-LAST:event_botonEditarRespuestaActionPerformed
+
+    private void botonDislikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDislikeActionPerformed
+        // boton de dislike, primero ve si "yo" no vote esa "resapesta"
+        boolean valor = true;
+        Universitario unUniversitario = this.universitario;
+        if(!this.listaRespuesta.isSelectionEmpty()){
+            Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+            Voto existenteVoto = this.controlador.votoExiste(this.universitario, unaRespuesta);
+            if(existenteVoto != null){ //si ya existe veo si se mofdifica
+            
+            //ver si estaba ya en like o dislike
+                if(existenteVoto.isValor()){
+                    //meterle like, modificar voto y reputacion
+                    this.controlador.modificarVoto(existenteVoto,false);
+                }
+            
+            
+            }else{ //creo el voto
+            
+                this.controlador.votarRespuesta(unaRespuesta, unUniversitario, valor);
+            
+            
+            }
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "seleccione una respuesta primero");
+        
+        }
+    }//GEN-LAST:event_botonDislikeActionPerformed
 
 
 
