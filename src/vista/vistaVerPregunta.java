@@ -15,8 +15,8 @@ import controlador.Controlador;
 import java.awt.Color;
 import java.io.InputStream;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+//import javax.swing.Icon;
+//import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -242,7 +242,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         botonLike.setBackground(new java.awt.Color(51, 255, 51));
         botonLike.setForeground(new java.awt.Color(51, 255, 51));
-        botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-love-26.png"))); // NOI18N
+        botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negroLike.png"))); // NOI18N
         botonLike.setBorder(null);
         botonLike.setContentAreaFilled(false);
         botonLike.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +252,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         });
 
         botonDislike.setBackground(new java.awt.Color(244, 244, 244));
-        botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-broken-heart-26.png"))); // NOI18N
+        botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negroDislike.png"))); // NOI18N
         botonDislike.setBorder(null);
         botonDislike.setContentAreaFilled(false);
         botonDislike.addActionListener(new java.awt.event.ActionListener() {
