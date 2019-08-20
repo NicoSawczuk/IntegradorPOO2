@@ -55,6 +55,8 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         this.jLabel5.setText("");
         this.jLabel2.setText("");
         this.panel3.setVisible(false);
+        this.botonEditarRespuesta.setVisible(false);
+        this.botonEliminarRespuesta.setVisible(false);
         
         Universitario auxUniversitario = unaPregunta.getUniversitario();
         String autor = auxUniversitario.getNombre() + " "+auxUniversitario.getApellido();
@@ -417,6 +419,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
            this.jLabel2.setText(unaRespuesta.getRespuesta());
            this.jLabel7.setText(unaRespuesta.getUniversitario().getNombre()+ " "+unaRespuesta.getUniversitario().getApellido());
            this.jLabel8.setText(unaRespuesta.getFecha().toString());
+           
+           if ("ADMINISTRADOR".equals(universitario.getTipo())){
+            this.botonEditarRespuesta.setVisible(true);
+            this.botonEliminarRespuesta.setVisible(true);
+           }
            
         }
     }//GEN-LAST:event_listaRespuestaValueChanged
