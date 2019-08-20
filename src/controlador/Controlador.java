@@ -169,6 +169,30 @@ public class Controlador {
         }
     }
     
+    public void editarPregunta(Pregunta unaPregunta, String titulo, String descripcion){
+       this.persistencia.iniciarTransaccion();
+        try {
+            unaPregunta.modificarPregunta(titulo, descripcion);
+            this.persistencia.modificar(unaPregunta);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo editar la Pregunta");
+        } 
+    }
+    
+    public void editarRespuesta(Respuesta unaRespuesta, String respuesta){
+        this.persistencia.iniciarTransaccion();
+        try {
+            unaRespuesta.modificarRespuesta(respuesta);
+            this.persistencia.modificar(unaRespuesta);
+            this.persistencia.confirmarTransaccion();
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo editar la Respuesta");
+        }
+    }
+    
     //Borrar
     public void borrarUsuario(Universitario unUniversitario){
         this.persistencia.iniciarTransaccion();

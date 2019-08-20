@@ -56,13 +56,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         this.jLabel5.setText("");
         this.jLabel2.setText("");
         this.panel3.setVisible(false);
+        this.botonEditarRespuesta.setVisible(false);
+        this.botonEliminarRespuesta.setVisible(false);
         
         Universitario auxUniversitario = unaPregunta.getUniversitario();
         String autor = auxUniversitario.getNombre() + " "+auxUniversitario.getApellido();
         this.jLabel3.setText(autor);
     }
 
-    public vistaVerPregunta(Controlador controlador, Universitario universitario, vistaHome aThis, Pregunta p1) {
+    public vistaVerPregunta(Controlador controlador, Universitario universitario, JFrame aThis, Pregunta p1) {
        initComponents();
        this.controlador = controlador;
        this.universitario = universitario;
@@ -111,7 +113,15 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(190, 189, 189));
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -155,7 +165,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 532, Short.MAX_VALUE)
                 .addComponent(botonEditarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,11 +192,12 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(8, 8, 8))
+                        .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(8, 8, 8))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -306,6 +317,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonEditarRespuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-edit-26.png"))); // NOI18N
         botonEditarRespuesta.setBorder(null);
         botonEditarRespuesta.setContentAreaFilled(false);
+        botonEditarRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarRespuestaActionPerformed(evt);
+            }
+        });
 
         botonEliminarRespuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
         botonEliminarRespuesta.setBorder(null);
@@ -403,9 +419,18 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
     private void botonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResponderActionPerformed
         if (!this.txtRespuesta.getText().isEmpty()){
-            this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
-            this.txtRespuesta.setText("");
-            
+            if (this.listaRespuesta.isSelectionEmpty()){
+                this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
+                this.txtRespuesta.setText("");
+            }
+            else{
+                Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+                String respuesta = this.txtRespuesta.getText();
+                this.controlador.editarRespuesta(unaRespuesta, respuesta);
+                this.txtRespuesta.setText("");
+                System.out.println(respuesta);
+                
+            }           
         }
         else{
             JOptionPane.showMessageDialog(null, "Primero complete el campo respuesta");
@@ -422,6 +447,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
            this.jLabel7.setText(unaRespuesta.getUniversitario().getNombre()+ " "+unaRespuesta.getUniversitario().getApellido());
            this.jLabel8.setText(unaRespuesta.getFecha().toString());
            
+           if ("ADMINISTRADOR".equals(universitario.getTipo())){
+            this.botonEditarRespuesta.setVisible(true);
+            this.botonEliminarRespuesta.setVisible(true);
+           }
+           
         }
     }//GEN-LAST:event_listaRespuestaValueChanged
 
@@ -429,6 +459,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         vistaAgregarPregunta editarPregunta = new vistaAgregarPregunta (unaPregunta, this, controlador);
         editarPregunta.setVisible(true);
     }//GEN-LAST:event_botonEditarPreguntaActionPerformed
+
 
     private void botonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLikeActionPerformed
         // boton de like, primero ve si "yo" no vote esa "resapesta"
@@ -459,6 +490,21 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonLikeActionPerformed
 
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        limpiar();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowStateChanged
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        limpiar();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void botonEditarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarRespuestaActionPerformed
+        Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
+        this.txtRespuesta.setText(unaRespuesta.getRespuesta());
+    }//GEN-LAST:event_botonEditarRespuestaActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonDislike;
@@ -488,4 +534,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private java.awt.Panel panel4;
     private javax.swing.JTextField txtRespuesta;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setVisible(boolean c){
+    verPregunta(unaPregunta);
+    super.setVisible(c);
 }
+}
+

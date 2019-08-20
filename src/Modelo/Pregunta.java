@@ -163,6 +163,11 @@ public class Pregunta {
        return this.coincideTitulo(textoBuscado);
     }
     
+    public void modificarPregunta(String titulo, String descripcion){
+        this.titulo=titulo;
+        this.descripcion=descripcion;
+    }
+    
     //Getters and Setters
 
     public List<Respuesta> getRespuestas() {
