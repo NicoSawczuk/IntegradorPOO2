@@ -536,7 +536,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
 
     private void botonDislikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDislikeActionPerformed
         // boton de dislike, primero ve si "yo" no vote esa "resapesta"
-        boolean valor = true;
+        boolean valor = false;
         Universitario unUniversitario = this.universitario;
         if(!this.listaRespuesta.isSelectionEmpty()){
             Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
