@@ -180,8 +180,9 @@ public class Pregunta {
     
     
     
-    public void eliminarRespuesta(Respuesta unaRespuesta){
+    public void borrarRespuesta(Respuesta unaRespuesta){
         this.respuestas.remove(unaRespuesta);
+        unaRespuesta.borrarPregunta(this);
     }
     
 }

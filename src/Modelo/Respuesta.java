@@ -71,13 +71,19 @@ public class Respuesta {
         while (i < votos.size()){
             Voto unVoto = votos.get(i);
             unVoto.desasociarRespuesta(this);
+            unVoto.desasociarUniversitario(unaRespuesta.getUniversitario());
             votos.remove(unVoto);
-            Universitario unUniversitario = unaRespuesta.getUniversitario();
-            unUniversitario.borrarRespuesta(unaRespuesta);
-            Pregunta unaPregunta = unaRespuesta.getPregunta();
-            unaPregunta.eliminarRespuesta(unaRespuesta);
+            
             i++;
         }
+    }
+    public void borrarUniversitario(Universitario unUniversitario){
+        this.universitario=null;
+        unUniversitario.borrarRespuesta(this);
+    }
+    
+    public void borrarPregunta(Pregunta unaPregunta){
+        this.pregunta=null;
     }
     
     //Getters and setters

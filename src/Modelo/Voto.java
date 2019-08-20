@@ -60,6 +60,9 @@ public class Voto {
         this.respuesta = null;
     }
     
+    public void desasociarUniversitario(Universitario unUniversitario){
+        this.universitario=null;
+    }
     
     
     

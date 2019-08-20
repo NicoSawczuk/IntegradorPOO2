@@ -46,6 +46,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         //creamos una lista y la llenamos con todos los usuarios
         DefaultListModel modelolista = new DefaultListModel();
         this.listaRespuesta.setModel(modelolista);
+        this.listaRespuesta.setSelectedIndex(-1);
         this.listaRespuesta.setListData(this.controlador.listarRespuestas(this.unaPregunta).toArray());
         
         if ("PROFESOR".equals(universitario.getTipo()) || "ESTUDIANTE".equals(universitario.getTipo())){
@@ -567,8 +568,10 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         if (!this.listaRespuesta.isSelectionEmpty()){
             Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
             this.controlador.eliminarRespuesta(unaRespuesta);
-            limpiar();
-            
+            DefaultListModel modelolista = new DefaultListModel();
+            this.listaRespuesta.setModel(modelolista);
+            this.listaRespuesta.setSelectedIndex(-1);
+            this.listaRespuesta.setListData(this.controlador.listarRespuestas(this.unaPregunta).toArray());
         }
     }//GEN-LAST:event_botonEliminarRespuestaActionPerformed
 

@@ -215,12 +215,27 @@ public class Controlador {
     public void eliminarRespuesta(Respuesta unaRespuesta){
         this.persistencia.iniciarTransaccion();
         try {
+            List votos = unaRespuesta.getVotos();
+            Pregunta unaPregunta = unaRespuesta.getPregunta();
+            Universitario unUniversitario = unaRespuesta.getUniversitario();
+            
+            for (int i = 0; i < votos.size(); i++) {
+                this.persistencia.eliminar(votos.get(i));
+            }
             unaRespuesta.borrarVotos(unaRespuesta);
+            
+            unaRespuesta.borrarUniversitario(unUniversitario);
+            unUniversitario.borrarRespuesta(unaRespuesta);
+            
+            unaRespuesta.borrarPregunta(unaPregunta);
+            unaPregunta.borrarRespuesta(unaRespuesta);
+            
             this.persistencia.modificar(unaRespuesta);
+            this.persistencia.eliminar(unaRespuesta);
             this.persistencia.confirmarTransaccion();
         } catch (Exception e) {
             this.persistencia.descartarTransaccion();
-            System.err.println("No se pudo cambiar el estado");
+            System.err.println("No se pudo eliminar la respuesta");
         }
     }
     
