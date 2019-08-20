@@ -15,8 +15,8 @@ import controlador.Controlador;
 import java.awt.Color;
 import java.io.InputStream;
 import javax.swing.DefaultListModel;
-//import javax.swing.Icon;
-//import javax.swing.ImageIcon;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -615,34 +615,28 @@ public class vistaVerPregunta extends javax.swing.JFrame {
            
             //si yo vote ,positivo, hacer algo, negativo hacer otra cosa.
             
-                System.out.println(this.botonLike.getIcon().toString());
                 
                 
-               /* Icon iconoVerde = new ImageIcon(getClass().getResource("classes/imagenes/like.jpg"));
-                Icon iconoDisLikeNegro = new ImageIcon(getClass().getResource("imagenes/negroDislike.jpg"));
-                Icon iconoRojo = new ImageIcon(getClass().getResource("imagenes/dislike.jpg"));
-                Icon iconoLikeNegro = new ImageIcon(getClass().getResource("imagenes/negroLike.jpg"));
-                Icon iconoGrisL = new ImageIcon(getClass().getResource("imagenes/grisL.jpg"));
-                Icon iconoGrisD = new ImageIcon(getClass().getResource("imagenes/grisD.jpg"));
-            
+                
+              
                 if(existenteVoto != null){
                     System.out.println("huhih");
                     if(existenteVoto.isValor()){//si voto positivo
                     //poner verde
-                        this.botonLike.setIcon(iconoVerde);
-                        this.botonDislike.setIcon(iconoGrisD);
+                        this.botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/like.png")));
+                        this.botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grisD.png")));
                         
                         
 
                     }else{
                     //poner rojo
-                        this.botonDislike.setIcon(iconoRojo);
-                        this.botonLike.setIcon(iconoGrisL);
+                        this.botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dislike.png")));
+                        this.botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grisL.png")));
                     }
                 }else{
-                    this.botonDislike.setIcon(iconoDisLikeNegro);
-                    this.botonLike.setIcon(iconoLikeNegro);
-                }*/
+                    this.botonDislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negroDislike.png")));
+                    this.botonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negroLike.png")));
+                }
             
     }
 }
