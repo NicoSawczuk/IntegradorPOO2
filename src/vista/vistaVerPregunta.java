@@ -452,6 +452,13 @@ public class vistaVerPregunta extends javax.swing.JFrame {
             this.botonEliminarRespuesta.setVisible(true);
            }
            
+           unaRespuesta.getUniversitario().getCorreo();
+           
+           if (this.universitario.getCorreo() == unaRespuesta.getUniversitario().getCorreo()){
+               this.botonLike.setEnabled(false);
+               this.botonDislike.setEnabled(false);
+           }
+           
         }
     }//GEN-LAST:event_listaRespuestaValueChanged
 
