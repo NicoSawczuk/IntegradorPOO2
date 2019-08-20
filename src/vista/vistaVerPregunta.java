@@ -161,6 +161,11 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         botonEliminarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-delete-26.png"))); // NOI18N
         botonEliminarPregunta.setBorder(null);
         botonEliminarPregunta.setContentAreaFilled(false);
+        botonEliminarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPreguntaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -568,12 +573,16 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         if (!this.listaRespuesta.isSelectionEmpty()){
             Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
             this.controlador.eliminarRespuesta(unaRespuesta);
-            DefaultListModel modelolista = new DefaultListModel();
-            this.listaRespuesta.setModel(modelolista);
-            this.listaRespuesta.setSelectedIndex(-1);
-            this.listaRespuesta.setListData(this.controlador.listarRespuestas(this.unaPregunta).toArray());
+            limpiar();
+
         }
     }//GEN-LAST:event_botonEliminarRespuestaActionPerformed
+
+    private void botonEliminarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPreguntaActionPerformed
+        this.controlador.eliminarPregunta(unaPregunta);
+        dispose();
+        
+    }//GEN-LAST:event_botonEliminarPreguntaActionPerformed
 
 
 

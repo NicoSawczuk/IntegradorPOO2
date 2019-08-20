@@ -240,6 +240,39 @@ public class Controlador {
         }
     }
     
+    public void eliminarPregunta(Pregunta unaPregunta){
+        
+        try {
+            List listaRespuestas = unaPregunta.getRespuestas();
+            for (int i = 0; i < listaRespuestas.size(); i++) {
+                System.out.println(i);
+                Respuesta unaRespuesta =(Respuesta) listaRespuestas.get(i);
+                this.eliminarRespuesta(unaRespuesta);
+            }
+            this.persistencia.iniciarTransaccion();
+            System.out.println("no salio del for");
+            unaPregunta.eliminarRespuestas();
+            
+            Universitario unUniversitario = unaPregunta.getUniversitario();
+            unUniversitario.eliminarPregunta(unaPregunta);
+            
+            Foro unForo = unaPregunta.getForo();
+            unForo.eliminarPregunta(unaPregunta);
+
+            
+            this.persistencia.modificar(unaPregunta);
+            this.persistencia.modificar(unForo);
+            this.persistencia.modificar(unUniversitario);
+            
+            this.persistencia.eliminar(unaPregunta);
+            this.persistencia.confirmarTransaccion();
+            
+        } catch (Exception e) {
+            this.persistencia.descartarTransaccion();
+            System.err.println("No se pudo eliminar la pregunta");
+        }
+    }
+    
     //Asociar
     public void asociarMaterias(Materia unaMateria,Universitario unProfesor){
         this.persistencia.iniciarTransaccion();

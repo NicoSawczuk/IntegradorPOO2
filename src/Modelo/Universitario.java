@@ -233,6 +233,9 @@ public class Universitario {
         this.respuestas.remove(unaRespuesta);
     }
 
-    
+    public void eliminarPregunta(Pregunta unaPregunta){
+        this.preguntas.remove(unaPregunta);
+        unaPregunta.eliminarUniversitario(this);
+    }
     
 }
