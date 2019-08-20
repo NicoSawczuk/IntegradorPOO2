@@ -900,4 +900,20 @@ public class vistaHome extends javax.swing.JFrame {
     
     
     }
+    
+    @Override
+    public void setVisible(boolean c){
+        //crear foro
+        if (!this.listaTemas.isSelectionEmpty() && this.listaPreguntas.isSelectionEmpty() && this.listaForos.isSelectionEmpty()){
+            actualizarListaForo();
+            System.out.println("crea foro");
+        }
+        //crear pregunta
+        if (!this.listaTemas.isSelectionEmpty() && !this.listaForos.isSelectionEmpty() && this.listaPreguntas.isSelectionEmpty()){
+            actualizarListaPreguntas();
+            System.out.println("crea pregunta");
+        }
+        super.setVisible(c);
+    }
+    
 }

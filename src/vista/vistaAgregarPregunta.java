@@ -261,6 +261,7 @@ public class vistaAgregarPregunta extends javax.swing.JFrame {
               String titulo = txtTitulo.getText().toUpperCase();
               String descripcion = txtDescripcion.getText().toUpperCase();
               this.controlador.publicarPregunta(unUniversitario,titulo,descripcion,unForo); //funcion del controlador segun el DSD
+              this.vistaAnterior.setVisible(true);
               this.dispose();  
             }
             

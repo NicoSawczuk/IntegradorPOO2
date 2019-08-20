@@ -184,10 +184,10 @@ public class vistaAgregarForo extends javax.swing.JFrame {
                 this.controlador.crearForo(unTema,titulo);
             }
             else{
-                
                 this.controlador.editarForo(unForo, titulo);
             }
             
+            this.vistaAnterior.setVisible(true);
             this.dispose();
         }else{
              JOptionPane.showMessageDialog(null, "complete el campo titulo");
