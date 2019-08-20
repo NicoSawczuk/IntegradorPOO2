@@ -714,11 +714,15 @@ public class vistaHome extends javax.swing.JFrame {
         }
         
         
-        
+        List resultado = new ArrayList<>(); 
         if(this.txtBuscar.getText().isEmpty()){
             if(this.opcionUsuario.isSelected()){
-                this.listaPreguntas.setListData(controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo).toArray());
-                
+                resultado = controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo);
+                if(resultado.size() > 0){
+                    this.listaPreguntas.setListData(resultado.toArray());
+                }else{
+                    JOptionPane.showMessageDialog(null, "no se encontro ninguna pregunta relacionada a su busqueda en el Tema seleccionado");
+                }
                 
             }else{
             
@@ -728,8 +732,12 @@ public class vistaHome extends javax.swing.JFrame {
             
         }else{
         
-            this.listaPreguntas.setListData(controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo).toArray());
-        
+                resultado = controlador.realizarBusqueda(textoBuscado,nomUser,critUser,critCoinci,unTema,unForo);
+                if(resultado.size() > 0){
+                    this.listaPreguntas.setListData(resultado.toArray());
+                }else{
+                    JOptionPane.showMessageDialog(null, "no se encontro ninguna pregunta relacionada a su busqueda en el Tema seleccionado");
+                }
         }
         
         
