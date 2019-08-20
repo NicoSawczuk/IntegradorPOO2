@@ -73,7 +73,10 @@ public class Foro {
         return this.preguntas;
     }
     
-    
+    public void eliminarPregunta(Pregunta unaPregunta){
+        this.preguntas.remove(unaPregunta);
+        unaPregunta.eliminarForo(this);
+    }
     
     
 }

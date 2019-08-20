@@ -185,4 +185,17 @@ public class Pregunta {
         unaRespuesta.borrarPregunta(this);
     }
     
+    
+    public void eliminarUniversitario(Universitario unUniversitario){
+        this.universitario=null;
+    }
+    
+    public void eliminarForo(Foro unForo){
+        this.foro=null;
+    }
+    
+    public void eliminarRespuestas(){
+        this.respuestas.removeAll(respuestas);
+    }
+    
 }
