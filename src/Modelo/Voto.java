@@ -36,6 +36,20 @@ public class Voto {
 
     public Voto() {
     }
+
+    public void cargarVoto(boolean valor) {
+        this.valor = valor;
+        
+    }
+
+    public void asociarVoto(Respuesta unaRespuesta, Universitario unUniversitario) {
+        this.respuesta = unaRespuesta;
+        this.universitario = unUniversitario;
+    }
+
+    public boolean isValor() {
+        return valor;
+    }
     
     
     

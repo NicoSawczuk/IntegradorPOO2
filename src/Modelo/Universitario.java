@@ -28,7 +28,7 @@ public class Universitario {
     private int dni;
     private String nombre;
     private String legajo;
-    private double reputacion;
+    private double reputacion = 0;
     private String apellido;
     private String correo;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -209,5 +209,24 @@ public class Universitario {
     public void add(Pregunta unaPregunta) {
         this.preguntas.add(unaPregunta);
     }
+
+    public List getVotos() {
+        return this.votos;
+    }
+
+    public void addVoto(Voto unVoto) {
+        this.votos.add(unVoto);
+    }
+
+    public void setModificarReputacion(boolean valor) {
+        if(valor){
+            this.reputacion += 1;
+        }else{
+            this.reputacion -= 1;
+        
+        }
+    }
+
+    
     
 }

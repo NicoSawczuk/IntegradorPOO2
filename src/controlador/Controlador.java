@@ -11,6 +11,7 @@ import Modelo.Pregunta;
 import Modelo.Respuesta;
 import Modelo.Tema;
 import Modelo.Universitario;
+import Modelo.Voto;
 import dao.Persistencia;
 import java.util.ArrayList;
 import java.util.Date;
@@ -452,6 +453,53 @@ public class Controlador {
         
         
         return listaPreguntasFinales;
+    }
+
+    public Voto votoExiste(Universitario universitario, Respuesta r1) {
+        List listaVotos = universitario.getVotos();
+        List listaVotosRespuesta = r1.getVotos();
+        for (int i = 0; i < listaVotos.size(); i++) {
+            Voto v1 = (Voto) listaVotos.get(i);
+            
+            
+            for (int j = 0; j < listaVotosRespuesta.size(); j++) {
+                Voto vr = (Voto) listaVotosRespuesta.get(j);
+                if(v1==vr){
+                
+                    return v1;
+                
+                }
+            }
+        }
+        
+        
+        return null;
+    }
+
+    public void votarRespuesta(Respuesta unaRespuesta, Universitario unUniversitario, boolean valor) {
+        this.persistencia.iniciarTransaccion();
+        try{
+            //crear,cargar, asociar u, asociar resp
+            //cargar v a uni
+            //cargar v a resp
+            Voto unVoto = new Voto();
+            unVoto.cargarVoto(valor);
+            unVoto.asociarVoto(unaRespuesta,unUniversitario);
+            Universitario autor = unaRespuesta.getUniversitario();
+            autor.setModificarReputacion(valor);
+            
+            unaRespuesta.addVoto(unVoto);
+            unUniversitario.addVoto(unVoto);
+            
+            System.out.println("se creo el voto correctamente");
+            
+            this.persistencia.insertar(unVoto);
+            this.persistencia.modificar(autor);
+            this.persistencia.confirmarTransaccion();
+        }catch(Exception e){
+        
+            this.persistencia.descartarTransaccion();
+        }
     }
     
     

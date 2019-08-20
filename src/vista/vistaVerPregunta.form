@@ -148,7 +148,7 @@
                           <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -401,6 +401,9 @@
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonLikeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonDislike">
               <Properties>
