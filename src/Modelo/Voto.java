@@ -50,6 +50,10 @@ public class Voto {
     public boolean isValor() {
         return valor;
     }
+
+    public Respuesta getRespuesta() {
+        return respuesta;
+    }
     
     
     
