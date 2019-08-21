@@ -441,6 +441,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void botonResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResponderActionPerformed
+
         if (!this.txtRespuesta.getText().isEmpty()){
             if (this.listaRespuesta.isSelectionEmpty()){
                 this.controlador.publicarRespuesta(this.universitario, this.txtRespuesta.getText(), this.unaPregunta);
@@ -469,7 +470,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
            this.jLabel2.setText(unaRespuesta.getRespuesta());
            this.jLabel7.setText(unaRespuesta.getUniversitario().getNombre()+ " "+unaRespuesta.getUniversitario().getApellido());
            this.jLabel8.setText(unaRespuesta.getFecha().toString());
-           
+           this.botonResponder.setEnabled(false);
            if ("ADMINISTRADOR".equals(universitario.getTipo())){
             this.botonEditarRespuesta.setVisible(true);
             this.botonEliminarRespuesta.setVisible(true);
@@ -538,6 +539,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
     private void botonEditarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarRespuestaActionPerformed
         Respuesta unaRespuesta = (Respuesta) this.listaRespuesta.getSelectedValue();
         this.txtRespuesta.setText(unaRespuesta.getRespuesta());
+        this.botonResponder.setEnabled(true);
     }//GEN-LAST:event_botonEditarRespuestaActionPerformed
 
     private void botonDislikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDislikeActionPerformed
