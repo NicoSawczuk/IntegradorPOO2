@@ -203,7 +203,13 @@ public class Universitario {
     
     @Override
     public String toString() {
-        return this.nombre+"    "+this.tipo+"    "+this.estado;
+        if (this.estado == true){
+            return this.nombre+"    "+this.tipo+"    "+"ACTIVO";
+        }
+        else{
+            return this.nombre+"    "+this.tipo+"    "+"INACTIVO";
+        }
+        
     }
 
     public void add(Pregunta unaPregunta) {
