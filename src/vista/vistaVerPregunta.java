@@ -136,6 +136,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         panel1.setBackground(new java.awt.Color(253, 253, 253));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-vista-del-día-48.png"))); // NOI18N
         jLabel1.setText("Titulo de la pregunta");
 
         panel2.setBackground(new java.awt.Color(244, 244, 244));
@@ -194,6 +195,7 @@ public class vistaVerPregunta extends javax.swing.JFrame {
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Descripcion");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -218,9 +220,8 @@ public class vistaVerPregunta extends javax.swing.JFrame {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addComponent(jLabel1)
+                .addGap(73, 73, 73)
                 .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
