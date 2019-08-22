@@ -10,7 +10,7 @@
     <class>Modelo.Universitario</class>
     <class>Modelo.Voto</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:1234/VerduleriaQti"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.7.247:1234/VerduleriaQti"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="eclipselink.logging.level" value="FINE"/>
