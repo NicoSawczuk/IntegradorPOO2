@@ -81,7 +81,17 @@ public class Controlador {
     }
     
     public List listarRespuestas(Pregunta unaPregunta){
-        return unaPregunta.getRespuestas();
+        List auxList = this.persistencia.buscarTodos(Respuesta.class);
+        List listaR = new ArrayList<>();
+        for (int i = 0; i < auxList.size(); i++) {
+            Respuesta r1 = (Respuesta) auxList.get(i);
+            if (r1.getPregunta() == unaPregunta ) {
+                listaR.add(r1);
+            }
+        }
+        
+        return listaR;
+                
     }
     
     
