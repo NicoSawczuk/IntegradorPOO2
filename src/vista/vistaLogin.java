@@ -165,32 +165,37 @@ public class vistaLogin extends javax.swing.JFrame {
             if(controlador.buscarUniversitario(auxCorreo.toUpperCase())){ // si existe
                 
                 usuarioActual = controlador.ObtenerUniversitario(auxCorreo.toUpperCase());
-                char pase[]=txtContra.getPassword();
+                if(usuarioActual.isEstado()){//esta vivo?
+                    char pase[]=txtContra.getPassword();
 
-                String pass=new String(pase);
-                System.out.println(pass);
-                System.out.println(usuarioActual);
-                if(pass.equals(usuarioActual.getPass()) ){//comprobar contrasenia
-                    
-                    if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
-                        
-                        this.limpiar();
-                      //  this.setVisible(false);
-                        vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
-                        crearUser1.setVisible(true);
+                    String pass=new String(pase);
+                    System.out.println(pass);
+                    System.out.println(usuarioActual);
+                    if(pass.equals(usuarioActual.getPass()) ){//comprobar contrasenia
 
+                        if(this.comboTIpo.getSelectedItem().toString().equals("@registrador")){  //si es registrado va solo a abm usuarios
+
+                            this.limpiar();
+                          //  this.setVisible(false);
+                            vistaCrearUsuario crearUser1 = new vistaCrearUsuario(controlador,usuarioActual,this);
+                            crearUser1.setVisible(true);
+
+                        }else{
+
+                            this.limpiar();
+                           // this.setVisible(false);
+                            vistaHome homeOne = new vistaHome(controlador,usuarioActual,this);
+                            homeOne.setVisible(true);
+
+                        }
                     }else{
-                        
-                        this.limpiar();
-                       // this.setVisible(false);
-                        vistaHome homeOne = new vistaHome(controlador,usuarioActual,this);
-                        homeOne.setVisible(true);
-
+                        JOptionPane.showMessageDialog(null, "error de contraseña");
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "error de contraseña");
-                }
-            
+
+                    JOptionPane.showMessageDialog(null, "usted fue dado de baja del sistema, contacte con el registrador");
+
+                    }
             }else{
                 JOptionPane.showMessageDialog(null, "Usted no existe");
             }        
