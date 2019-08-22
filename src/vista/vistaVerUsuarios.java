@@ -53,6 +53,14 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
         this.txtNombre.setText("");
         this.txtSexo.setText("");
         
+        this.txtDNI.setEditable(false);
+        this.txtLegajo.setEditable(false);
+        this.txtSexo.setEditable(false);
+        this.txtNombre.setEditable(false);
+        this.txtApellido.setEditable(false);
+        this.txtCorreo.setEditable(false);
+        this.txtDireccion.setEditable(false);
+        
         //ocultar o no las materias
         if ("ESTUDIANTE".equals(universitario.getTipo())){
             this.jLabel3.setText("");
@@ -336,6 +344,14 @@ public class vistaVerUsuarios extends javax.swing.JFrame {
             this.txtApellido.setText((String) datosUniversitario.get(4));
             this.txtCorreo.setText((String) datosUniversitario.get(5));
             this.txtDireccion.setText((String) datosUniversitario.get(6));
+            
+            this.txtDNI.setEditable(false);
+            this.txtLegajo.setEditable(false);
+            this.txtSexo.setEditable(false);
+            this.txtNombre.setEditable(false);
+            this.txtApellido.setEditable(false);
+            this.txtCorreo.setEditable(false);
+            this.txtDireccion.setEditable(false);
             
             if (reputacion>=0){
                 this.jProgressBar1.setForeground(Color.green);
