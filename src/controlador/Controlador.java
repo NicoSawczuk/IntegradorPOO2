@@ -395,6 +395,9 @@ public class Controlador {
     
     
     public List verDatosUsuario(Universitario unUniversitario){
+        
+        this.persistencia.buscar(Universitario.class, unUniversitario.getDni());
+        
         ArrayList datosUniversitario= new ArrayList();
         
         String dni = String.valueOf(unUniversitario.getDni());
@@ -652,5 +655,5 @@ public class Controlador {
     
     }
     
-    
+  
 }
