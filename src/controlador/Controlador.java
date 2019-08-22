@@ -81,7 +81,17 @@ public class Controlador {
     }
     
     public List listarRespuestas(Pregunta unaPregunta){
-        return unaPregunta.getRespuestas();
+        List auxList = this.persistencia.buscarTodos(Respuesta.class);
+        List listaR = new ArrayList<>();
+        for (int i = 0; i < auxList.size(); i++) {
+            Respuesta r1 = (Respuesta) auxList.get(i);
+            if (r1.getPregunta() == unaPregunta ) {
+                listaR.add(r1);
+            }
+        }
+        
+        return listaR;
+                
     }
     
     
@@ -583,7 +593,19 @@ public class Controlador {
     }
 
     public int cantVotoPositivos(Respuesta unaRespuesta) {
-        List votos = unaRespuesta.getVotos();
+        
+        List auxList = this.persistencia.buscarTodos(Voto.class);
+        List listaV = new ArrayList<>();
+        for (int i = 0; i < auxList.size(); i++) {
+            Voto v1 = (Voto) auxList.get(i);
+            if (v1.getRespuesta() == unaRespuesta ) {
+                listaV.add(v1);
+            }
+        }
+        
+        
+        
+        List votos = listaV;
         int cant = 0;
         for (int i = 0; i < votos.size(); i++) {
             Voto v1 = (Voto) votos.get(i);
@@ -595,7 +617,19 @@ public class Controlador {
     }
 
     public int cantVotoNegativos(Respuesta unaRespuesta) {
-        List votos = unaRespuesta.getVotos();
+        
+        List auxList = this.persistencia.buscarTodos(Voto.class);
+        List listaV = new ArrayList<>();
+        for (int i = 0; i < auxList.size(); i++) {
+            Voto v1 = (Voto) auxList.get(i);
+            if (v1.getRespuesta() == unaRespuesta ) {
+                listaV.add(v1);
+            }
+        }
+        
+        
+        
+        List votos = listaV;
         int cant = 0;
         for (int i = 0; i < votos.size(); i++) {
             Voto v1 = (Voto) votos.get(i);
