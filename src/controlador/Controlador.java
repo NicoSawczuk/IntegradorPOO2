@@ -527,7 +527,18 @@ public class Controlador {
     }
 
     public Voto votoExiste(Universitario universitario, Respuesta r1) {
-        List listaVotos = universitario.getVotos();
+        
+        List auxList = this.persistencia.buscarTodos(Voto.class);
+        List listaV = new ArrayList<>();
+        for (int i = 0; i < auxList.size(); i++) {
+            Voto v1 = (Voto) auxList.get(i);
+            if (v1.getUniversitario() == universitario) {
+                listaV.add(v1);
+            }
+        }
+        
+      
+        List listaVotos =listaV;
         List listaVotosRespuesta = r1.getVotos();
         for (int i = 0; i < listaVotos.size(); i++) {
             Voto v1 = (Voto) listaVotos.get(i);

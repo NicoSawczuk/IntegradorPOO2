@@ -63,6 +63,10 @@ public class Voto {
     public void desasociarUniversitario(Universitario unUniversitario){
         this.universitario=null;
     }
+
+    public Universitario getUniversitario() {
+        return universitario;
+    }
     
     
     
